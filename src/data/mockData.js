@@ -336,9 +336,223 @@ export const mockUsersData = [
 export const mockProcessLotData = [
   {
     id: 1,
+    pageNumber: '45',
     articleNumber: 4545,
-    userName: 'test',
-    type: 'admin',
+    billNumber: 'test',
+    quantitylot: 'admin',
+    handWorkerId: {
+      id: 1,
+      name: 'Jon Snow',
+      type: 'HAND_EMBROIDER',
+      createdAt: '03/12/2022',
+      updatedAt: '03/12/2022',
+      totalAmountPending: 12545,
+      totalAmountGiven: 14554
+    },
+    dupattaWorkerId:{
+      id: 2,
+      name: 'Cersei Lannister',
+      type: 'DUPATTA_WORKER',
+      createdAt: '03/12/2022',
+      updatedAt: '03/12/2022',
+      totalAmountPending: 12545,
+      totalAmountGiven: 14554
+    },
+    innerWorkerId:  {
+      id: 3,
+      name: 'Jaime Lannister',
+      type: 'INNER_WORKER',
+      createdAt: '03/12/2022',
+      updatedAt: '03/12/2022',
+      totalAmountPending: 12545,
+      totalAmountGiven: 14554
+    },
+    assignDate: '03/12/2022',
+    createdAt: '03/12/2022',
+    updatedAt: '03/12/2022'
+  },
+  {
+    id: 2,
+    pageNumber: '45',
+    articleNumber: 4545,
+    billNumber: 'test',
+    quantitylot: 'admin',
+    handWorkerId: {
+      id: 1,
+      name: 'Jon Snow',
+      type: 'HAND_EMBROIDER',
+      createdAt: '03/12/2022',
+      updatedAt: '03/12/2022',
+      totalAmountPending: 12545,
+      totalAmountGiven: 14554
+    },
+    dupattaWorkerId:{
+      id: 2,
+      name: 'Cersei Lannister',
+      type: 'DUPATTA_WORKER',
+      createdAt: '03/12/2022',
+      updatedAt: '03/12/2022',
+      totalAmountPending: 12545,
+      totalAmountGiven: 14554
+    },
+    innerWorkerId:  {
+      id: 3,
+      name: 'Jaime Lannister',
+      type: 'INNER_WORKER',
+      createdAt: '03/12/2022',
+      updatedAt: '03/12/2022',
+      totalAmountPending: 12545,
+      totalAmountGiven: 14554
+    },
+    assignDate: '03/12/2022',
+    createdAt: '03/12/2022',
+    updatedAt: '03/12/2022'
+  },
+  {
+    id: 3,
+    pageNumber: '45',
+    articleNumber: 4545,
+    billNumber: 'test',
+    quantitylot: 'admin',
+    handWorkerId: {
+      id: 1,
+      name: 'Jon Snow',
+      type: 'HAND_EMBROIDER',
+      createdAt: '03/12/2022',
+      updatedAt: '03/12/2022',
+      totalAmountPending: 12545,
+      totalAmountGiven: 14554
+    },
+    dupattaWorkerId:{
+      id: 2,
+      name: 'Cersei Lannister',
+      type: 'DUPATTA_WORKER',
+      createdAt: '03/12/2022',
+      updatedAt: '03/12/2022',
+      totalAmountPending: 12545,
+      totalAmountGiven: 14554
+    },
+    innerWorkerId:  {
+      id: 3,
+      name: 'Jaime Lannister',
+      type: 'INNER_WORKER',
+      createdAt: '03/12/2022',
+      updatedAt: '03/12/2022',
+      totalAmountPending: 12545,
+      totalAmountGiven: 14554
+    },
+    assignDate: '03/12/2022',
+    createdAt: '03/12/2022',
+    updatedAt: '03/12/2022'
+  },
+  {
+    id: 4,
+    pageNumber: '45',
+    articleNumber: 4545,
+    billNumber: 'test',
+    quantitylot: 'admin',
+    handWorkerId: {
+      id: 1,
+      name: 'Jon Snow',
+      type: 'HAND_EMBROIDER',
+      createdAt: '03/12/2022',
+      updatedAt: '03/12/2022',
+      totalAmountPending: 12545,
+      totalAmountGiven: 14554
+    },
+    dupattaWorkerId:{
+      id: 2,
+      name: 'Cersei Lannister',
+      type: 'DUPATTA_WORKER',
+      createdAt: '03/12/2022',
+      updatedAt: '03/12/2022',
+      totalAmountPending: 12545,
+      totalAmountGiven: 14554
+    },
+    innerWorkerId:  {
+      id: 3,
+      name: 'Jaime Lannister',
+      type: 'INNER_WORKER',
+      createdAt: '03/12/2022',
+      updatedAt: '03/12/2022',
+      totalAmountPending: 12545,
+      totalAmountGiven: 14554
+    },
+    assignDate: '03/12/2022',
+    createdAt: '03/12/2022',
+    updatedAt: '03/12/2022'
+  },
+  {
+    id: 5,
+    pageNumber: '45',
+    articleNumber: 4545,
+    billNumber: 'test',
+    quantitylot: 'admin',
+    handWorkerId: {
+      id: 1,
+      name: 'Jon Snow',
+      type: 'HAND_EMBROIDER',
+      createdAt: '03/12/2022',
+      updatedAt: '03/12/2022',
+      totalAmountPending: 12545,
+      totalAmountGiven: 14554
+    },
+    dupattaWorkerId:{
+      id: 2,
+      name: 'Cersei Lannister',
+      type: 'DUPATTA_WORKER',
+      createdAt: '03/12/2022',
+      updatedAt: '03/12/2022',
+      totalAmountPending: 12545,
+      totalAmountGiven: 14554
+    },
+    innerWorkerId:  {
+      id: 3,
+      name: 'Jaime Lannister',
+      type: 'INNER_WORKER',
+      createdAt: '03/12/2022',
+      updatedAt: '03/12/2022',
+      totalAmountPending: 12545,
+      totalAmountGiven: 14554
+    },
+    assignDate: '03/12/2022',
+    createdAt: '03/12/2022',
+    updatedAt: '03/12/2022'
+  }
+  ,{
+    id: 6,
+    pageNumber: '45',
+    articleNumber: 4545,
+    billNumber: 'test',
+    quantitylot: 'admin',
+    handWorkerId: {
+      id: 1,
+      name: 'Jon Snow',
+      type: 'HAND_EMBROIDER',
+      createdAt: '03/12/2022',
+      updatedAt: '03/12/2022',
+      totalAmountPending: 12545,
+      totalAmountGiven: 14554
+    },
+    dupattaWorkerId:{
+      id: 2,
+      name: 'Cersei Lannister',
+      type: 'DUPATTA_WORKER',
+      createdAt: '03/12/2022',
+      updatedAt: '03/12/2022',
+      totalAmountPending: 12545,
+      totalAmountGiven: 14554
+    },
+    innerWorkerId:  {
+      id: 3,
+      name: 'Jaime Lannister',
+      type: 'INNER_WORKER',
+      createdAt: '03/12/2022',
+      updatedAt: '03/12/2022',
+      totalAmountPending: 12545,
+      totalAmountGiven: 14554
+    },
+    assignDate: '03/12/2022',
     createdAt: '03/12/2022',
     updatedAt: '03/12/2022'
   }

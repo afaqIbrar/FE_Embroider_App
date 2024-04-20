@@ -105,7 +105,7 @@ const Workers = () => {
       <Box
         m="8px 0 0 0"
         width="100%"
-        height="80vh"
+        height="70vh"
         sx={{
           '& .MuiDataGrid-root': {
             border: 'none'

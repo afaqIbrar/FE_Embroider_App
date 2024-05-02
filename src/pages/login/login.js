@@ -5,20 +5,35 @@ import * as yup from 'yup';
 import { useMediaQuery } from '@mui/material';
 import Header from '../../components/Header';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useLoginMutation } from '../../slices/usersApiSlice';
+import { setCredentials } from '../../slices/authSlice';
+import { toast } from 'react-toastify';
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [login, { isLoading, error }] = useLoginMutation();
+  const { userInfo } = useSelector((store) => store.auth);
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate('/routing/dashboard');
+    }
+  }, [navigate, userInfo]);
 
   const isNonMobile = useMediaQuery('(min-width:600px)');
-  const handleFormSubmit = (values) => {
-    // event.preventDefault();
-    // const data = new FormData(event.currentTarget);
-    // console.log({
-    //   userName: data.get('userName'),
-    //   password: data.get('password')
-    // });
-    console.log('values', values);
-    navigate(`/`);
+  const handleFormSubmit = async (values) => {
+    try {
+      const res = await login(values).unwrap();
+      dispatch(setCredentials({ ...res }));
+      navigate(`/routing/dashboard`);
+      toast.success('Logged in Successfully');
+    } catch (err) {
+      toast.error(err?.data?.message || err?.error);
+    }
   };
   const initialValues = {
     userName: '',

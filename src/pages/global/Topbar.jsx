@@ -4,27 +4,54 @@ import { ColorModeContext } from '../../theme';
 import { useTheme, Box, IconButton } from '@mui/material';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
-import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+// import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
+// import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 // import SearchIcon from '@mui/icons-material/Search';
 import { useProSidebar } from 'react-pro-sidebar';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import { useLogoutMutation } from '../../slices/usersApiSlice';
+import { logout } from '../../slices/authSlice';
+import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Topbar = () => {
   const theme = useTheme();
   // const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
   const { toggleSidebar, broken, rtl } = useProSidebar();
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [logoutApi] = useLogoutMutation();
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const handleLogout = async () => {
+    try {
+      const res = await logoutApi().unwrap();
+      dispatch(logout());
+      navigate(`/`);
+      toast.success('Logged out Successfully');
+    } catch (err) {
+      toast.error(err?.data?.message || err?.error);
+    }
+  };
   return (
     <Box display="flex" justifyContent="space-between" p={2}>
       <Box display="flex">
         {broken && !rtl && (
-          <IconButton
-            sx={{ margin: '0 6 0 2' }}
-            onClick={() => toggleSidebar()}
-          >
+          <IconButton sx={{ margin: '0 6 0 2' }}>
             <MenuOutlinedIcon />
           </IconButton>
         )}
@@ -48,15 +75,32 @@ const Topbar = () => {
             <DarkModeOutlinedIcon />
           )}
         </IconButton>
-        <IconButton>
+        {/* <IconButton>
           <NotificationsOutlinedIcon />
-        </IconButton>
-        <IconButton>
+        </IconButton> */}
+        {/* <IconButton>
           <SettingsOutlinedIcon />
-        </IconButton>
-        <IconButton>
+        </IconButton> */}
+        <IconButton
+          onClick={handleClick}
+          aria-controls={open ? 'basic-menu' : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? 'true' : undefined}
+        >
           <PersonOutlinedIcon />
         </IconButton>
+        <Menu
+          id="basic-menu"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          MenuListProps={{
+            'aria-labelledby': 'basic-button'
+          }}
+        >
+          <MenuItem onClick={handleClose}>Profile</MenuItem>
+          <MenuItem onClick={handleLogout}>Logout</MenuItem>
+        </Menu>
         {broken && rtl && (
           <IconButton
             sx={{ margin: '0 6 0 2' }}

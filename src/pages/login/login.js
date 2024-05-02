@@ -5,21 +5,46 @@ import * as yup from 'yup';
 import { useMediaQuery } from '@mui/material';
 import Header from '../../components/Header';
 import { useNavigate } from 'react-router-dom';
-
+import { SharedContext, setUser, setUserToken } from '../../utils/utils';
+import { useContext, useEffect } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 const LoginForm = () => {
   const navigate = useNavigate();
-
   const isNonMobile = useMediaQuery('(min-width:600px)');
-  const handleFormSubmit = (values) => {
-    // event.preventDefault();
-    // const data = new FormData(event.currentTarget);
-    // console.log({
-    //   userName: data.get('userName'),
-    //   password: data.get('password')
-    // });
-    console.log('values', values);
-    navigate(`/`);
+  const { setAuthToken, setCurrentUser, currentUser } =
+    useContext(SharedContext);
+
+  const setToken = (token) => {
+    setUserToken(token);
+    return setAuthToken(token);
   };
+
+  useEffect(() => {
+    if (currentUser) {
+      navigate(`/routing/dashboard`);
+    }
+  }, [currentUser, navigate]);
+
+  const handleFormSubmit = async (values) => {
+    try {
+      const response = await axios.post(
+        process.env.REACT_APP_API_PATH + '/users/login',
+        values,
+        { withCredentials: true }
+      );
+      const { userType, _id, token } = response.data;
+      setUser({ userType, _id });
+      setCurrentUser({ userType, _id });
+      setToken(token);
+      navigate(`/routing/dashboard`);
+      toast.success('Logged In Successfully');
+    } catch (err) {
+      console.log('here', err);
+      toast.error(err?.response?.data?.message);
+    }
+  };
+
   const initialValues = {
     userName: '',
     password: ''

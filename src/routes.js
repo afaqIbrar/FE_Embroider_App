@@ -12,27 +12,44 @@ import Geography from './pages/geography';
 import Users from './pages/users';
 import Workers from './pages/workers';
 import ProcessLot from './pages/processLot';
-const routes = () => [
+import { Navigate } from 'react-router-dom';
+import MainLayout from './layouts/MainLayout';
+
+const routes = (user) => [
   {
-    path: '/',
+    path: 'routing',
     element: <DashBoardLayout />,
     children: [
-      { path: '/', element: <Dashboard /> },
-      { path: '/team', element: <Team /> },
-      { path: '/processLot', element: <ProcessLot /> },
-      { path: '/invoices', element: <Invoices /> },
-      { path: '/form', element: <Form /> },
-      { path: '/workers', element: <Workers /> },
-      { path: '/pie', element: <Pie /> },
-      { path: '/users', element: <Users /> },
-      { path: '/faq', element: <FAQ /> },
-      { path: '/calendar', element: <Calendar /> },
-      { path: '/geography', element: <Geography /> }
+      {
+        path: 'dashboard',
+        element: user ? <Dashboard /> : <Navigate to="/login" />
+      },
+      { path: 'team', element: <Team /> },
+      { path: 'processLot', element: <ProcessLot /> },
+      { path: 'invoices', element: <Invoices /> },
+      { path: 'form', element: <Form /> },
+      { path: 'workers', element: <Workers /> },
+      { path: 'pie', element: <Pie /> },
+      { path: 'users', element: <Users /> },
+      { path: 'faq', element: <FAQ /> },
+      { path: 'calendar', element: <Calendar /> },
+      { path: 'geography', element: <Geography /> }
     ]
   },
   {
-    path: '/login',
-    element: <Login />
+    path: '/',
+    element: <MainLayout />,
+    children: [
+      { path: 'login', element: <Login /> },
+      {
+        path: '/',
+        element: user ? (
+          <Navigate to="routing/dashboard" />
+        ) : (
+          <Navigate to="/login" />
+        )
+      }
+    ]
   }
 ];
 

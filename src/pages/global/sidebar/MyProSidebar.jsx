@@ -136,7 +136,7 @@ const MyProSidebar = () => {
           <Box paddingLeft={collapsed ? undefined : '10%'}>
             <Item
               title="Dashboard"
-              to="/"
+              to="/routing/dashboard"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -152,21 +152,21 @@ const MyProSidebar = () => {
             <Item
               disabled
               title="Articles"
-              to="/team"
+              to="/routing/team"
               icon={<ArticleIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Process Lot"
-              to="/processLot"
+              to="/routing/processLot"
               icon={<MemoryIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Work In Progress"
-              to="/invoices"
+              to="/routing/invoices"
               icon={<AutorenewIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -180,7 +180,7 @@ const MyProSidebar = () => {
             </Typography>
             <Item
               title="User Accounts"
-              to="/form"
+              to="/routing/form"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -209,7 +209,7 @@ const MyProSidebar = () => {
             </Typography>
             <Item
               title="Workers"
-              to="/workers"
+              to="/routing/workers"
               icon={<EngineeringIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -223,7 +223,7 @@ const MyProSidebar = () => {
             /> */}
             <Item
               title="Users"
-              to="/users"
+              to="/routing/users"
               icon={<GroupRemoveIcon />}
               selected={selected}
               setSelected={setSelected}

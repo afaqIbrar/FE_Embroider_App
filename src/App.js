@@ -17,16 +17,31 @@ import './index.css';
 // import Pie from "./pages/pie";
 // import FAQ from "./pages/faq";
 // import Geography from "./pages/geography";
+import { useState } from 'react';
 import routes from './routes';
 import { useRoutes } from 'react-router-dom';
+import { SharedContext, getUser, getUserToken } from './utils/utils';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const App = () => {
+  const [authToken, setAuthToken] = useState(getUserToken());
+  const [currentUser, setCurrentUser] = useState(getUser());
   const [theme, colorMode] = useMode();
-  const routing = useRoutes(routes());
+  const routing = useRoutes(routes(currentUser));
   return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        {/* <MyProSidebarProvider>
+    <SharedContext.Provider
+      value={{
+        authToken,
+        currentUser,
+        setAuthToken,
+        setCurrentUser
+      }}
+    >
+      <ColorModeContext.Provider value={colorMode}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          {/* <MyProSidebarProvider>
               <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/team" element={<Team />} />
@@ -41,9 +56,11 @@ const App = () => {
                 <Route path="/geography" element={<Geography />} />
               </Routes>
         </MyProSidebarProvider> */}
-        {routing}
-      </ThemeProvider>
-    </ColorModeContext.Provider>
+          <ToastContainer />
+          {routing}
+        </ThemeProvider>
+      </ColorModeContext.Provider>
+    </SharedContext.Provider>
   );
 };
 

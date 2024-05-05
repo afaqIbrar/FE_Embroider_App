@@ -20,11 +20,24 @@ import GeographyChart from '../../components/GeographyChart';
 import BarChart from '../../components/BarChart';
 import StatBox from '../../components/StatBox';
 import ProgressCircle from '../../components/ProgressCircle';
-
+import axios from 'axios';
 const Dashboard = () => {
   const theme = useTheme();
   const smScreen = useMediaQuery(theme.breakpoints.up('sm'));
   const colors = tokens(theme.palette.mode);
+
+  const handleDownloadReports = async () => {
+    try {
+      const response = await axios.put(
+        'http://localhost:8000/api/users/profile',
+        { withCredentials: true },
+        { withCredentials: true }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <Box m="20px">
       {/* HEADER */}
@@ -47,6 +60,7 @@ const Dashboard = () => {
               fontWeight: 'bold',
               padding: '10px 20px'
             }}
+            onClick={handleDownloadReports}
           >
             <DownloadOutlinedIcon sx={{ mr: '10px' }} />
             Download Reports

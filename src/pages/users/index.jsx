@@ -1,48 +1,163 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, useTheme } from '@mui/material';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { tokens } from '../../theme';
-import { mockUsersData } from '../../data/mockData';
 import { Button } from '@mui/material';
 import Header from '../../components/Header';
 import { IconButton } from '@mui/material';
 import { Edit, Visibility } from '@mui/icons-material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { InputBase } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import Popup from '../../components/atomComponents/Popup';
 import AddUser from '../../components/AddUser';
+import axios from 'axios';
+import { useFormik } from 'formik';
+import { toast } from 'react-toastify';
+
+const userInitialValues = {
+  userName: '',
+  userType: 'REGULAR_USER',
+  password: ''
+};
+
+const useDebounce = (value, delay) => {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
+};
 
 const Users = () => {
-  const [users, setUsers] = useState(mockUsersData);
+  const [users, setUsers] = useState([]);
   const [addUserPopup, setAddUserPopup] = useState(false);
   const [openUserPopUp, setUserPopup] = useState(false);
+  const [selectedUser, setSelectedUser] = useState({ ...userInitialValues });
   const [view, setView] = useState(true);
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const handleAddUser = () => {
-    console.log('add use clicked');
+  const [openDeleteConfirm, setOpenDeleteConfirm] = useState(false);
+  const [searchText, setSearchText] = useState('');
+  const debouncedSearchText = useDebounce(searchText, 300);
+
+  const formik = useFormik({
+    initialValues: {
+      ...userInitialValues
+    },
+    onSubmit: (values) => {
+      addUser(values);
+    }
+  });
+
+  const addUser = async () => {
+    try {
+      await axios.post(
+        process.env.REACT_APP_API_PATH + '/users/',
+        formik.values,
+        { withCredentials: true }
+      );
+      toast.success('User Added Successfully!!!');
+      fetchUsersData();
+      setAddUserPopup(false);
+      formik.setValues({ ...userInitialValues });
+    } catch (e) {
+      toast.error(e?.response?.data?.message);
+    }
+  };
+
+  const editUser = async () => {
+    try {
+      await axios.put(
+        process.env.REACT_APP_API_PATH + '/users/' + selectedUser._id,
+        formik.values,
+        { withCredentials: true }
+      );
+      toast.success('User Update Successfully!!!');
+      fetchUsersData();
+      setUserPopup(false);
+      formik.setValues({ ...userInitialValues });
+      setSelectedUser({ ...userInitialValues });
+    } catch (e) {
+      toast.error(e?.response?.data?.message);
+    }
+  };
+
+  const handleAddPopup = () => {
     setAddUserPopup(true);
   };
   const handleViewClick = (row) => {
+    setSelectedUser(row);
     setView(true);
     setUserPopup(true);
   };
   const handleEditClick = (row) => {
+    setSelectedUser(row);
     setView(false);
     setUserPopup(true);
   };
 
+  const handleDeleteClick = (row) => {
+    setSelectedUser(row);
+    setOpenDeleteConfirm(true);
+  };
+
+  const fetchUsersData = async (searchText) => {
+    const data = await axios.get(
+      process.env.REACT_APP_API_PATH + '/users/',
+
+      {
+        withCredentials: true,
+        params: {
+          search: searchText
+        }
+      }
+    );
+    setUsers(data.data);
+  };
+
+  const deleteUser = async () => {
+    try {
+      await axios.delete(
+        process.env.REACT_APP_API_PATH + '/users/' + selectedUser._id,
+        { withCredentials: true }
+      );
+      toast.success('User Delete Successfully!!!');
+      fetchUsersData();
+      setOpenDeleteConfirm(false);
+      formik.setValues({ ...userInitialValues });
+      setSelectedUser({ ...userInitialValues });
+    } catch (e) {
+      toast.error(e?.response?.data?.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsersData(debouncedSearchText);
+  }, [debouncedSearchText]);
+
   const columns = [
-    { field: 'id', headerName: 'Id', width: 100 },
-    {
-      field: 'name',
-      headerName: 'Name',
-      cellClassName: 'name-column--cell',
-      width: 300
-    },
+    { field: '_id', headerName: 'Id', width: 100 },
     { field: 'userName', headerName: 'User Name', width: 300 },
-    { field: 'type', headerName: 'Type', width: 250 },
-    { field: 'createdAt', headerName: 'Created At', width: 300 },
+    { field: 'userType', headerName: 'Type', width: 250 },
+    {
+      field: 'createdAt',
+      headerName: 'Created At',
+      width: 300,
+      valueGetter: (params) => {
+        const createdAt = params.row.createdAt; // Get the createdAt value from the row
+        const localCreatedAt = new Date(createdAt).toLocaleString();
+        return localCreatedAt;
+      }
+    },
     {
       field: 'actions',
       headerName: 'Actions',
@@ -55,6 +170,12 @@ const Users = () => {
             onClick={() => handleViewClick(params.row)}
           >
             <Visibility />
+          </IconButton>
+          <IconButton
+            aria-label="View"
+            onClick={() => handleDeleteClick(params.row)}
+          >
+            <DeleteIcon color="error" />
           </IconButton>
           <IconButton
             aria-label="Edit"
@@ -70,9 +191,47 @@ const Users = () => {
   return (
     <Box m="20px">
       <Popup
+        open={openDeleteConfirm}
+        setOpen={setOpenDeleteConfirm}
+        content={'Are You Sure you want to delete this User!!!'}
+        actions={
+          <div className="flex gap-2">
+            <Button
+              sx={{
+                backgroundColor: colors.redAccent[500],
+                color: colors.grey[100],
+                fontSize: '12px',
+                fontWeight: 'bold',
+                padding: '5px 10px'
+              }}
+              onClick={() => {
+                setOpenDeleteConfirm(false);
+                setSelectedUser({ ...userInitialValues });
+              }}
+            >
+              Cancel
+            </Button>
+            <Button
+              sx={{
+                backgroundColor: colors.blueAccent[600],
+                color: colors.grey[100],
+                fontSize: '12px',
+                fontWeight: 'bold',
+                padding: '5px 10px'
+              }}
+              onClick={deleteUser}
+            >
+              Delete User
+            </Button>
+          </div>
+        }
+        title={`Delete User`}
+      />
+
+      <Popup
         open={openUserPopUp}
         setOpen={setUserPopup}
-        content={<AddUser />}
+        content={<AddUser user={selectedUser} formik={formik} view={view} />}
         actions={
           view ? (
             <div className="flex gap-2">
@@ -86,6 +245,8 @@ const Users = () => {
                 }}
                 onClick={() => {
                   setUserPopup(false);
+                  setView(false);
+                  setSelectedUser({ ...userInitialValues });
                 }}
                 size="medium"
               >
@@ -103,7 +264,9 @@ const Users = () => {
                   padding: '5px 10px'
                 }}
                 onClick={() => {
+                  setView(true);
                   setUserPopup(false);
+                  setSelectedUser({ ...userInitialValues });
                 }}
               >
                 Cancel
@@ -116,6 +279,7 @@ const Users = () => {
                   fontWeight: 'bold',
                   padding: '5px 10px'
                 }}
+                onClick={editUser}
               >
                 Update User
               </Button>
@@ -127,7 +291,7 @@ const Users = () => {
       <Popup
         open={addUserPopup}
         setOpen={setAddUserPopup}
-        content={<AddUser />}
+        content={<AddUser formik={formik} />}
         actions={
           <div className="flex gap-2">
             <Button
@@ -140,6 +304,7 @@ const Users = () => {
               }}
               onClick={() => {
                 setAddUserPopup(false);
+                formik.setValues({ ...userInitialValues });
               }}
             >
               Cancel
@@ -152,6 +317,7 @@ const Users = () => {
                 fontWeight: 'bold',
                 padding: '5px 10px'
               }}
+              onClick={addUser}
             >
               Add User
             </Button>
@@ -169,7 +335,13 @@ const Users = () => {
           p={0.2}
           borderRadius={1}
         >
-          <InputBase sx={{ ml: 1, flex: 1 }} placeholder="Search" />
+          <InputBase
+            sx={{ ml: 1, flex: 1 }}
+            placeholder="Search"
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
           <IconButton type="button">
             <SearchIcon />
           </IconButton>
@@ -182,7 +354,7 @@ const Users = () => {
             fontWeight: 'bold',
             padding: '10px 20px'
           }}
-          onClick={handleAddUser}
+          onClick={handleAddPopup}
         >
           Add User
         </Button>
@@ -225,6 +397,7 @@ const Users = () => {
           rows={users}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
+          getRowId={(row) => row._id}
         />
       </Box>
     </Box>

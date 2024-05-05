@@ -1,10 +1,10 @@
 export const USER_TYPE = [
   {
-    value: 'ADMIN',
+    value: 'ADMIN_USER',
     label: 'Admin'
   },
   {
-    value: 'REGULAR',
+    value: 'REGULAR_USER',
     label: 'Regular'
   }
 ];

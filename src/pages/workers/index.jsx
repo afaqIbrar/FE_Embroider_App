@@ -1,52 +1,158 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, useTheme } from '@mui/material';
 import Header from '../../components/Header';
 import { InputBase, IconButton, Button } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { tokens } from '../../theme';
-import { mockWorkersData } from '../../data/mockData';
 import { Edit, Visibility } from '@mui/icons-material';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
-import { WORKER_TYPE } from '../../utils/constants';
+import { WORKERTYPE } from '../../utils/constants';
 import Popup from '../../components/atomComponents/Popup';
 import AddWorker from '../../components/AddWorker';
+import axios from 'axios';
+import useDebounce from '../../utils/useDebounce';
+import { useFormik } from 'formik';
+import { toast } from 'react-toastify';
+import DeleteIcon from '@mui/icons-material/Delete';
+
+const workerInitialValues = {
+  workerName: '',
+  workerType: 'HAND_WORKER',
+  phoneNumber: ''
+};
+
 const Workers = () => {
   const theme = useTheme();
-
-  const [worker, setWorkers] = useState(mockWorkersData);
+  const [worker, setWorkers] = useState([]);
   const [addWorkerPopup, setAddWorkerPopup] = useState(false);
   const [openWorkerPopUp, setWorkerPopup] = useState(false);
   const [view, setView] = useState(true);
+  const [searchText, setSearchText] = useState('');
+  const debouncedSearchText = useDebounce(searchText, 300);
+  const [selectedWorker, setSelectedWorker] = useState({
+    ...workerInitialValues
+  });
+  const [openDeleteConfirm, setOpenDeleteConfirm] = useState(false);
+
+  const formik = useFormik({
+    initialValues: {
+      ...workerInitialValues
+    },
+    onSubmit: (values) => {
+      addWorker(values);
+    }
+  });
+
+  const addWorker = async () => {
+    try {
+      await axios.post(
+        process.env.REACT_APP_API_PATH + '/workers/',
+        formik.values,
+        { withCredentials: true }
+      );
+      toast.success('Worker Added Successfully!!!');
+      fetchWorkersData();
+      setAddWorkerPopup(false);
+      formik.setValues({ ...workerInitialValues });
+    } catch (e) {
+      toast.error(e?.response?.data?.message);
+    }
+  };
+  const editWorker = async () => {
+    try {
+      await axios.put(
+        process.env.REACT_APP_API_PATH + '/workers/' + selectedWorker._id,
+        formik.values,
+        { withCredentials: true }
+      );
+      toast.success('Worker Update Successfully!!!');
+      fetchWorkersData();
+      setWorkerPopup(false);
+      formik.setValues({ ...workerInitialValues });
+      selectedWorker({ ...workerInitialValues });
+    } catch (e) {
+      toast.error(e?.response?.data?.message);
+    }
+  };
+
+  const fetchWorkersData = async (searchText) => {
+    const data = await axios.get(process.env.REACT_APP_API_PATH + '/workers/', {
+      withCredentials: true,
+      params: {
+        search: searchText
+      }
+    });
+    setWorkers(data.data);
+  };
+  useEffect(() => {
+    fetchWorkersData(debouncedSearchText);
+  }, [debouncedSearchText]);
 
   const handleAddWorker = () => {
-    console.log('add use clicked');
     setAddWorkerPopup(true);
   };
   const handleViewClick = (row) => {
+    setSelectedWorker(row);
     setView(true);
     setWorkerPopup(true);
   };
   const handleEditClick = (row) => {
+    setSelectedWorker(row);
     setView(false);
     setWorkerPopup(true);
   };
 
+  const handleDeleteClick = (row) => {
+    setSelectedWorker(row);
+    setOpenDeleteConfirm(true);
+  };
+
+  const deleteUser = async () => {
+    try {
+      await axios.delete(
+        process.env.REACT_APP_API_PATH + '/workers/' + selectedWorker._id,
+        { withCredentials: true }
+      );
+      toast.success('Worker Delete Successfully!!!');
+      fetchWorkersData();
+      setOpenDeleteConfirm(false);
+      formik.setValues({ ...workerInitialValues });
+      setSelectedWorker({ ...workerInitialValues });
+    } catch (e) {
+      toast.error(e?.response?.data?.message);
+    }
+  };
+
   const colors = tokens(theme.palette.mode);
   const columns = [
-    { field: 'id', headerName: 'Id', width: 100 },
+    { field: '_id', headerName: 'Id', width: 100 },
     {
-      field: 'name',
-      headerName: 'Name',
+      field: 'workerName',
+      headerName: 'Worker Name',
       cellClassName: 'name-column--cell',
       width: 300
     },
     {
-      field: 'type',
-      headerName: 'Type',
+      field: 'workerType',
+      headerName: 'Worker Type',
       width: 250,
-      renderCell: (params) => <p>{WORKER_TYPE[params.value]}</p>
+      renderCell: (params) => <p>{WORKERTYPE[params.value]}</p>
     },
-    { field: 'createdAt', headerName: 'Created At', width: 300 },
+    {
+      field: 'phoneNumber',
+      headerName: 'Phone #',
+      width: 250
+    },
+    {
+      field: 'createdAt',
+      headerName: 'Created At',
+      width: 300,
+      valueGetter: (params) => {
+        const createdAt = params.row.createdAt; // Get the createdAt value from the row
+        const localCreatedAt = new Date(createdAt).toLocaleString();
+        return localCreatedAt;
+      }
+    },
     {
       field: 'actions',
       headerName: 'Actions',
@@ -59,6 +165,12 @@ const Workers = () => {
             onClick={() => handleViewClick(params.row)}
           >
             <Visibility />
+          </IconButton>
+          <IconButton
+            aria-label="View"
+            onClick={() => handleDeleteClick(params.row)}
+          >
+            <DeleteIcon color="error" />
           </IconButton>
           <IconButton
             aria-label="Edit"
@@ -83,7 +195,14 @@ const Workers = () => {
             p={0.2}
             borderRadius={1}
           >
-            <InputBase sx={{ ml: 1, flex: 1 }} placeholder="Search" />
+            <InputBase
+              onChange={(e) => {
+                setSearchText(e.target.value);
+              }}
+              value={searchText}
+              sx={{ ml: 1, flex: 1 }}
+              placeholder="Search"
+            />
             <IconButton type="button">
               <SearchIcon />
             </IconButton>
@@ -139,13 +258,16 @@ const Workers = () => {
           rows={worker}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
+          getRowId={(row) => row._id}
         />
       </Box>
 
       <Popup
         open={openWorkerPopUp}
         setOpen={setWorkerPopup}
-        content={<AddWorker />}
+        content={
+          <AddWorker view={view} formik={formik} worker={selectedWorker} />
+        }
         actions={
           view ? (
             <div className="flex gap-2">
@@ -159,6 +281,8 @@ const Workers = () => {
                 }}
                 onClick={() => {
                   setWorkerPopup(false);
+                  setView(false);
+                  setSelectedWorker({ ...workerInitialValues });
                 }}
                 size="medium"
               >
@@ -177,6 +301,8 @@ const Workers = () => {
                 }}
                 onClick={() => {
                   setWorkerPopup(false);
+                  setView(false);
+                  setSelectedWorker({ ...workerInitialValues });
                 }}
               >
                 Cancel
@@ -189,6 +315,7 @@ const Workers = () => {
                   fontWeight: 'bold',
                   padding: '5px 10px'
                 }}
+                onClick={editWorker}
               >
                 Update Worker
               </Button>
@@ -200,7 +327,7 @@ const Workers = () => {
       <Popup
         open={addWorkerPopup}
         setOpen={setAddWorkerPopup}
-        content={<AddWorker />}
+        content={<AddWorker formik={formik} />}
         actions={
           <div className="flex gap-2">
             <Button
@@ -225,12 +352,51 @@ const Workers = () => {
                 fontWeight: 'bold',
                 padding: '5px 10px'
               }}
+              onClick={addWorker}
             >
               Add Worker
             </Button>
           </div>
         }
         title={'Add Worker'}
+      />
+
+      <Popup
+        open={openDeleteConfirm}
+        setOpen={setOpenDeleteConfirm}
+        content={'Are You Sure you want to delete this Worker!!!'}
+        actions={
+          <div className="flex gap-2">
+            <Button
+              sx={{
+                backgroundColor: colors.redAccent[500],
+                color: colors.grey[100],
+                fontSize: '12px',
+                fontWeight: 'bold',
+                padding: '5px 10px'
+              }}
+              onClick={() => {
+                setOpenDeleteConfirm(false);
+                setSelectedWorker({ ...workerInitialValues });
+              }}
+            >
+              Cancel
+            </Button>
+            <Button
+              sx={{
+                backgroundColor: colors.blueAccent[600],
+                color: colors.grey[100],
+                fontSize: '12px',
+                fontWeight: 'bold',
+                padding: '5px 10px'
+              }}
+              onClick={deleteUser}
+            >
+              Delete User
+            </Button>
+          </div>
+        }
+        title={`Delete Worker`}
       />
     </Box>
   );

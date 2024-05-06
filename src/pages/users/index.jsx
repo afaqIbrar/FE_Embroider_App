@@ -14,27 +14,12 @@ import AddUser from '../../components/AddUser';
 import axios from 'axios';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
-
+import useDebounce from '../../utils/useDebounce';
+import { USERTYPE } from '../../utils/constants';
 const userInitialValues = {
   userName: '',
   userType: 'REGULAR_USER',
   password: ''
-};
-
-const useDebounce = (value, delay) => {
-  const [debouncedValue, setDebouncedValue] = useState(value);
-
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedValue(value);
-    }, delay);
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [value, delay]);
-
-  return debouncedValue;
 };
 
 const Users = () => {
@@ -111,16 +96,12 @@ const Users = () => {
   };
 
   const fetchUsersData = async (searchText) => {
-    const data = await axios.get(
-      process.env.REACT_APP_API_PATH + '/users/',
-
-      {
-        withCredentials: true,
-        params: {
-          search: searchText
-        }
+    const data = await axios.get(process.env.REACT_APP_API_PATH + '/users/', {
+      withCredentials: true,
+      params: {
+        search: searchText
       }
-    );
+    });
     setUsers(data.data);
   };
 
@@ -147,7 +128,12 @@ const Users = () => {
   const columns = [
     { field: '_id', headerName: 'Id', width: 100 },
     { field: 'userName', headerName: 'User Name', width: 300 },
-    { field: 'userType', headerName: 'Type', width: 250 },
+    {
+      field: 'userType',
+      headerName: 'Type',
+      width: 250,
+      renderCell: (params) => <p>{USERTYPE[params.value]}</p>
+    },
     {
       field: 'createdAt',
       headerName: 'Created At',
@@ -338,6 +324,7 @@ const Users = () => {
           <InputBase
             sx={{ ml: 1, flex: 1 }}
             placeholder="Search"
+            value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
             }}

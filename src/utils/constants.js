@@ -9,8 +9,28 @@ export const USER_TYPE = [
   }
 ];
 
-export const WORKER_TYPE = {
-  HAND_EMBROIDER: 'Hand Embroider',
+export const USERTYPE = {
+  ADMIN_USER: 'Admin',
+  REGULAR_USER: 'Regular'
+};
+
+export const WORKER_TYPE = [
+  {
+    value: 'HAND_WORKER',
+    label: 'Hand Embroider'
+  },
+  {
+    value: 'DUPATTA_WORKER',
+    label: 'Dupatta Worker'
+  },
+  {
+    value: 'INNER_WORKER',
+    label: 'Inner Worker'
+  }
+];
+
+export const WORKERTYPE = {
+  HAND_WORKER: 'Hand Embroider',
   DUPATTA_WORKER: 'Dupatta Worker',
   INNER_WORKER: 'Inner Worker'
 };

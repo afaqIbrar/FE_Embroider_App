@@ -303,6 +303,10 @@ const ProcessLot = () => {
       <Popup
         open={addProcessLotPopup}
         setOpen={setAddProcessLotPopup}
+        onClose={() => {
+          setAddProcessLotPopup(false);
+          formik.setValues({ ...processLotInitialValues });
+        }}
         content={<AddProcessLot formik={formik} />}
         actions={
           <div className="flex gap-2">
@@ -340,6 +344,11 @@ const ProcessLot = () => {
       <Popup
         open={processLotPopup}
         setOpen={setProcessLotPopup}
+        onClose={() => {
+          setProcessLotPopup(false);
+          setView(false);
+          setSelectedProcessLot({ ...processLotInitialValues });
+        }}
         content={
           <AddProcessLot
             formik={formik}

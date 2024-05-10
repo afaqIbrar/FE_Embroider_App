@@ -265,6 +265,11 @@ const Workers = () => {
       <Popup
         open={openWorkerPopUp}
         setOpen={setWorkerPopup}
+        onClose={() => {
+          setWorkerPopup(false);
+          setView(false);
+          setSelectedWorker({ ...workerInitialValues });
+        }}
         content={
           <AddWorker view={view} formik={formik} worker={selectedWorker} />
         }
@@ -328,6 +333,10 @@ const Workers = () => {
         open={addWorkerPopup}
         setOpen={setAddWorkerPopup}
         content={<AddWorker formik={formik} />}
+        onClose={() => {
+          setAddWorkerPopup(false);
+          formik.setValues({ ...workerInitialValues });
+        }}
         actions={
           <div className="flex gap-2">
             <Button

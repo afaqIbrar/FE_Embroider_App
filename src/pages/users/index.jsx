@@ -217,6 +217,11 @@ const Users = () => {
       <Popup
         open={openUserPopUp}
         setOpen={setUserPopup}
+        onClose={() => {
+          setUserPopup(false);
+          setView(false);
+          setSelectedUser({ ...userInitialValues });
+        }}
         content={<AddUser user={selectedUser} formik={formik} view={view} />}
         actions={
           view ? (
@@ -277,6 +282,10 @@ const Users = () => {
       <Popup
         open={addUserPopup}
         setOpen={setAddUserPopup}
+        onClose={() => {
+          setAddUserPopup(false);
+          formik.setValues({ ...userInitialValues });
+        }}
         content={<AddUser formik={formik} />}
         actions={
           <div className="flex gap-2">

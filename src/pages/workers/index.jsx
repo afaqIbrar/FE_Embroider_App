@@ -107,7 +107,7 @@ const Workers = () => {
     setOpenDeleteConfirm(true);
   };
 
-  const deleteUser = async () => {
+  const deleteWorker = async () => {
     try {
       await axios.delete(
         process.env.REACT_APP_API_PATH + '/workers/' + selectedWorker._id,
@@ -322,7 +322,7 @@ const Workers = () => {
             </div>
           )
         }
-        title={view ? 'Worker Details' : `Edit Edit`}
+        title={view ? 'Worker Details' : `Edit Worker`}
       />
       <Popup
         open={addWorkerPopup}
@@ -340,6 +340,7 @@ const Workers = () => {
               }}
               onClick={() => {
                 setAddWorkerPopup(false);
+                formik.setValues({ ...workerInitialValues });
               }}
             >
               Cancel
@@ -390,7 +391,7 @@ const Workers = () => {
                 fontWeight: 'bold',
                 padding: '5px 10px'
               }}
-              onClick={deleteUser}
+              onClick={deleteWorker}
             >
               Delete User
             </Button>

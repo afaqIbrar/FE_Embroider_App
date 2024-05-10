@@ -1,34 +1,198 @@
-import React, {useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, useTheme, InputBase, IconButton, Button } from '@mui/material';
 import { tokens } from '../../theme';
 import Header from '../../components/Header';
 import SearchIcon from '@mui/icons-material/Search';
 import { Edit, Visibility } from '@mui/icons-material';
-import { mockProcessLotData } from '../../data/mockData';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import Popup from '../../components/atomComponents/Popup';
 import AddProcessLot from '../../components/AddProcessLot';
+import axios from 'axios';
+import useDebounce from '../../utils/useDebounce';
+import { useFormik } from 'formik';
+import { toast } from 'react-toastify';
+import DeleteIcon from '@mui/icons-material/Delete';
+
+const processLotInitialValues = {
+  pageNumber: '',
+  articleNumber: '',
+  colour: '',
+  billNumber: '',
+  quantity: '',
+  handWorker: {},
+  dupattaWorker: {},
+  innerWorker: {}
+};
+
 const ProcessLot = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  const [processLot, setProcessLot] = useState(mockProcessLotData);
+  const [processLot, setProcessLot] = useState([]);
   const [addProcessLotPopup, setAddProcessLotPopup] = useState(false);
+  const [searchText, setSearchText] = useState('');
+  const [selectedProcessLot, setSelectedProcessLot] = useState({});
+  const [openDeleteConfirm, setOpenDeleteConfirm] = useState(false);
+  const [view, setView] = useState(true);
+  const [processLotPopup, setProcessLotPopup] = useState(false);
 
+  const debouncedSearchText = useDebounce(searchText, 300);
   const handleAddProcessLot = () => {
-    console.log('add use clicked');
     setAddProcessLotPopup(true);
   };
+  const formik = useFormik({
+    initialValues: {
+      ...processLotInitialValues
+    },
+    enableReinitialize: true,
+    onSubmit: (values) => {
+      // addWorker(values);
+    }
+  });
+
+  const fetchProcessLotData = async (searchText) => {
+    try {
+      const data = await axios.get(
+        process.env.REACT_APP_API_PATH + '/processLot/',
+        {
+          withCredentials: true,
+          params: {
+            search: searchText
+          }
+        }
+      );
+      setProcessLot(data.data);
+    } catch (err) {
+      toast.error(err.message);
+    }
+  };
+  const handleDeleteClick = (row) => {
+    setSelectedProcessLot(row);
+    setOpenDeleteConfirm(true);
+  };
+  const deleteProcessLot = async () => {
+    try {
+      await axios.delete(
+        process.env.REACT_APP_API_PATH +
+          '/processLot/' +
+          selectedProcessLot._id,
+        { withCredentials: true }
+      );
+      toast.success('Process Lot Deleted Successfully!!!');
+      fetchProcessLotData();
+      setOpenDeleteConfirm(false);
+      formik.setValues({ ...processLotInitialValues });
+      setSelectedProcessLot({});
+    } catch (e) {
+      toast.error(e?.response?.data?.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchProcessLotData(debouncedSearchText);
+  }, [debouncedSearchText]);
+
+  const addProcessLot = async () => {
+    try {
+      await axios.post(
+        process.env.REACT_APP_API_PATH + '/processLot/',
+        formik.values,
+        { withCredentials: true }
+      );
+      toast.success('Worker Added Successfully!!!');
+      fetchProcessLotData();
+      setAddProcessLotPopup(false);
+      formik.setValues({ ...processLotInitialValues });
+    } catch (e) {
+      toast.error(e?.response?.data?.message);
+    }
+  };
+
+  const updateProcessLot = async () => {
+    try {
+      await axios.put(
+        process.env.REACT_APP_API_PATH +
+          '/processLot/' +
+          selectedProcessLot._id,
+        formik.values,
+        { withCredentials: true }
+      );
+      toast.success('Process Lot Updated Successfully!!!');
+      fetchProcessLotData();
+      setProcessLotPopup(false);
+      formik.setValues({ ...processLotInitialValues });
+      selectedProcessLot({ ...processLotInitialValues });
+    } catch (e) {
+      toast.error(e?.response?.data?.message);
+    }
+  };
+
+  const handleViewClick = (row) => {
+    setSelectedProcessLot(row);
+    setView(true);
+    setProcessLotPopup(true);
+  };
+  const handleEditClick = (row) => {
+    setView(false);
+    setProcessLotPopup(true);
+    setSelectedProcessLot(row);
+  };
+
   const columns = [
-    { field: 'id', headerName: 'Id', width: 20 },
-    {field: 'pageNumber',headerName: 'Page Number',width: 100},
-    { field: 'articleNumber',headerName: 'Article #',width: 150,},
-    { field: 'billNumber', headerName: 'Bill #', width:  150},
-    { field: 'quantitylot', headerName: 'Quantity', width: 100 },
-    { field: 'handWorker', headerName: 'Hand Worker', width: 200,renderCell: (params) => <p>{params.row.handWorkerId.name}</p>} ,
-    { field: 'dupattaWorker', headerName: 'Dupatta Worker', width: 200,renderCell: (params) => <p>{params.row.dupattaWorkerId.name}</p> },
-    { field: 'innerWorker', headerName: 'Inner Worker', width: 200,renderCell: (params) => <p>{params.row.innerWorkerId.name}</p> },
-    { field: 'assignDate', headerName: 'Assign Date', width: 150 },
+    { field: '_id', headerName: 'Id', width: 20 },
+    { field: 'pageNumber', headerName: 'Page Number', width: 100 },
+    { field: 'articleNumber', headerName: 'Article #', width: 150 },
+    { field: 'colour', headerName: 'Colour', width: 150 },
+    {
+      field: 'billNumber',
+      headerName: 'Bill #',
+      width: 150,
+      renderCell: (params) => <p>{params.row.billNumber || '-'}</p>
+    },
+    { field: 'quantity', headerName: 'Quantity', width: 100 },
+    {
+      field: 'handWorkerId',
+      headerName: 'Hand Worker',
+      width: 200,
+      renderCell: (params) => (
+        <p>{params.row?.handWorkerId?.workerName || '-'}</p>
+      )
+    },
+    {
+      field: 'dupattaWorkerId',
+      headerName: 'Dupatta Worker',
+      width: 200,
+      renderCell: (params) => (
+        <p>{params.row?.dupattaWorkerId?.workerName || '-'}</p>
+      )
+    },
+    {
+      field: 'innerWorkerId',
+      headerName: 'Inner Worker',
+      width: 200,
+      renderCell: (params) => (
+        <p>{params.row?.innerWorkerId?.workerName || '-'}</p>
+      )
+    },
+    {
+      field: 'assignDate',
+      headerName: 'Assign Date',
+      width: 150,
+      valueGetter: (params) => {
+        if (params?.row?.assignDate) {
+          // Check if assignDate exists in params.row
+          const assignDate = params.row.assignDate;
+          const localCreatedAt = new Date(assignDate).toLocaleString('en-GB', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+          });
+          return localCreatedAt;
+        } else {
+          return '-';
+        }
+      }
+    },
     {
       field: 'actions',
       headerName: 'Actions',
@@ -38,13 +202,19 @@ const ProcessLot = () => {
         <Box>
           <IconButton
             aria-label="View"
-            // onClick={() => handleViewClick(params.row)}
+            onClick={() => handleViewClick(params.row)}
           >
             <Visibility />
           </IconButton>
           <IconButton
+            aria-label="View"
+            onClick={() => handleDeleteClick(params.row)}
+          >
+            <DeleteIcon color="error" />
+          </IconButton>
+          <IconButton
             aria-label="Edit"
-            // onClick={() => handleEditClick(params.row)}
+            onClick={() => handleEditClick(params.row)}
           >
             <Edit />
           </IconButton>
@@ -64,7 +234,14 @@ const ProcessLot = () => {
           p={0.2}
           borderRadius={1}
         >
-          <InputBase sx={{ ml: 1, flex: 1 }} placeholder="Search" />
+          <InputBase
+            sx={{ ml: 1, flex: 1 }}
+            placeholder="Search"
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+            value={searchText}
+          />
           <IconButton type="button">
             <SearchIcon />
           </IconButton>
@@ -119,13 +296,14 @@ const ProcessLot = () => {
           rows={processLot}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
+          getRowId={(row) => row._id}
         />
       </Box>
 
       <Popup
         open={addProcessLotPopup}
         setOpen={setAddProcessLotPopup}
-        content={<AddProcessLot />}
+        content={<AddProcessLot formik={formik} />}
         actions={
           <div className="flex gap-2">
             <Button
@@ -138,6 +316,7 @@ const ProcessLot = () => {
               }}
               onClick={() => {
                 setAddProcessLotPopup(false);
+                formik.setValues({ ...processLotInitialValues });
               }}
             >
               Cancel
@@ -150,12 +329,116 @@ const ProcessLot = () => {
                 fontWeight: 'bold',
                 padding: '5px 10px'
               }}
+              onClick={addProcessLot}
             >
               Add Process Lot
             </Button>
           </div>
         }
         title={'Add Process Lot'}
+      />
+      <Popup
+        open={processLotPopup}
+        setOpen={setProcessLotPopup}
+        content={
+          <AddProcessLot
+            formik={formik}
+            view={view}
+            processLot={selectedProcessLot}
+          />
+        }
+        actions={
+          view ? (
+            <div className="flex gap-2">
+              <Button
+                sx={{
+                  backgroundColor: colors.redAccent[500],
+                  color: colors.grey[100],
+                  fontSize: '12px',
+                  fontWeight: 'bold',
+                  padding: '5px 10px'
+                }}
+                onClick={() => {
+                  setProcessLotPopup(false);
+                  setView(false);
+                  setSelectedProcessLot({ ...processLotInitialValues });
+                }}
+                size="medium"
+              >
+                Close
+              </Button>
+            </div>
+          ) : (
+            <div className="flex gap-2">
+              <Button
+                sx={{
+                  backgroundColor: colors.redAccent[500],
+                  color: colors.grey[100],
+                  fontSize: '12px',
+                  fontWeight: 'bold',
+                  padding: '5px 10px'
+                }}
+                onClick={() => {
+                  setProcessLotPopup(false);
+                  setView(false);
+                  setSelectedProcessLot({ ...processLotInitialValues });
+                }}
+              >
+                Cancel
+              </Button>
+              <Button
+                sx={{
+                  backgroundColor: colors.blueAccent[600],
+                  color: colors.grey[100],
+                  fontSize: '12px',
+                  fontWeight: 'bold',
+                  padding: '5px 10px'
+                }}
+                onClick={updateProcessLot}
+              >
+                Update Worker
+              </Button>
+            </div>
+          )
+        }
+        title={view ? 'Process Lot Details' : `Edit Process Lot`}
+      />
+      <Popup
+        open={openDeleteConfirm}
+        setOpen={setOpenDeleteConfirm}
+        content={'Are You Sure you want to delete this ProcessLot!!!'}
+        actions={
+          <div className="flex gap-2">
+            <Button
+              sx={{
+                backgroundColor: colors.redAccent[500],
+                color: colors.grey[100],
+                fontSize: '12px',
+                fontWeight: 'bold',
+                padding: '5px 10px'
+              }}
+              onClick={() => {
+                setOpenDeleteConfirm(false);
+                setSelectedProcessLot({});
+              }}
+            >
+              Cancel
+            </Button>
+            <Button
+              sx={{
+                backgroundColor: colors.blueAccent[600],
+                color: colors.grey[100],
+                fontSize: '12px',
+                fontWeight: 'bold',
+                padding: '5px 10px'
+              }}
+              onClick={deleteProcessLot}
+            >
+              Delete Worker
+            </Button>
+          </div>
+        }
+        title={`Delete Worker`}
       />
     </Box>
   );

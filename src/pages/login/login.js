@@ -40,7 +40,6 @@ const LoginForm = () => {
       navigate(`/routing/dashboard`);
       toast.success('Logged In Successfully');
     } catch (err) {
-      console.log('here', err);
       toast.error(err?.response?.data?.message);
     }
   };

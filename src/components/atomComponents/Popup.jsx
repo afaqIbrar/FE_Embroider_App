@@ -3,8 +3,8 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import { Close } from '@mui/icons-material';
-import clsx from 'clsx';
+// import { Close } from '@mui/icons-material';
+// import clsx from 'clsx';
 
 export default function Popup({
   open,
@@ -41,12 +41,12 @@ export default function Popup({
       <DialogTitle className={headerClass}>
         <div className="flex justify-between w-100">
           <p className={titleClass}>{title}</p>
-          <Close
+          {/* <Close
             onClick={handleClose}
             className={clsx(
               `mt-[5px] cursor-pointer w-[${closeIconSize}px] h-[${closeIconSize}px] text-santaGray items-center`
             )}
-          />
+          /> */}
         </div>
         {subTitle && <p className="text-sm font-normal mt-1">{subTitle}</p>}
       </DialogTitle>

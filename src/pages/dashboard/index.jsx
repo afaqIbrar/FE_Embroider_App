@@ -33,9 +33,7 @@ const Dashboard = () => {
         { withCredentials: true },
         { withCredentials: true }
       );
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   return (

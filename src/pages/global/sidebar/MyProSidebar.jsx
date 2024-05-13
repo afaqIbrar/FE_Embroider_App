@@ -9,17 +9,6 @@ import { Link } from 'react-router-dom';
 import { tokens } from '../../../theme';
 import { useTheme, Box, Typography, IconButton } from '@mui/material';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
-
-// import ContactsOutlinedIcon from '@mui/icons-material/ContactsOutlined';
-// import ReceiptOutlinedIcon from '@mui/icons-material/ReceiptOutlined';
-// import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
-// import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
-// import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
-// import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined';
-// import PieChartOutlineOutlinedIcon from '@mui/icons-material/PieChartOutlineOutlined';
-// import TimelineOutlinedIcon from '@mui/icons-material/TimelineOutlined';
-
 import GroupRemoveIcon from '@mui/icons-material/GroupRemove';
 import EngineeringIcon from '@mui/icons-material/Engineering';
 import ArticleIcon from '@mui/icons-material/Article';
@@ -166,40 +155,11 @@ const MyProSidebar = () => {
             />
             <Item
               title="Work In Progress"
-              to="/routing/invoices"
+              to="/routing/work"
               icon={<AutorenewIcon />}
               selected={selected}
               setSelected={setSelected}
             />
-            <Typography
-              variant="h6"
-              color={colors.grey[300]}
-              sx={{ m: '15px 20px 5px 20px' }}
-            >
-              Accounts
-            </Typography>
-            <Item
-              title="User Accounts"
-              to="/routing/form"
-              icon={<PeopleOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            {/* <Item
-              title="Calendar"
-              to="/calendar"
-              icon={<CalendarTodayOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            /> */}
-            {/* <Item
-              title="FAQ Page"
-              to="/faq"
-              icon={<HelpOutlineOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            /> */}
-
             <Typography
               variant="h6"
               color={colors.grey[300]}
@@ -214,13 +174,6 @@ const MyProSidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            {/* <Item
-              title="Pie Chart"
-              to="/pie"
-              icon={<PieChartOutlineOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            /> */}
             <Item
               title="Users"
               to="/routing/users"

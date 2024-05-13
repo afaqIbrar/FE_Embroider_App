@@ -402,7 +402,7 @@ const Workers = () => {
               }}
               onClick={deleteWorker}
             >
-              Delete User
+              Delete Worker
             </Button>
           </div>
         }

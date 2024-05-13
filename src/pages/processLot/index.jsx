@@ -443,7 +443,7 @@ const ProcessLot = () => {
               }}
               onClick={deleteProcessLot}
             >
-              Delete Worker
+              Delete Process Lot
             </Button>
           </div>
         }

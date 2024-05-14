@@ -8,6 +8,7 @@ import Workers from './pages/workers';
 import ProcessLot from './pages/processLot';
 import { Navigate } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
+import WorKList from './pages/workList';
 
 const routes = (user) => [
   {
@@ -28,8 +29,8 @@ const routes = (user) => [
         element: user ? <Workers /> : <Navigate to="/login" />
       },
       {
-        path: 'routing/work/:workerId',
-        element: user ? <div>Worker Id</div> : <Navigate to="/login" />
+        path: 'work/:workerId',
+        element: user ? <WorKList /> : <Navigate to="/login" />
       },
       { path: 'users', element: user ? <Users /> : <Navigate to="/login" /> }
     ]

@@ -53,7 +53,7 @@ const Work = () => {
     }
   ];
   const handleRowClick = (params) => {
-    window.location.href = `routing/work/${params.row._id}`;
+    window.location.href = `work/${params.row._id}`;
   };
   const fetchWorkersData = async (searchText) => {
     const data = await axios.get(process.env.REACT_APP_API_PATH + '/workers/', {

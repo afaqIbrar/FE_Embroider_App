@@ -158,7 +158,6 @@ const AddProcessLot = ({ formik, processLot, view }) => {
             renderInput={(params) => (
               <TextField {...params} label="Inner Worker" />
             )}
-            disabled={view}
             onChange={(e, val) => {
               formik.setFieldValue('innerWorker', val !== null && val);
               formik.setFieldValue(
@@ -166,6 +165,7 @@ const AddProcessLot = ({ formik, processLot, view }) => {
                 val && val._id ? val._id : ''
               );
             }}
+            disabled={view}
           />
         </div>
       </Box>

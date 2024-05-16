@@ -20,7 +20,7 @@ import GeographyChart from '../../components/GeographyChart';
 import BarChart from '../../components/BarChart';
 import StatBox from '../../components/StatBox';
 import ProgressCircle from '../../components/ProgressCircle';
-import axios from 'axios';
+import API from '../../utils/axios';
 const Dashboard = () => {
   const theme = useTheme();
   const smScreen = useMediaQuery(theme.breakpoints.up('sm'));
@@ -28,11 +28,9 @@ const Dashboard = () => {
 
   const handleDownloadReports = async () => {
     try {
-      const response = await axios.put(
-        'http://localhost:8000/api/users/profile',
-        { withCredentials: true },
-        { withCredentials: true }
-      );
+      const response = await API.put('users/profile', {
+        withCredentials: true
+      });
     } catch (err) {}
   };
 

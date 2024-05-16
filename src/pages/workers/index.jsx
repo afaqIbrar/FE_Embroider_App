@@ -9,12 +9,11 @@ import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { WORKERTYPE } from '../../utils/constants';
 import Popup from '../../components/atomComponents/Popup';
 import AddWorker from '../../components/AddWorker';
-import axios from 'axios';
 import useDebounce from '../../utils/useDebounce';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import DeleteIcon from '@mui/icons-material/Delete';
-
+import API from '../../utils/axios';
 const workerInitialValues = {
   workerName: '',
   workerType: 'HAND_WORKER',
@@ -45,11 +44,7 @@ const Workers = () => {
 
   const addWorker = async () => {
     try {
-      await axios.post(
-        process.env.REACT_APP_API_PATH + '/workers/',
-        formik.values,
-        { withCredentials: true }
-      );
+      await API.post('workers/', formik.values, { withCredentials: true });
       toast.success('Worker Added Successfully!!!');
       fetchWorkersData();
       setAddWorkerPopup(false);
@@ -60,11 +55,9 @@ const Workers = () => {
   };
   const editWorker = async () => {
     try {
-      await axios.put(
-        process.env.REACT_APP_API_PATH + '/workers/' + selectedWorker._id,
-        formik.values,
-        { withCredentials: true }
-      );
+      await API.put('workers/' + selectedWorker._id, formik.values, {
+        withCredentials: true
+      });
       toast.success('Worker Update Successfully!!!');
       fetchWorkersData();
       setWorkerPopup(false);
@@ -76,7 +69,7 @@ const Workers = () => {
   };
 
   const fetchWorkersData = async (searchText) => {
-    const data = await axios.get(process.env.REACT_APP_API_PATH + '/workers/', {
+    const data = await API.get('workers/', {
       withCredentials: true,
       params: {
         search: searchText
@@ -109,10 +102,9 @@ const Workers = () => {
 
   const deleteWorker = async () => {
     try {
-      await axios.delete(
-        process.env.REACT_APP_API_PATH + '/workers/' + selectedWorker._id,
-        { withCredentials: true }
-      );
+      await API.delete('workers/' + selectedWorker._id, {
+        withCredentials: true
+      });
       toast.success('Worker Delete Successfully!!!');
       fetchWorkersData();
       setOpenDeleteConfirm(false);

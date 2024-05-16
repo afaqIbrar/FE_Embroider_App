@@ -12,7 +12,8 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { toast } from 'react-toastify';
 import { SharedContext, removeAuth } from '../../utils/utils';
-import axios from 'axios';
+import API from '../../utils/axios';
+
 const Topbar = () => {
   const theme = useTheme();
   // const colors = tokens(theme.palette.mode);
@@ -33,11 +34,7 @@ const Topbar = () => {
   };
   const handleLogout = async () => {
     try {
-      await axios.post(
-        process.env.REACT_APP_API_PATH + '/users/logout',
-        {},
-        { withCredentials: true }
-      );
+      await API.post('users/logout', {}, { withCredentials: true });
       setCurrentUser(null);
       removeAuth();
       navigate(`/`);

@@ -5,7 +5,7 @@ import { tokens } from '../../theme';
 import { InputBase, IconButton } from '@mui/material';
 import Header from '../../components/Header';
 import { WORKERTYPE } from '../../utils/constants';
-import axios from 'axios';
+import API from '../../utils/axios';
 import { useState, useEffect } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import useDebounce from '../../utils/useDebounce';
@@ -56,7 +56,7 @@ const Work = () => {
     window.location.href = `work/${params.row._id}`;
   };
   const fetchWorkersData = async (searchText) => {
-    const data = await axios.get(process.env.REACT_APP_API_PATH + '/workers/', {
+    const data = await API.get('workers/', {
       withCredentials: true,
       params: {
         search: searchText

@@ -12,7 +12,7 @@ import { tokens } from '../../theme';
 import { InputBase, IconButton, Button } from '@mui/material';
 import Header from '../../components/Header';
 import { WORKTYPE } from '../../utils/constants';
-import axios from 'axios';
+import API from '../../utils/axios';
 import { useState, useEffect } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import useDebounce from '../../utils/useDebounce';
@@ -68,11 +68,9 @@ const Work = () => {
   });
   const updateWork = async () => {
     try {
-      await axios.put(
-        process.env.REACT_APP_API_PATH + '/work/' + selectedWork._id,
-        formik.values,
-        { withCredentials: true }
-      );
+      await API.put('work/' + selectedWork._id, formik.values, {
+        withCredentials: true
+      });
       toast.success('Work Updated Successfully!!!');
       fetchWorkAgainstWorker();
       setOpenWorkPopup(false);
@@ -84,10 +82,7 @@ const Work = () => {
   };
   const deleteWork = async () => {
     try {
-      await axios.delete(
-        process.env.REACT_APP_API_PATH + '/work/' + selectedWork._id,
-        { withCredentials: true }
-      );
+      await API.delete('work/' + selectedWork._id, { withCredentials: true });
       toast.success('Process Lot Deleted Successfully!!!');
       fetchWorkAgainstWorker();
       setOpenDeleteConfirm(false);
@@ -275,28 +270,22 @@ const Work = () => {
   ];
 
   const fetchWorkerData = async () => {
-    const data = await axios.get(
-      process.env.REACT_APP_API_PATH + '/workers/byId/' + workerId,
-      {
-        withCredentials: true,
-        params: {
-          search: searchText
-        }
+    const data = await API.get('workers/byId/' + workerId, {
+      withCredentials: true,
+      params: {
+        search: searchText
       }
-    );
+    });
     setWorkerData(data.data);
   };
 
   const fetchWorkAgainstWorker = async (searchText) => {
-    const data = await axios.get(
-      process.env.REACT_APP_API_PATH + '/work/byId/' + workerId,
-      {
-        withCredentials: true,
-        params: {
-          search: searchText
-        }
+    const data = await API.get('work/byId/' + workerId, {
+      withCredentials: true,
+      params: {
+        search: searchText
       }
-    );
+    });
     setWorks(data.data);
   };
 

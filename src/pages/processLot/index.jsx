@@ -7,11 +7,11 @@ import { Edit, Visibility } from '@mui/icons-material';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import Popup from '../../components/atomComponents/Popup';
 import AddProcessLot from '../../components/AddProcessLot';
-import axios from 'axios';
 import useDebounce from '../../utils/useDebounce';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import DeleteIcon from '@mui/icons-material/Delete';
+import API from '../../utils/axios';
 
 const processLotInitialValues = {
   pageNumber: '',
@@ -52,15 +52,12 @@ const ProcessLot = () => {
 
   const fetchProcessLotData = async (searchText) => {
     try {
-      const data = await axios.get(
-        process.env.REACT_APP_API_PATH + '/processLot/',
-        {
-          withCredentials: true,
-          params: {
-            search: searchText
-          }
+      const data = await API.get('processLot/', {
+        withCredentials: true,
+        params: {
+          search: searchText
         }
-      );
+      });
       setProcessLot(data.data);
     } catch (err) {
       toast.error(err.message);
@@ -72,12 +69,9 @@ const ProcessLot = () => {
   };
   const deleteProcessLot = async () => {
     try {
-      await axios.delete(
-        process.env.REACT_APP_API_PATH +
-          '/processLot/' +
-          selectedProcessLot._id,
-        { withCredentials: true }
-      );
+      await API.delete('processLot/' + selectedProcessLot._id, {
+        withCredentials: true
+      });
       toast.success('Process Lot Deleted Successfully!!!');
       fetchProcessLotData();
       setOpenDeleteConfirm(false);
@@ -94,11 +88,7 @@ const ProcessLot = () => {
 
   const addProcessLot = async () => {
     try {
-      await axios.post(
-        process.env.REACT_APP_API_PATH + '/processLot/',
-        formik.values,
-        { withCredentials: true }
-      );
+      await API.post('processLot/', formik.values, { withCredentials: true });
       toast.success('Worker Added Successfully!!!');
       fetchProcessLotData();
       setAddProcessLotPopup(false);
@@ -110,13 +100,9 @@ const ProcessLot = () => {
 
   const updateProcessLot = async () => {
     try {
-      await axios.put(
-        process.env.REACT_APP_API_PATH +
-          '/processLot/' +
-          selectedProcessLot._id,
-        formik.values,
-        { withCredentials: true }
-      );
+      await API.put('processLot/' + selectedProcessLot._id, formik.values, {
+        withCredentials: true
+      });
       toast.success('Process Lot Updated Successfully!!!');
       fetchProcessLotData();
       setProcessLotPopup(false);

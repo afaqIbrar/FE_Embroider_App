@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Box, TextField } from '@mui/material';
 import { Autocomplete } from '@mui/material';
-import axios from 'axios';
+import API from '../utils/axios';
 
 const AddProcessLot = ({ formik, processLot, view }) => {
   const [workers, setWorkers] = useState([]);
 
   const fetchWorkersData = async (searchText) => {
-    const data = await axios.get(process.env.REACT_APP_API_PATH + '/workers/', {
+    const data = await API.get('workers/', {
       withCredentials: true,
       params: {
         search: searchText

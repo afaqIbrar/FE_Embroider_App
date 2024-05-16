@@ -11,11 +11,12 @@ import { InputBase } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import Popup from '../../components/atomComponents/Popup';
 import AddUser from '../../components/AddUser';
-import axios from 'axios';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import useDebounce from '../../utils/useDebounce';
 import { USERTYPE } from '../../utils/constants';
+import API from '../../utils/axios';
+
 const userInitialValues = {
   userName: '',
   userType: 'REGULAR_USER',
@@ -45,11 +46,7 @@ const Users = () => {
 
   const addUser = async () => {
     try {
-      await axios.post(
-        process.env.REACT_APP_API_PATH + '/users/',
-        formik.values,
-        { withCredentials: true }
-      );
+      await API.post('users/', formik.values, { withCredentials: true });
       toast.success('User Added Successfully!!!');
       fetchUsersData();
       setAddUserPopup(false);
@@ -61,11 +58,9 @@ const Users = () => {
 
   const editUser = async () => {
     try {
-      await axios.put(
-        process.env.REACT_APP_API_PATH + '/users/' + selectedUser._id,
-        formik.values,
-        { withCredentials: true }
-      );
+      await API.put('users/' + selectedUser._id, formik.values, {
+        withCredentials: true
+      });
       toast.success('User Update Successfully!!!');
       fetchUsersData();
       setUserPopup(false);
@@ -96,7 +91,7 @@ const Users = () => {
   };
 
   const fetchUsersData = async (searchText) => {
-    const data = await axios.get(process.env.REACT_APP_API_PATH + '/users/', {
+    const data = await API.get('users/', {
       withCredentials: true,
       params: {
         search: searchText
@@ -107,10 +102,7 @@ const Users = () => {
 
   const deleteUser = async () => {
     try {
-      await axios.delete(
-        process.env.REACT_APP_API_PATH + '/users/' + selectedUser._id,
-        { withCredentials: true }
-      );
+      await API.delete('users/' + selectedUser._id, { withCredentials: true });
       toast.success('User Delete Successfully!!!');
       fetchUsersData();
       setOpenDeleteConfirm(false);

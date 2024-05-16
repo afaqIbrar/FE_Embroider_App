@@ -7,8 +7,9 @@ import Header from '../../components/Header';
 import { useNavigate } from 'react-router-dom';
 import { SharedContext, setUser, setUserToken } from '../../utils/utils';
 import { useContext, useEffect } from 'react';
-import axios from 'axios';
 import { toast } from 'react-toastify';
+import API from '../../utils/axios';
+
 const LoginForm = () => {
   const navigate = useNavigate();
   const isNonMobile = useMediaQuery('(min-width:600px)');
@@ -28,11 +29,9 @@ const LoginForm = () => {
 
   const handleFormSubmit = async (values) => {
     try {
-      const response = await axios.post(
-        process.env.REACT_APP_API_PATH + '/users/login',
-        values,
-        { withCredentials: true }
-      );
+      const response = await API.post('users/login', values, {
+        withCredentials: true
+      });
       const { userType, _id, token } = response.data;
       setUser({ userType, _id });
       setCurrentUser({ userType, _id });

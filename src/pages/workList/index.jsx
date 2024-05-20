@@ -13,7 +13,7 @@ import { InputBase, IconButton, Button } from '@mui/material';
 import Header from '../../components/Header';
 import { WORKTYPE } from '../../utils/constants';
 import API from '../../utils/axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import useDebounce from '../../utils/useDebounce';
 import { useParams } from 'react-router-dom';
@@ -25,6 +25,8 @@ import AddWork from '../../components/AddWork';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import clsx from 'clsx';
+import { useReactToPrint } from 'react-to-print';
+import AccountsPrint from '../../components/accountsPrint';
 
 const workInitialValues = {
   // quantityLog: '',
@@ -51,6 +53,23 @@ const Work = () => {
   const [totalAmountGiven, setTotalAmoutGiven] = useState(0);
   const [balance, setBalance] = useState(0);
   const [openDeleteConfirm, setOpenDeleteConfirm] = useState(false);
+  const [showPrint, setShowPrint] = useState(null);
+
+  function handleClose() {
+    setShowPrint(null);
+  }
+
+  useEffect(() => {
+    if (showPrint) {
+      handlePrint();
+      handleClose();
+    }
+  }, [showPrint])
+
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
 
   useEffect(() => {
     fetchWorkAgainstWorker(debouncedSearchText);
@@ -294,9 +313,8 @@ const Work = () => {
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header
           title={`${workerData.workerName || ''} Work List`}
-          subtitle={`Welcome to Work List and Accounts of ${
-            workerData.workerName || ''
-          }`}
+          subtitle={`Welcome to Work List and Accounts of ${workerData.workerName || ''
+            }`}
         />
       </Box>
       <Box>
@@ -318,6 +336,20 @@ const Work = () => {
             <IconButton type="button">
               <SearchIcon />
             </IconButton>
+          </Box>
+          <Box>
+            <Button
+              sx={{
+                backgroundColor: colors.blueAccent[700],
+                color: colors.grey[100],
+                fontSize: '14px',
+                fontWeight: 'bold',
+                padding: '10px 20px'
+              }}
+              onClick={() => setShowPrint(true)}
+            >
+              Print Details
+            </Button>
           </Box>
         </Box>
       </Box>
@@ -537,6 +569,9 @@ const Work = () => {
         }
         title={`Delete Worker`}
       />
+      <div ref={componentRef}>
+        <AccountsPrint showPrint={showPrint} workerData={workerData} />
+      </div>
     </Box>
   );
 };

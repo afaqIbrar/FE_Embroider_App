@@ -1,6 +1,13 @@
 import BasicPrint from './BasicPrint';
 
-const AccountsPrint = ({ showPrint, workerData, works, printFlag }) => {
+const AccountsPrint = ({
+  showPrint,
+  workerData,
+  works,
+  totalAmount,
+  totalAmountGiven,
+  balance
+}) => {
   return (
     <>
       {showPrint && (
@@ -8,7 +15,9 @@ const AccountsPrint = ({ showPrint, workerData, works, printFlag }) => {
           <BasicPrint
             workerData={workerData}
             works={works}
-            printFlag={printFlag}
+            totalAmount={totalAmount}
+            totalAmountGiven={totalAmountGiven}
+            balance={balance}
           />
         </>
       )}

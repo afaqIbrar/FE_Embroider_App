@@ -19,12 +19,13 @@ const WorkListTable = ({
   handleDeleteClick,
   handleEditClick,
   handleViewClick,
-  printFlag
+  totalAmount,
+  totalAmountGiven,
+  balance,
+  setBalance,
+  setTotalAmount,
+  setTotalAmoutGiven
 }) => {
-  const [totalAmount, setTotalAmount] = useState(0);
-  const [totalAmountGiven, setTotalAmoutGiven] = useState(0);
-  const [balance, setBalance] = useState(0);
-
   function calculateBalance() {
     const { totalAmount, totalAmountGiven } = works?.reduce(
       (acc, item) => {
@@ -212,33 +213,31 @@ const WorkListTable = ({
                           : column?.renderCell(row) || '-'}
                       </TableCell>
                     ) : (
-                      !printFlag && (
-                        <TableCell key={index} className="p-0">
-                          <Box>
-                            <IconButton
-                              aria-label="View"
-                              style={{ padding: '0px', marginRight: '10px' }}
-                              onClick={() => handleViewClick(row)}
-                            >
-                              <Visibility />
-                            </IconButton>
-                            <IconButton
-                              aria-label="View"
-                              style={{ padding: '0px', marginRight: '10px' }}
-                              onClick={() => handleDeleteClick(row)}
-                            >
-                              <DeleteIcon color="error" />
-                            </IconButton>
-                            <IconButton
-                              aria-label="Edit"
-                              style={{ padding: '0px', marginRight: '10px' }}
-                              onClick={() => handleEditClick(row)}
-                            >
-                              <Edit />
-                            </IconButton>
-                          </Box>
-                        </TableCell>
-                      )
+                      <TableCell key={index} className="p-0">
+                        <Box>
+                          <IconButton
+                            aria-label="View"
+                            style={{ padding: '0px', marginRight: '10px' }}
+                            onClick={() => handleViewClick(row)}
+                          >
+                            <Visibility />
+                          </IconButton>
+                          <IconButton
+                            aria-label="View"
+                            style={{ padding: '0px', marginRight: '10px' }}
+                            onClick={() => handleDeleteClick(row)}
+                          >
+                            <DeleteIcon color="error" />
+                          </IconButton>
+                          <IconButton
+                            aria-label="Edit"
+                            style={{ padding: '0px', marginRight: '10px' }}
+                            onClick={() => handleEditClick(row)}
+                          >
+                            <Edit />
+                          </IconButton>
+                        </Box>
+                      </TableCell>
                     )
                   )}
                 </TableRow>

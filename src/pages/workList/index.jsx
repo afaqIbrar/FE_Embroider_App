@@ -1,30 +1,17 @@
 import React from 'react';
-import {
-  Box,
-  TableContainer,
-  TableHead,
-  TableRow,
-  useTheme,
-  TableCell,
-  TableBody
-} from '@mui/material';
+import { Box, useTheme } from '@mui/material';
 import { tokens } from '../../theme';
 import { InputBase, IconButton, Button } from '@mui/material';
 import Header from '../../components/Header';
-import { WORKTYPE } from '../../utils/constants';
 import API from '../../utils/axios';
 import { useState, useEffect, useRef } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import useDebounce from '../../utils/useDebounce';
 import { useParams } from 'react-router-dom';
-import { Table } from '@mui/material';
-import { Edit, Visibility } from '@mui/icons-material';
-import DeleteIcon from '@mui/icons-material/Delete';
 import Popup from '../../components/atomComponents/Popup';
 import AddWork from '../../components/AddWork';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
-import clsx from 'clsx';
 import { useReactToPrint } from 'react-to-print';
 import AccountsPrint from '../../components/accountsPrint';
 import WorkListTable from '../../components/WorkListTable';
@@ -52,6 +39,33 @@ const Work = () => {
   const [view, setView] = useState(true);
   const [openDeleteConfirm, setOpenDeleteConfirm] = useState(false);
   const [showPrint, setShowPrint] = useState(null);
+  const [totalAmount, setTotalAmount] = useState(0);
+  const [totalAmountGiven, setTotalAmoutGiven] = useState(0);
+  const [balance, setBalance] = useState(0);
+
+  function calculateBalance() {
+    const { totalAmount, totalAmountGiven } = works?.reduce(
+      (acc, item) => {
+        // Convert total and paymentGiven to numbers, handling null or empty values
+        const total = parseFloat(item.total) || 0;
+        const paymentGiven = parseFloat(item.paymentGiven) || 0;
+
+        acc.totalAmount += total;
+        acc.totalAmountGiven += paymentGiven;
+
+        return acc;
+      },
+      { totalAmount: 0, totalAmountGiven: 0 }
+    );
+    const balance = totalAmount - totalAmountGiven;
+    setTotalAmount(totalAmount);
+    setTotalAmoutGiven(totalAmountGiven);
+    setBalance(balance);
+  }
+
+  useEffect(() => {
+    calculateBalance();
+  }, [works]);
 
   function handleClose() {
     setShowPrint(null);
@@ -396,6 +410,12 @@ const Work = () => {
           handleDeleteClick={handleDeleteClick}
           handleEditClick={handleEditClick}
           handleViewClick={handleViewClick}
+          totalAmount={totalAmount}
+          totalAmountGiven={totalAmountGiven}
+          balance={balance}
+          setBalance={setBalance}
+          setTotalAmount={setTotalAmount}
+          setTotalAmoutGiven={setTotalAmoutGiven}
         />
         {/* <div>
           <TableContainer className="mt-8 rounded-t-lg border border-solid border-dark300 inventory-table h-[580px]">
@@ -579,7 +599,9 @@ const Work = () => {
           showPrint={showPrint}
           workerData={workerData}
           works={works}
-          printFlag={true}
+          totalAmount={totalAmount}
+          totalAmountGiven={totalAmountGiven}
+          balance={balance}
         />
       </div>
     </Box>

@@ -125,39 +125,89 @@ const ProcessLot = () => {
   };
 
   const columns = [
-    { field: '_id', headerName: 'Id', width: 20 },
-    { field: 'pageNumber', headerName: 'Page Number', width: 100 },
-    { field: 'articleNumber', headerName: 'Article #', width: 150 },
-    { field: 'colour', headerName: 'Colour', width: 150 },
+    // {
+    //   field: '_id',
+    //   headerName: 'Id',
+    //   width: 20,
+    //   valueGetter: (params) => params.api.getRowIndex(params.id) + 1
+    // },
+    {
+      field: 'pageNumber',
+      headerName: 'Page',
+      width: 55,
+      renderCell: (params) => (
+        <p
+          className={`p-2 text-sm ${
+            params.row.assignDate ? 'bg-green-500' : 'bg-red-700'
+          }`}
+        >
+          {params.row.pageNumber || '-'}
+        </p>
+      )
+    },
+    {
+      field: 'articleNumber',
+      headerName: 'Article #',
+      width: 80,
+      renderCell: (params) => (
+        <p
+          className={`p-2 text-sm ${
+            params.row.assignDate ? 'bg-green-500' : 'bg-red-700'
+          }`}
+        >
+          {params.row.articleNumber || '-'}
+        </p>
+      )
+    },
+    {
+      field: 'colour',
+      headerName: 'Colour',
+      width: 100,
+      renderCell: (params) => (
+        <p
+          className={`p-2 text-sm ${
+            params.row.assignDate ? 'bg-green-500' : 'bg-red-700'
+          }`}
+        >
+          {params.row.colour || '-'}
+        </p>
+      )
+    },
     {
       field: 'billNumber',
       headerName: 'Bill #',
-      width: 150,
-      renderCell: (params) => <p>{params.row.billNumber || '-'}</p>
-    },
-    { field: 'quantity', headerName: 'Quantity', width: 100 },
-    {
-      field: 'handWorkerId',
-      headerName: 'Hand Worker',
-      width: 200,
+      width: 50,
       renderCell: (params) => (
-        <p>{params.row?.handWorkerId?.workerName || '-'}</p>
+        <p
+          // className={`${params.row.billNumber ? ${params.row.assignDate ? 'bg-green-500 p-2 text-sm' : 'bg-blue-500 p-2 text-sm'} :  '' }}
+          className={`p-2 text-sm ${
+            params.row.billNumber
+              ? params.row.assignDate
+                ? 'bg-green-500'
+                : 'bg-blue-500'
+              : ''
+          }`}
+        >
+          {params.row.billNumber || '-'}
+        </p>
       )
     },
     {
-      field: 'dupattaWorkerId',
-      headerName: 'Dupatta Worker',
-      width: 200,
+      field: 'quantity',
+      headerName: 'QTY',
+      width: 60,
       renderCell: (params) => (
-        <p>{params.row?.dupattaWorkerId?.workerName || '-'}</p>
-      )
-    },
-    {
-      field: 'innerWorkerId',
-      headerName: 'Inner Worker',
-      width: 200,
-      renderCell: (params) => (
-        <p>{params.row?.innerWorkerId?.workerName || '-'}</p>
+        <p
+          className={`p-2 text-sm ${
+            params.row.quantity
+              ? params.row.assignDate
+                ? 'bg-green-500'
+                : 'bg-blue-500'
+              : ''
+          }`}
+        >
+          {params.row.quantity || '-'}
+        </p>
       )
     },
     {
@@ -177,8 +227,76 @@ const ProcessLot = () => {
         } else {
           return '-';
         }
-      }
+      },
+      renderCell: (params) => (
+        <p
+          className={`p-2 text-sm ${
+            params.row.assignDate
+              ? params.row.assignDate
+                ? 'bg-green-500'
+                : 'bg-blue-500'
+              : ''
+          }`}
+        >
+          {params.value}
+        </p>
+      )
     },
+    {
+      field: 'handWorkerId',
+      headerName: 'Hand Worker',
+      width: 110,
+      renderCell: (params) => (
+        <p
+          className={`p-2 text-sm ${
+            params.row?.handWorkerId?.workerName
+              ? params?.row?.assignDate
+                ? 'bg-green-500'
+                : 'bg-blue-500'
+              : ''
+          }`}
+        >
+          {params.row?.handWorkerId?.workerName || '-'}
+        </p>
+      )
+    },
+    {
+      field: 'dupattaWorkerId',
+      headerName: 'Dupatta Worker',
+      width: 110,
+      renderCell: (params) => (
+        <p
+          className={`p-2 text-sm ${
+            params.row?.dupattaWorkerId?.workerName
+              ? params.row.assignDate
+                ? 'bg-green-500'
+                : 'bg-blue-500'
+              : ''
+          }`}
+        >
+          {params.row?.dupattaWorkerId?.workerName || '-'}
+        </p>
+      )
+    },
+    {
+      field: 'innerWorkerId',
+      headerName: 'Inner Worker',
+      width: 110,
+      renderCell: (params) => (
+        <p
+          className={`p-2 text-sm ${
+            params.row?.innerWorkerId?.workerName
+              ? params.row.assignDate
+                ? 'bg-green-500'
+                : 'bg-blue-500'
+              : ''
+          }`}
+        >
+          {params.row?.innerWorkerId?.workerName || '-'}
+        </p>
+      )
+    },
+
     {
       field: 'actions',
       headerName: 'Actions',
@@ -186,12 +304,12 @@ const ProcessLot = () => {
       width: 150,
       renderCell: (params) => (
         <Box>
-          <IconButton
+          {/* <IconButton
             aria-label="View"
             onClick={() => handleViewClick(params.row)}
           >
             <Visibility />
-          </IconButton>
+          </IconButton> */}
           <IconButton
             aria-label="View"
             onClick={() => handleDeleteClick(params.row)}
@@ -248,7 +366,7 @@ const ProcessLot = () => {
       <Box
         m="8px 0 0 0"
         width="100%"
-        height="70vh"
+        height="450px"
         sx={{
           '& .MuiDataGrid-root': {
             border: 'none'

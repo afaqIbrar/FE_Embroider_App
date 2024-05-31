@@ -123,13 +123,13 @@ const MyProSidebar = () => {
           </MenuItem>
 
           <Box paddingLeft={collapsed ? undefined : '10%'}>
-            <Item
+            {/* <Item
               title="Dashboard"
               to="/routing/dashboard"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            /> */}
 
             <Typography
               variant="h6"
@@ -138,14 +138,14 @@ const MyProSidebar = () => {
             >
               Processing
             </Typography>
-            <Item
+            {/* <Item
               disabled
               title="Articles"
               to="/routing/team"
               icon={<ArticleIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            /> */}
             <Item
               title="Process Lot"
               to="/routing/processLot"

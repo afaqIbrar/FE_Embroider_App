@@ -23,28 +23,33 @@ const Work = () => {
   }, [debouncedSearchText]);
 
   const columns = [
-    { field: '_id', headerName: 'Id', width: 100 },
+    {
+      field: '_id',
+      headerName: 'Id',
+      width: 50,
+      valueGetter: (params) => params.api.getRowIndex(params.id) + 1
+    },
     {
       field: 'workerName',
       headerName: 'Worker Name',
       cellClassName: 'name-column--cell',
-      width: 300
+      width: 150
     },
     {
       field: 'workerType',
       headerName: 'Worker Type',
-      width: 250,
+      width: 150,
       renderCell: (params) => <p>{WORKERTYPE[params.value]}</p>
     },
     {
       field: 'phoneNumber',
       headerName: 'Phone #',
-      width: 250
+      width: 150
     },
     {
       field: 'createdAt',
       headerName: 'Created At',
-      width: 300,
+      width: 150,
       valueGetter: (params) => {
         const createdAt = params.row.createdAt; // Get the createdAt value from the row
         const localCreatedAt = new Date(createdAt).toLocaleString();
@@ -98,7 +103,7 @@ const Work = () => {
       <Box
         m="8px 0 0 0"
         width="100%"
-        height="70vh"
+        height="450px"
         sx={{
           '& .MuiDataGrid-root': {
             border: 'none'

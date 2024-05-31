@@ -118,18 +118,23 @@ const Users = () => {
   }, [debouncedSearchText]);
 
   const columns = [
-    { field: '_id', headerName: 'Id', width: 100 },
-    { field: 'userName', headerName: 'User Name', width: 300 },
+    {
+      field: '_id',
+      headerName: 'Id',
+      width: 50,
+      valueGetter: (params) => params.api.getRowIndex(params.id) + 1
+    },
+    { field: 'userName', headerName: 'User Name', width: 150 },
     {
       field: 'userType',
       headerName: 'Type',
-      width: 250,
+      width: 150,
       renderCell: (params) => <p>{USERTYPE[params.value]}</p>
     },
     {
       field: 'createdAt',
       headerName: 'Created At',
-      width: 300,
+      width: 150,
       valueGetter: (params) => {
         const createdAt = params.row.createdAt; // Get the createdAt value from the row
         const localCreatedAt = new Date(createdAt).toLocaleString();
@@ -351,7 +356,7 @@ const Users = () => {
       <Box
         m="8px 0 0 0"
         width="100%"
-        height="70vh"
+        height="450px"
         sx={{
           '& .MuiDataGrid-root': {
             border: 'none'

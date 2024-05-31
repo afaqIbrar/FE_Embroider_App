@@ -161,7 +161,7 @@ const BasicPrint = ({
                       }}
                     >
                       {' '}
-                      {'12-12-2012 - 12-12-2012' || '-'}
+                      {/* {'12-12-2012 - 12-12-2012' || '-'} */}
                     </span>
                   </div>
                 </Grid>
@@ -205,34 +205,38 @@ const BasicPrint = ({
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '10px'
+                            fontSize: '12px',
+                            fontWeight: 'bold'
                           }}
                         >
-                          ID
+                          Date
                         </TableCell>
                         <TableCell
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '10px'
+                            fontSize: '12px',
+                            fontWeight: 'bold'
                           }}
                         >
-                          Page#
+                          Page
                         </TableCell>
                         <TableCell
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '10px'
+                            fontSize: '12px',
+                            fontWeight: 'bold'
                           }}
                         >
-                          Art#
+                          Art
                         </TableCell>
                         <TableCell
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '10px'
+                            fontSize: '12px',
+                            fontWeight: 'bold'
                           }}
                         >
                           Clr
@@ -241,16 +245,18 @@ const BasicPrint = ({
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '10px'
+                            fontSize: '12px',
+                            fontWeight: 'bold'
                           }}
                         >
-                          Bill#
+                          Bill
                         </TableCell>
                         <TableCell
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '10px'
+                            fontSize: '12px',
+                            fontWeight: 'bold'
                           }}
                         >
                           Qty
@@ -259,7 +265,8 @@ const BasicPrint = ({
                           sx={{
                             minWidth: 30,
                             maxWidth: 20,
-                            fontSize: '10px'
+                            fontSize: '12px',
+                            fontWeight: 'bold'
                           }}
                         >
                           Log
@@ -268,7 +275,8 @@ const BasicPrint = ({
                           sx={{
                             minWidth: 10,
                             maxWidth: 20,
-                            fontSize: '10px'
+                            fontSize: '12px',
+                            fontWeight: 'bold'
                           }}
                         >
                           Ret
@@ -277,7 +285,8 @@ const BasicPrint = ({
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '10px'
+                            fontSize: '12px',
+                            fontWeight: 'bold'
                           }}
                         >
                           Rate
@@ -286,7 +295,8 @@ const BasicPrint = ({
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '10px'
+                            fontSize: '12px',
+                            fontWeight: 'bold'
                           }}
                         >
                           Total
@@ -295,7 +305,8 @@ const BasicPrint = ({
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '10px'
+                            fontSize: '12px',
+                            fontWeight: 'bold'
                           }}
                         >
                           Date
@@ -304,7 +315,8 @@ const BasicPrint = ({
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '10px'
+                            fontSize: '12px',
+                            fontWeight: 'bold'
                           }}
                         >
                           Paym
@@ -313,16 +325,8 @@ const BasicPrint = ({
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '10px'
-                          }}
-                        >
-                          Mode
-                        </TableCell>
-                        <TableCell
-                          sx={{
-                            minWidth: 20,
-                            maxWidth: 20,
-                            fontSize: '10px'
+                            fontSize: '12px',
+                            fontWeight: 'bold'
                           }}
                         >
                           Date
@@ -331,7 +335,8 @@ const BasicPrint = ({
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '10px'
+                            fontSize: '12px',
+                            fontWeight: 'bold'
                           }}
                         >
                           Ref
@@ -348,19 +353,17 @@ const BasicPrint = ({
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '8px',
-                                  fontWeight: 'bold'
+                                  fontSize: '10px'
                                 }}
                               >
-                                {index + 1}25
+                                {convertDate(work?.createdAt || null)}
                               </TableCell>
                               <TableCell
                                 sx={{
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '8px',
-                                  fontWeight: 'bold'
+                                  fontSize: '10px'
                                 }}
                               >
                                 {work?.processLotId?.pageNumber || '-'}
@@ -370,8 +373,7 @@ const BasicPrint = ({
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '8px',
-                                  fontWeight: 'bold'
+                                  fontSize: '10px'
                                 }}
                               >
                                 {work?.processLotId?.articleNumber || '-'}
@@ -381,8 +383,7 @@ const BasicPrint = ({
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '8px',
-                                  fontWeight: 'bold'
+                                  fontSize: '10px'
                                 }}
                               >
                                 {work?.processLotId?.colour || '-'}
@@ -392,8 +393,7 @@ const BasicPrint = ({
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '8px',
-                                  fontWeight: 'bold'
+                                  fontSize: '10px'
                                 }}
                               >
                                 {work?.processLotId?.billNumber || '-'}
@@ -403,8 +403,7 @@ const BasicPrint = ({
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '8px',
-                                  fontWeight: 'bold'
+                                  fontSize: '10px'
                                 }}
                               >
                                 {work?.processLotId?.quantity || '-'}
@@ -414,8 +413,7 @@ const BasicPrint = ({
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '8px',
-                                  fontWeight: 'bold'
+                                  fontSize: '10px'
                                 }}
                               >
                                 {work?.quantityLog || '-'}
@@ -425,8 +423,7 @@ const BasicPrint = ({
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '8px',
-                                  fontWeight: 'bold'
+                                  fontSize: '10px'
                                 }}
                               >
                                 {work?.quantityReturned || '-'}
@@ -436,8 +433,7 @@ const BasicPrint = ({
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '8px',
-                                  fontWeight: 'bold'
+                                  fontSize: '10px'
                                 }}
                               >
                                 {work?.rate || '-'}
@@ -447,8 +443,7 @@ const BasicPrint = ({
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '8px',
-                                  fontWeight: 'bold'
+                                  fontSize: '10px'
                                 }}
                               >
                                 {work?.total || '-'}
@@ -458,8 +453,7 @@ const BasicPrint = ({
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '8px',
-                                  fontWeight: 'bold'
+                                  fontSize: '10px'
                                 }}
                               >
                                 {convertDate(work?.lotClearDate || null)}
@@ -469,8 +463,7 @@ const BasicPrint = ({
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '8px',
-                                  fontWeight: 'bold'
+                                  fontSize: '10px'
                                 }}
                               >
                                 {work?.paymentGiven || '-'}
@@ -480,19 +473,7 @@ const BasicPrint = ({
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '8px',
-                                  fontWeight: 'bold'
-                                }}
-                              >
-                                {work?.paymentMode?.toLowerCase() || '-'}
-                              </TableCell>
-                              <TableCell
-                                sx={{
-                                  minWidth: 20,
-                                  maxWidth: 20,
-                                  minHeight: 10,
-                                  fontSize: '8px',
-                                  fontWeight: 'bold'
+                                  fontSize: '10px'
                                 }}
                               >
                                 {convertDate(work?.paymentDate || null)}
@@ -502,8 +483,7 @@ const BasicPrint = ({
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '8px',
-                                  fontWeight: 'bold'
+                                  fontSize: '10px'
                                 }}
                               >
                                 {work?.reference || '-'}

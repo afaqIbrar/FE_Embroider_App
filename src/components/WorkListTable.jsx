@@ -51,77 +51,91 @@ const WorkListTable = ({
   useEffect(() => {
     calculateBalance();
   }, [works]);
+
   const columns = [
     {
-      field: '_id',
-      headerName: 'Id',
-      width: 50,
-      renderCell: (params) => <p className="w-4 truncate">{params || '-'}</p>
+      field: 'createdAt',
+      headerName: 'Date',
+      width: '100px',
+      renderCell: (params) => {
+        if (params?.createdAt) {
+          // Check if assignDate exists in params.row
+          const date = params?.createdAt;
+          const newDate = new Date(date).toLocaleString('en-GB', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+          });
+          return newDate;
+        } else {
+          return '-';
+        }
+      }
     },
     {
       field: 'pageNumber',
-      headerName: 'Page #',
-      width: 65,
+      headerName: 'Page',
+      width: '70px',
       renderCell: (params) => <p>{params.processLotId?.pageNumber || '-'}</p>
     },
     {
       field: 'articleNumber',
-      headerName: 'Article #',
-      width: 65,
+      headerName: 'Article',
+      width: '90px',
       renderCell: (params) => <p>{params.processLotId?.articleNumber || '-'}</p>
     },
     {
       field: 'color',
       headerName: 'Colour',
-      width: 65,
+      width: '80px',
       renderCell: (params) => <p>{params.processLotId?.colour || '-'}</p>
     },
     {
       field: 'billNumber',
-      headerName: 'Bill #',
-      width: 65,
+      headerName: 'Bill',
+      width: '50px',
       renderCell: (params) => <p>{params.processLotId?.billNumber || '-'}</p>
     },
     {
       field: 'quantity',
       headerName: 'Qty',
-      width: 65,
+      width: '80px',
       renderCell: (params) => <p>{params.processLotId?.quantity || '-'}</p>
     },
-    {
-      field: 'workType',
-      headerName: 'Work Type',
-      width: 100,
-      renderCell: (params) => <p>{WORKTYPE[params.workType] || '-'}</p>
-    },
+    // {
+    //   field: 'workType',
+    //   headerName: 'Work Type',
+    //   width: 100,
+    //   renderCell: (params) => <p>{WORKTYPE[params.workType] || '-'}</p>
+    // },
     {
       field: 'quantityLog',
-      headerName: 'Qty Log',
-      width: 80,
+      headerName: 'Wasooli',
+      width: '120px',
       renderCell: (params) => <p>{params.quantityLog || '-'}</p>
     },
     {
       field: 'quantityReturned',
-      headerName: 'Qty Ret',
-      width: 80,
+      headerName: 'Pending',
+      width: '80px',
       renderCell: (params) => <p>{params.quantityReturned || '-'}</p>
     },
     {
       field: 'rate',
       headerName: 'Rate',
-      width: 80,
+      width: '100px',
       renderCell: (params) => <p>{params.rate || '-'}</p>
     },
     {
       field: 'total',
-      headerName: 'Total Amt',
-      width: 80,
+      headerName: 'T.Amt',
+      width: '150px',
       renderCell: (params) => <p>{params.total || '-'}</p>
     },
     {
       field: 'lotClearDate',
-      headerName: 'Lot Clr Date',
-      width: 80,
+      headerName: 'Nil',
+      width: '80px',
       renderCell: (params) => {
         if (params?.lotClearDate) {
           // Check if assignDate exists in params.row
@@ -139,20 +153,14 @@ const WorkListTable = ({
     },
     {
       field: 'paymentGiven',
-      headerName: 'Payment Given',
-      width: 100,
+      headerName: 'Payment',
+      width: '100px',
       renderCell: (params) => <p>{params.paymentGiven || '-'}</p>
-    },
-    {
-      field: 'paymentMode',
-      headerName: 'Payment Mode',
-      width: 100,
-      renderCell: (params) => <p>{params.paymentMode || '-'}</p>
     },
     {
       field: 'paymentDate',
       headerName: 'Payment Date',
-      width: 100,
+      width: '150px',
       renderCell: (params) => {
         if (params?.paymentDate) {
           // Check if assignDate exists in params.row
@@ -171,25 +179,25 @@ const WorkListTable = ({
     {
       field: 'reference',
       headerName: 'References',
-      width: 100,
+      width: '150px',
       renderCell: (params) => <p>{params.reference || '-'}</p>
     },
-    {
-      field: 'workerId',
-      headerName: 'Worker Name',
-      width: 200,
-      renderCell: (params) => <p>{params.workerId?.workerName || '-'}</p>
-    },
+    // {
+    //   field: 'workerId',
+    //   headerName: 'Worker Name',
+    //   width: 200,
+    //   renderCell: (params) => <p>{params.workerId?.workerName || '-'}</p>
+    // },
     {
       field: 'action',
       headerName: '',
-      width: 200
+      width: '50px'
     }
   ];
 
   return (
     <div>
-      <TableContainer className="mt-8 rounded-t-lg border border-solid border-dark300 inventory-table h-[580px]">
+      <TableContainer className="mt-8 rounded-t-lg border border-solid border-dark300 inventory-table h-[450px]">
         <Table stickyHeader>
           <TableHead className="bg-slate-400">
             <TableRow>
@@ -207,6 +215,7 @@ const WorkListTable = ({
                       <TableCell
                         key={index}
                         style={{ width: `${column.width}` }}
+                        className="border-r-[1px]"
                       >
                         {column.field === '_id'
                           ? column?.renderCell(rowIndex + 1)

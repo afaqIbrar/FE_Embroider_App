@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Box, TextField } from '@mui/material';
 import { Autocomplete } from '@mui/material';
 import API from '../utils/axios';
-
+import { useRef } from 'react';
 const AddProcessLot = ({ formik, processLot, view }) => {
   const [workers, setWorkers] = useState([]);
-
+  const pageNumberRef = useRef(null);
   const fetchWorkersData = async (searchText) => {
     const data = await API.get('workers/', {
       withCredentials: true,
@@ -46,6 +46,20 @@ const AddProcessLot = ({ formik, processLot, view }) => {
     }
   }, [processLot]);
 
+  useEffect(() => {
+    if (pageNumberRef.current) {
+      pageNumberRef.current.focus();
+    }
+  }, []);
+
+  const handleKeyDown = (e, fieldName) => {
+    if (e.key === 'Enter') {
+      const nextField = document.querySelector(`#${fieldName}`);
+      if (nextField) {
+        nextField.focus();
+      }
+    }
+  };
   return (
     <div>
       <Box
@@ -67,55 +81,63 @@ const AddProcessLot = ({ formik, processLot, view }) => {
               formik.setFieldValue('pageNumber', e.target.value);
             }}
             disabled={view}
+            onKeyDown={(e) => handleKeyDown(e, 'articleNumber')}
+            inputRef={pageNumberRef}
           />
           <TextField
             className="w-full"
-            id="outlined-required"
+            id="articleNumber"
             label="Article Number"
             value={formik.values.articleNumber}
             onChange={(e) => {
               formik.setFieldValue('articleNumber', e.target.value);
             }}
             disabled={view}
+            onKeyDown={(e) => handleKeyDown(e, 'color')}
           />
         </div>
         <div className="w-100">
           <TextField
             className="w-full"
-            id="outlined-required"
+            id="color"
             label="Colour"
             value={formik.values.colour}
             onChange={(e) => {
               formik.setFieldValue('colour', e.target.value);
             }}
             disabled={view}
+            onKeyDown={(e) => handleKeyDown(e, 'billNumber')}
           />
           <TextField
             className="w-full"
-            id="outlined-required"
+            id="billNumber"
             label="Bill Number"
             value={formik.values.billNumber}
             onChange={(e) => {
               formik.setFieldValue('billNumber', e.target.value);
             }}
             disabled={view}
+            onKeyDown={(e) => handleKeyDown(e, 'quantity')}
           />
         </div>
         <div className="w-100 flex">
           <TextField
-            id="outlined-required"
+            id="quantity"
             label="Quantity"
             value={formik.values.quantity}
             onChange={(e) => {
               formik.setFieldValue('quantity', e.target.value);
             }}
             disabled={view}
+            onKeyDown={(e) => handleKeyDown(e, 'handworker')}
           />
           <Autocomplete
             disablePortal
-            id="combo-box-demo"
+            id="handworker"
             value={formik.values.handWorker || {}}
-            options={workers}
+            options={[
+              ...workers.filter((worker) => worker.workerType === 'HAND_WORKER')
+            ]}
             getOptionLabel={(worker) => worker.workerName || ''}
             renderInput={(params) => (
               <TextField {...params} label="Hand Worker" />
@@ -128,13 +150,16 @@ const AddProcessLot = ({ formik, processLot, view }) => {
                 val && val._id ? val._id : ''
               );
             }}
+            onKeyDown={(e) => handleKeyDown(e, 'dupattaWorker')}
           />
         </div>
         <div className="w-full flex">
           <Autocomplete
             disablePortal
-            id="combo-box-demo"
-            options={workers}
+            id="dupattaWorker"
+            options={workers.filter(
+              (worker) => worker.workerType === 'DUPATTA_WORKER'
+            )}
             value={formik.values.dupattaWorker || {}}
             getOptionLabel={(worker) => worker.workerName || ''}
             renderInput={(params) => (
@@ -148,11 +173,14 @@ const AddProcessLot = ({ formik, processLot, view }) => {
                 val && val._id ? val._id : ''
               );
             }}
+            onKeyDown={(e) => handleKeyDown(e, 'innerWorker')}
           />
           <Autocomplete
             disablePortal
-            id="combo-box-demo"
-            options={workers}
+            id="innerWorker"
+            options={workers.filter(
+              (worker) => worker.workerType === 'INNER_WORKER'
+            )}
             value={formik.values.innerWorker || {}}
             getOptionLabel={(worker) => worker.workerName || ''}
             renderInput={(params) => (

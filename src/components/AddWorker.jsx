@@ -52,7 +52,7 @@ const AddWorker = ({ formik, worker, view }) => {
         ))}
       </TextField>
       <div>
-        <TextField
+        {/* <TextField
           id="outlined-required"
           label="Phone Number"
           value={formik.values.phoneNumber}
@@ -60,7 +60,7 @@ const AddWorker = ({ formik, worker, view }) => {
             formik.setFieldValue('phoneNumber', e.target.value);
           }}
           disabled={view}
-        />
+        /> */}
       </div>
     </Box>
   );

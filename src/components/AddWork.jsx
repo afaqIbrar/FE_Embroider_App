@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Box, TextField } from '@mui/material';
 import { WORKTYPE } from '../utils/constants';
+import { useRef } from 'react';
 const AddWork = ({ formik, work, view }) => {
+  const qtyLog = useRef(null);
+
   useEffect(() => {
     if (work) {
       formik.setValues({
@@ -17,6 +20,21 @@ const AddWork = ({ formik, work, view }) => {
       });
     }
   }, [work]);
+
+  useEffect(() => {
+    if (qtyLog.current) {
+      qtyLog.current.focus();
+    }
+  }, []);
+
+  const handleKeyDown = (e, fieldName) => {
+    if (e.key === 'Enter') {
+      const nextField = document.querySelector(`#${fieldName}`);
+      if (nextField) {
+        nextField.focus();
+      }
+    }
+  };
 
   return (
     <div>
@@ -81,6 +99,7 @@ const AddWork = ({ formik, work, view }) => {
             name="quantityLog"
             label="Quantity Log"
             value={formik?.values?.quantityLog || ''}
+            inputRef={qtyLog}
             onInput={(e) => {
               const newValue = e.target.value.replace(/[^0-9,]/g, '');
               formik.setFieldValue('quantityLog', newValue);
@@ -100,6 +119,7 @@ const AddWork = ({ formik, work, view }) => {
               formik.setFieldValue('quantityReturned', sum);
             }}
             disabled={view}
+            onKeyDown={(e) => handleKeyDown(e, 'rate')}
           />
           <TextField
             id="outlined-required"
@@ -111,7 +131,7 @@ const AddWork = ({ formik, work, view }) => {
         </div>
         <div className="w-100 flex">
           <TextField
-            id="outlined-required"
+            id="rate"
             label="Rate"
             value={formik?.values?.rate || ''}
             onChange={(e) => {
@@ -123,6 +143,7 @@ const AddWork = ({ formik, work, view }) => {
             }}
             disabled={view}
             type="number"
+            onKeyDown={(e) => handleKeyDown(e, 'paymentGiven')}
           />
           <TextField
             id="outlined-required"
@@ -134,7 +155,7 @@ const AddWork = ({ formik, work, view }) => {
         </div>
         <div className="w-100 flex">
           <TextField
-            id="outlined-required"
+            id="paymentGiven"
             label="Payment Given"
             value={formik?.values?.paymentGiven || ''}
             onChange={(e) => {
@@ -142,8 +163,9 @@ const AddWork = ({ formik, work, view }) => {
             }}
             disabled={view}
             type="number"
+            onKeyDown={(e) => handleKeyDown(e, 'reference')}
           />
-          <TextField
+          {/* <TextField
             id="outlined-required"
             label="Payment Mode"
             value={formik?.values?.paymentMode || ''}
@@ -151,12 +173,11 @@ const AddWork = ({ formik, work, view }) => {
               formik.setFieldValue('paymentMode', e.target.value);
             }}
             disabled={view}
-          />
-        </div>
-        <div className="w-100 flex">
+          /> */}
           <TextField
             style={{ width: '100%' }}
             label="Reference"
+            id="reference"
             value={formik?.values?.reference || ''}
             onChange={(e) => {
               formik.setFieldValue('reference', e.target.value);
@@ -164,6 +185,7 @@ const AddWork = ({ formik, work, view }) => {
             disabled={view}
           />
         </div>
+        <div className="w-100 flex"></div>
       </Box>
     </div>
   );

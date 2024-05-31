@@ -36,7 +36,7 @@ const LoginForm = () => {
       setUser({ userType, _id });
       setCurrentUser({ userType, _id });
       setToken(token);
-      navigate(`/routing/dashboard`);
+      navigate(`/routing/processLot`);
       toast.success('Logged In Successfully');
     } catch (err) {
       toast.error(err?.response?.data?.message);

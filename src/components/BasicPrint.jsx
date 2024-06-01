@@ -356,7 +356,9 @@ const BasicPrint = ({
                                   fontSize: '10px'
                                 }}
                               >
-                                {convertDate(work?.createdAt || null)}
+                                {convertDate(
+                                  work?.processLotId?.assignDate || null
+                                )}
                               </TableCell>
                               <TableCell
                                 sx={{

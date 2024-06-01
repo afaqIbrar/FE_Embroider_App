@@ -136,7 +136,7 @@ const AddProcessLot = ({ formik, processLot, view, flag }) => {
               formik.setFieldValue('quantity', e.target.value);
             }}
             disabled={view}
-            onKeyDown={(e) => handleKeyDown(e, 'assignDate')}
+            onKeyDown={(e) => handleKeyDown(e, 'handworker')}
           />
           <DatePicker
             label="Assign Date"

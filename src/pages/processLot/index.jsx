@@ -411,7 +411,7 @@ const ProcessLot = () => {
           setAddProcessLotPopup(false);
           formik.setValues({ ...processLotInitialValues });
         }}
-        content={<AddProcessLot formik={formik} />}
+        content={<AddProcessLot formik={formik} flag={true} />}
         actions={
           <div className="flex gap-2">
             <Button

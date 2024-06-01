@@ -3,7 +3,10 @@ import { Box, TextField } from '@mui/material';
 import { Autocomplete } from '@mui/material';
 import API from '../utils/axios';
 import { useRef } from 'react';
-const AddProcessLot = ({ formik, processLot, view }) => {
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import moment from 'moment';
+
+const AddProcessLot = ({ formik, processLot, view, flag }) => {
   const [workers, setWorkers] = useState([]);
   const pageNumberRef = useRef(null);
   const fetchWorkersData = async (searchText) => {
@@ -28,10 +31,13 @@ const AddProcessLot = ({ formik, processLot, view }) => {
         quantity: processLot.quantity || '',
         handWorker: processLot.handWorkerId || {},
         dupattaWorker: processLot.dupattaWorkerId || {},
-        innerWorker: processLot.innerWorkerId || {}
+        innerWorker: processLot.innerWorkerId || {},
+        assignDate: processLot.assignDate || moment()
       };
       if (processLot.assignDate) {
-        formValues.assignDate = processLot.assignDate;
+        formValues.assignDate = processLot.assignDate
+          ? moment(processLot.assignDate)
+          : moment();
       }
       if (processLot.handWorkerId) {
         formValues.handWorkerId = processLot.handWorkerId._id;
@@ -60,6 +66,7 @@ const AddProcessLot = ({ formik, processLot, view }) => {
       }
     }
   };
+
   return (
     <div>
       <Box
@@ -129,8 +136,21 @@ const AddProcessLot = ({ formik, processLot, view }) => {
               formik.setFieldValue('quantity', e.target.value);
             }}
             disabled={view}
+            onKeyDown={(e) => handleKeyDown(e, 'assignDate')}
+          />
+          <DatePicker
+            label="Assign Date"
+            id="assignDate"
+            value={formik.values.assignDate}
+            inputFormat="DD/MM/YYYY"
+            onChange={(newValue) => {
+              formik.setFieldValue('assignDate', newValue);
+            }}
+            disabled={view || flag}
             onKeyDown={(e) => handleKeyDown(e, 'handworker')}
           />
+        </div>
+        <div className="w-full flex">
           <Autocomplete
             disablePortal
             id="handworker"
@@ -152,8 +172,6 @@ const AddProcessLot = ({ formik, processLot, view }) => {
             }}
             onKeyDown={(e) => handleKeyDown(e, 'dupattaWorker')}
           />
-        </div>
-        <div className="w-full flex">
           <Autocomplete
             disablePortal
             id="dupattaWorker"
@@ -175,6 +193,8 @@ const AddProcessLot = ({ formik, processLot, view }) => {
             }}
             onKeyDown={(e) => handleKeyDown(e, 'innerWorker')}
           />
+        </div>
+        <div className="w-full">
           <Autocomplete
             disablePortal
             id="innerWorker"

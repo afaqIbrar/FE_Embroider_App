@@ -54,13 +54,13 @@ const WorkListTable = ({
 
   const columns = [
     {
-      field: 'createdAt',
+      field: 'assignDate',
       headerName: 'Date',
       width: '100px',
       renderCell: (params) => {
-        if (params?.createdAt) {
+        if (params?.processLotId?.assignDate) {
           // Check if assignDate exists in params.row
-          const date = params?.createdAt;
+          const date = params?.processLotId?.assignDate;
           const newDate = new Date(date).toLocaleString('en-GB', {
             day: '2-digit',
             month: '2-digit',
@@ -209,7 +209,7 @@ const WorkListTable = ({
           <TableBody>
             {works &&
               works.map((row, rowIndex) => (
-                <TableRow>
+                <TableRow key={row._id}>
                   {columns.map((column, index) =>
                     column.field !== 'action' ? (
                       <TableCell

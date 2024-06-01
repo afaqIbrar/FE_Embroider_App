@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Box, TextField } from '@mui/material';
 import { WORKTYPE } from '../utils/constants';
 import { useRef } from 'react';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import moment from 'moment';
+
 const AddWork = ({ formik, work, view }) => {
   const qtyLog = useRef(null);
 
@@ -16,7 +19,10 @@ const AddWork = ({ formik, work, view }) => {
         ...(work?.total ? { total: work.total } : {}),
         ...(work?.paymentGiven ? { paymentGiven: work.paymentGiven } : {}),
         ...(work?.paymentMode ? { paymentMode: work.paymentMode } : {}),
-        ...(work?.reference ? { reference: work.reference } : {})
+        ...(work?.reference ? { reference: work.reference } : {}),
+        ...(work?.lotClearDate
+          ? { lotClearDate: moment(work?.lotClearDate) }
+          : null)
       });
     }
   }, [work]);
@@ -129,7 +135,19 @@ const AddWork = ({ formik, work, view }) => {
             type="number"
           />
         </div>
-        <div className="w-100 flex">
+        <div className="w-full">
+          <DatePicker
+            label="Nill Date"
+            id="nillDate"
+            value={formik.values.lotClearDate}
+            inputFormat="DD/MM/YYYY"
+            onChange={(newValue) => {
+              formik.setFieldValue('lotClearDate', newValue);
+            }}
+            disabled={view}
+            onKeyDown={(e) => handleKeyDown(e, 'handworker')}
+            size="large"
+          />
           <TextField
             id="rate"
             label="Rate"
@@ -145,6 +163,8 @@ const AddWork = ({ formik, work, view }) => {
             type="number"
             onKeyDown={(e) => handleKeyDown(e, 'paymentGiven')}
           />
+        </div>
+        <div className="w-100 flex">
           <TextField
             id="outlined-required"
             label="Total Amount"
@@ -152,8 +172,6 @@ const AddWork = ({ formik, work, view }) => {
             disabled={true}
             type="number"
           />
-        </div>
-        <div className="w-100 flex">
           <TextField
             id="paymentGiven"
             label="Payment Given"
@@ -165,6 +183,8 @@ const AddWork = ({ formik, work, view }) => {
             type="number"
             onKeyDown={(e) => handleKeyDown(e, 'reference')}
           />
+        </div>
+        <div className="w-100 flex">
           {/* <TextField
             id="outlined-required"
             label="Payment Mode"

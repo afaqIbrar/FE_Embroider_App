@@ -43,7 +43,7 @@ const routes = (user) => [
       {
         path: '/',
         element: user ? (
-          <Navigate to="routing/dashboard" />
+          <Navigate to="routing/processLot" />
         ) : (
           <Navigate to="/login" />
         )

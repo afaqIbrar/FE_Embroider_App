@@ -12,6 +12,9 @@ import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import DeleteIcon from '@mui/icons-material/Delete';
 import API from '../../utils/axios';
+import { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
+import ProcessLotMainPrint from '../../components/ProcessLotMainPrint';
 
 const processLotInitialValues = {
   pageNumber: '',
@@ -35,7 +38,7 @@ const ProcessLot = () => {
   const [openDeleteConfirm, setOpenDeleteConfirm] = useState(false);
   const [view, setView] = useState(true);
   const [processLotPopup, setProcessLotPopup] = useState(false);
-
+  const [showPrint, setShowPrint] = useState(null);
   const debouncedSearchText = useDebounce(searchText, 300);
   const handleAddProcessLot = () => {
     setAddProcessLotPopup(true);
@@ -123,6 +126,22 @@ const ProcessLot = () => {
     setProcessLotPopup(true);
     setSelectedProcessLot(row);
   };
+
+  function handleClose() {
+    setShowPrint(null);
+  }
+
+  useEffect(() => {
+    if (showPrint) {
+      handlePrint();
+      handleClose();
+    }
+  }, [showPrint]);
+
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current
+  });
 
   const columns = [
     // {
@@ -350,18 +369,33 @@ const ProcessLot = () => {
             <SearchIcon />
           </IconButton>
         </Box>
-        <Button
-          sx={{
-            backgroundColor: colors.blueAccent[700],
-            color: colors.grey[100],
-            fontSize: '14px',
-            fontWeight: 'bold',
-            padding: '10px 20px'
-          }}
-          onClick={handleAddProcessLot}
-        >
-          Add Process Lot
-        </Button>
+        <Box>
+          <Button
+            sx={{
+              backgroundColor: colors.blueAccent[700],
+              color: colors.grey[100],
+              fontSize: '14px',
+              fontWeight: 'bold',
+              padding: '10px 20px',
+              marginRight: '10px'
+            }}
+            onClick={() => setShowPrint(true)}
+          >
+            Print Details
+          </Button>
+          <Button
+            sx={{
+              backgroundColor: colors.blueAccent[700],
+              color: colors.grey[100],
+              fontSize: '14px',
+              fontWeight: 'bold',
+              padding: '10px 20px'
+            }}
+            onClick={handleAddProcessLot}
+          >
+            Add Process Lot
+          </Button>
+        </Box>
       </Box>
       <Box
         m="8px 0 0 0"
@@ -553,6 +587,9 @@ const ProcessLot = () => {
         }
         title={`Delete Worker`}
       />
+      <div ref={componentRef}>
+        <ProcessLotMainPrint processLot={processLot} showPrint={showPrint} />
+      </div>
     </Box>
   );
 };

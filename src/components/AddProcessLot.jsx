@@ -31,8 +31,7 @@ const AddProcessLot = ({ formik, processLot, view, flag }) => {
         quantity: processLot.quantity || '',
         handWorker: processLot.handWorkerId || {},
         dupattaWorker: processLot.dupattaWorkerId || {},
-        innerWorker: processLot.innerWorkerId || {},
-        assignDate: processLot.assignDate || moment()
+        innerWorker: processLot.innerWorkerId || {}
       };
       if (processLot.assignDate) {
         formValues.assignDate = processLot.assignDate
@@ -142,12 +141,23 @@ const AddProcessLot = ({ formik, processLot, view, flag }) => {
             label="Assign Date"
             id="assignDate"
             value={formik.values.assignDate}
-            inputFormat="DD/MM/YYYY"
             onChange={(newValue) => {
               formik.setFieldValue('assignDate', newValue);
             }}
-            disabled={view || flag}
+            disabled={view}
             onKeyDown={(e) => handleKeyDown(e, 'handworker')}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                value={
+                  formik.values.assignDate
+                    ? moment(formik.values.assignDate, 'YYYY-MM-DD').format(
+                        'DD/MM/YYYY'
+                      )
+                    : ''
+                }
+              />
+            )}
           />
         </div>
         <div className="w-full flex">

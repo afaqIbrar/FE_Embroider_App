@@ -321,7 +321,7 @@ const BasicPrint = ({
                         >
                           Paym
                         </TableCell>
-                        <TableCell
+                        {/* <TableCell
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
@@ -330,7 +330,7 @@ const BasicPrint = ({
                           }}
                         >
                           Date
-                        </TableCell>
+                        </TableCell> */}
                         <TableCell
                           sx={{
                             minWidth: 20,
@@ -470,7 +470,7 @@ const BasicPrint = ({
                               >
                                 {work?.paymentGiven || '-'}
                               </TableCell>
-                              <TableCell
+                              {/* <TableCell
                                 sx={{
                                   minWidth: 20,
                                   maxWidth: 20,
@@ -479,7 +479,7 @@ const BasicPrint = ({
                                 }}
                               >
                                 {convertDate(work?.paymentDate || null)}
-                              </TableCell>
+                              </TableCell> */}
                               <TableCell
                                 sx={{
                                   minWidth: 20,

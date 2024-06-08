@@ -157,25 +157,25 @@ const WorkListTable = ({
       width: '100px',
       renderCell: (params) => <p>{params.paymentGiven || '-'}</p>
     },
-    {
-      field: 'paymentDate',
-      headerName: 'Payment Date',
-      width: '150px',
-      renderCell: (params) => {
-        if (params?.paymentDate) {
-          // Check if assignDate exists in params.row
-          const date = params?.paymentDate;
-          const newDate = new Date(date).toLocaleString('en-GB', {
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric'
-          });
-          return newDate;
-        } else {
-          return '-';
-        }
-      }
-    },
+    // {
+    //   field: 'paymentDate',
+    //   headerName: 'Payment Date',
+    //   width: '150px',
+    //   renderCell: (params) => {
+    //     if (params?.paymentDate) {
+    //       // Check if assignDate exists in params.row
+    //       const date = params?.paymentDate;
+    //       const newDate = new Date(date).toLocaleString('en-GB', {
+    //         day: '2-digit',
+    //         month: '2-digit',
+    //         year: 'numeric'
+    //       });
+    //       return newDate;
+    //     } else {
+    //       return '-';
+    //     }
+    //   }
+    // },
     {
       field: 'reference',
       headerName: 'References',

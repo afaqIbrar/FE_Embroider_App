@@ -157,7 +157,7 @@ const ProcessLot = () => {
       renderCell: (params) => (
         <p
           className={`p-2 text-sm ${
-            params.row.assignDate ? 'bg-green-500' : 'bg-red-700'
+            params.row.assignDate ? 'bg-green-900' : 'bg-red-700'
           }`}
         >
           {params.row.pageNumber || '-'}
@@ -171,7 +171,7 @@ const ProcessLot = () => {
       renderCell: (params) => (
         <p
           className={`p-2 text-sm ${
-            params.row.assignDate ? 'bg-green-500' : 'bg-red-700'
+            params.row.assignDate ? 'bg-green-900' : 'bg-red-700'
           }`}
         >
           {params.row.articleNumber || '-'}
@@ -185,7 +185,7 @@ const ProcessLot = () => {
       renderCell: (params) => (
         <p
           className={`p-2 text-sm ${
-            params.row.assignDate ? 'bg-green-500' : 'bg-red-700'
+            params.row.assignDate ? 'bg-green-900' : 'bg-red-700'
           }`}
         >
           {params.row.colour || '-'}
@@ -202,7 +202,7 @@ const ProcessLot = () => {
           className={`p-2 text-sm ${
             params.row.billNumber
               ? params.row.assignDate
-                ? 'bg-green-500'
+                ? 'bg-green-900'
                 : 'bg-blue-500'
               : ''
           }`}
@@ -220,7 +220,7 @@ const ProcessLot = () => {
           className={`p-2 text-sm ${
             params.row.quantity
               ? params.row.assignDate
-                ? 'bg-green-500'
+                ? 'bg-green-900'
                 : 'bg-blue-500'
               : ''
           }`}
@@ -252,7 +252,7 @@ const ProcessLot = () => {
           className={`p-2 text-sm ${
             params.row.assignDate
               ? params.row.assignDate
-                ? 'bg-green-500'
+                ? 'bg-green-900'
                 : 'bg-blue-500'
               : ''
           }`}
@@ -270,7 +270,7 @@ const ProcessLot = () => {
           className={`p-2 text-sm ${
             params.row?.handWorkerId?.workerName
               ? params?.row?.assignDate
-                ? 'bg-green-500'
+                ? 'bg-green-900'
                 : 'bg-blue-500'
               : ''
           }`}
@@ -288,7 +288,7 @@ const ProcessLot = () => {
           className={`p-2 text-sm ${
             params.row?.dupattaWorkerId?.workerName
               ? params.row.assignDate
-                ? 'bg-green-500'
+                ? 'bg-green-900'
                 : 'bg-blue-500'
               : ''
           }`}
@@ -306,7 +306,7 @@ const ProcessLot = () => {
           className={`p-2 text-sm ${
             params.row?.innerWorkerId?.workerName
               ? params.row.assignDate
-                ? 'bg-green-500'
+                ? 'bg-green-900'
                 : 'bg-blue-500'
               : ''
           }`}

@@ -156,7 +156,7 @@ const ProcessLot = () => {
       width: 55,
       renderCell: (params) => (
         <p
-          className={`p-2 text-sm ${
+          className={`p-1 text-base ${
             params.row.assignDate ? 'bg-green-900' : 'bg-red-700'
           }`}
         >
@@ -170,7 +170,7 @@ const ProcessLot = () => {
       width: 80,
       renderCell: (params) => (
         <p
-          className={`p-2 text-sm ${
+          className={`p-1 text-base ${
             params.row.assignDate ? 'bg-green-900' : 'bg-red-700'
           }`}
         >
@@ -184,7 +184,7 @@ const ProcessLot = () => {
       width: 100,
       renderCell: (params) => (
         <p
-          className={`p-2 text-sm ${
+          className={`p-1 text-base ${
             params.row.assignDate ? 'bg-green-900' : 'bg-red-700'
           }`}
         >
@@ -199,7 +199,7 @@ const ProcessLot = () => {
       renderCell: (params) => (
         <p
           // className={`${params.row.billNumber ? ${params.row.assignDate ? 'bg-green-500 p-2 text-sm' : 'bg-blue-500 p-2 text-sm'} :  '' }}
-          className={`p-2 text-sm ${
+          className={`p-1 text-base ${
             params.row.billNumber
               ? params.row.assignDate
                 ? 'bg-green-900'
@@ -217,7 +217,7 @@ const ProcessLot = () => {
       width: 60,
       renderCell: (params) => (
         <p
-          className={`p-2 text-sm ${
+          className={`p-1 text-base ${
             params.row.quantity
               ? params.row.assignDate
                 ? 'bg-green-900'
@@ -249,7 +249,7 @@ const ProcessLot = () => {
       },
       renderCell: (params) => (
         <p
-          className={`p-2 text-sm ${
+          className={`p-1 text-base ${
             params.row.assignDate
               ? params.row.assignDate
                 ? 'bg-green-900'
@@ -267,7 +267,7 @@ const ProcessLot = () => {
       width: 110,
       renderCell: (params) => (
         <p
-          className={`p-2 text-sm ${
+          className={`p-1 text-base truncate ${
             params.row?.handWorkerId?.workerName
               ? params?.row?.assignDate
                 ? 'bg-green-900'
@@ -285,7 +285,7 @@ const ProcessLot = () => {
       width: 110,
       renderCell: (params) => (
         <p
-          className={`p-2 text-sm ${
+          className={`p-1 text-base truncate ${
             params.row?.dupattaWorkerId?.workerName
               ? params.row.assignDate
                 ? 'bg-green-900'
@@ -303,7 +303,7 @@ const ProcessLot = () => {
       width: 110,
       renderCell: (params) => (
         <p
-          className={`p-2 text-sm ${
+          className={`p-1 text-base truncate ${
             params.row?.innerWorkerId?.workerName
               ? params.row.assignDate
                 ? 'bg-green-900'

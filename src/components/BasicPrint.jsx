@@ -67,42 +67,20 @@ const BasicPrint = ({
       <ThemeProvider theme={localTheme}>
         <GlobalStyles styles={printStyle} />
         <Box displayPrint="block" style={{ color: 'black' }}>
-          <Box style={{ marginTop: '20px' }}>
-            <div
-              style={{
-                textAlign: 'center',
-                justifyContent: 'center',
-                alignItems: 'center'
-              }}
-            >
-              <h1 style={{ fontSize: '35px', margin: 0 }}>Taha Collection</h1>
-            </div>
-          </Box>
           <Box displayPrint="block">
-            <Box style={{ marginTop: '15px' }}>
-              <div
-                style={{
-                  textAlign: 'center',
-                  justifyContent: 'center',
-                  alignItems: 'center'
-                }}
-              >
-                <p style={{ fontSize: '20px', margin: 0 }}>Account Details</p>
-              </div>
-            </Box>
             <Box style={{ marginTop: '10px' }}>
               <Grid container spacing={2} className="mb-2 text-lg">
-                <Grid item xs={6}>
-                  <div className="flex ml-5 bg-red">
+                <Grid item xs={4}>
+                  <div className="flex bg-red">
                     <span
                       style={{
-                        marginLeft: '20px',
+                        marginLeft: '10px',
                         textAlign: 'center',
                         justifyContent: 'center',
                         alignItems: 'center'
                       }}
                     >
-                      Worker Name :
+                      Worker:
                     </span>
                     <span
                       style={{
@@ -116,31 +94,22 @@ const BasicPrint = ({
                     </span>
                   </div>
                 </Grid>
-                <Grid item xs={6}>
-                  <div className="flex ml-5">
-                    <span
+                <Grid item xs={4}>
+                  <Box style={{ marginTop: '20px' }}>
+                    <div
                       style={{
-                        marginLeft: '20px',
                         textAlign: 'center',
                         justifyContent: 'center',
                         alignItems: 'center'
                       }}
                     >
-                      Worker Type :
-                    </span>
-                    <span
-                      style={{
-                        marginLeft: '20px',
-                        textAlign: 'center',
-                        justifyContent: 'center',
-                        alignItems: 'center'
-                      }}
-                    >
-                      {WORKERTYPE[workerData?.workerType] || '-'}
-                    </span>
-                  </div>
+                      <h4 style={{ fontSize: '25px', margin: 0 }}>
+                        Taha Collection
+                      </h4>
+                    </div>
+                  </Box>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={4}>
                   <div className="flex ml-5">
                     <span
                       style={{
@@ -166,24 +135,6 @@ const BasicPrint = ({
                   </div>
                 </Grid>
               </Grid>
-            </Box>
-            {/* <Divider
-            style={{
-              border: '0.5px dashed ',
-              marginTop: '10px'
-            }}
-          /> */}
-            <Box>
-              <div
-                className="mt-3 text-xl border-b"
-                style={{
-                  textAlign: 'center',
-                  justifyContent: 'center',
-                  alignItems: 'center'
-                }}
-              >
-                Work Details
-              </div>
             </Box>
             <Box>
               <div
@@ -211,7 +162,7 @@ const BasicPrint = ({
                         >
                           Date
                         </TableCell>
-                        <TableCell
+                        {/* <TableCell
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
@@ -220,7 +171,7 @@ const BasicPrint = ({
                           }}
                         >
                           Page
-                        </TableCell>
+                        </TableCell> */}
                         <TableCell
                           sx={{
                             minWidth: 20,
@@ -346,6 +297,7 @@ const BasicPrint = ({
                     <TableBody>
                       {works &&
                         works.map((work, index) => {
+                          console.log('work', work);
                           return (
                             <TableRow key={index} sx={{ minHeight: 10 }}>
                               <TableCell
@@ -356,11 +308,24 @@ const BasicPrint = ({
                                   fontSize: '10px'
                                 }}
                               >
-                                {convertDate(
-                                  work?.processLotId?.assignDate || null
-                                )}
+                                <p
+                                  className={`text-[12px] text-white ${
+                                    work?.processLotId?.assignDate
+                                      ? work?.rate
+                                        ? 'bg-green-900'
+                                        : work?.processLotId?.quantity ===
+                                          work?.quantityReturned
+                                        ? 'bg-blue-500'
+                                        : 'bg-red-700'
+                                      : ''
+                                  }`}
+                                >
+                                  {convertDate(
+                                    work?.processLotId?.assignDate || null
+                                  )}
+                                </p>
                               </TableCell>
-                              <TableCell
+                              {/* <TableCell
                                 sx={{
                                   minWidth: 20,
                                   maxWidth: 20,
@@ -369,6 +334,53 @@ const BasicPrint = ({
                                 }}
                               >
                                 {work?.processLotId?.pageNumber || '-'}
+                              </TableCell> */}
+                              <TableCell
+                                sx={{
+                                  minWidth: 20,
+                                  maxWidth: 20,
+                                  minHeight: 10,
+                                  fontSize: '10px'
+                                }}
+                              >
+                                <p
+                                  className={`text-[12px] text-white ${
+                                    work?.processLotId?.articleNumber
+                                      ? work?.rate
+                                        ? 'bg-green-900'
+                                        : work?.processLotId?.quantity ===
+                                          work?.quantityReturned
+                                        ? 'bg-blue-500'
+                                        : 'bg-red-700'
+                                      : ''
+                                  }`}
+                                >
+                                  {work?.processLotId?.articleNumber || '-'}
+                                </p>
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  minWidth: 20,
+                                  maxWidth: 20,
+                                  minHeight: 10,
+                                  fontSize: '10px'
+                                  // color: 'white'
+                                }}
+                              >
+                                <p
+                                  className={`text-[12px] text-white ${
+                                    work?.processLotId?.colour
+                                      ? work?.rate
+                                        ? 'bg-green-900'
+                                        : work?.processLotId?.quantity ===
+                                          work?.quantityReturned
+                                        ? 'bg-blue-500'
+                                        : 'bg-red-700'
+                                      : ''
+                                  }`}
+                                >
+                                  {work?.processLotId?.colour || '-'}
+                                </p>
                               </TableCell>
                               <TableCell
                                 sx={{
@@ -378,7 +390,20 @@ const BasicPrint = ({
                                   fontSize: '10px'
                                 }}
                               >
-                                {work?.processLotId?.articleNumber || '-'}
+                                <p
+                                  className={`text-[12px] text-white  ${
+                                    work?.processLotId?.billNumber
+                                      ? work?.rate
+                                        ? 'bg-green-900'
+                                        : work?.processLotId?.quantity ===
+                                          work?.quantityReturned
+                                        ? 'bg-blue-500'
+                                        : 'bg-red-700'
+                                      : ''
+                                  }`}
+                                >
+                                  {work?.processLotId?.billNumber || '-'}
+                                </p>
                               </TableCell>
                               <TableCell
                                 sx={{
@@ -388,7 +413,20 @@ const BasicPrint = ({
                                   fontSize: '10px'
                                 }}
                               >
-                                {work?.processLotId?.colour || '-'}
+                                <p
+                                  className={`text-[12px] text-white ${
+                                    work?.processLotId?.quantity
+                                      ? work?.rate
+                                        ? 'bg-green-900'
+                                        : work?.processLotId?.quantity ===
+                                          work?.quantityReturned
+                                        ? 'bg-blue-500'
+                                        : 'bg-red-700'
+                                      : ''
+                                  }`}
+                                >
+                                  {work?.processLotId?.quantity || '-'}
+                                </p>
                               </TableCell>
                               <TableCell
                                 sx={{
@@ -398,7 +436,20 @@ const BasicPrint = ({
                                   fontSize: '10px'
                                 }}
                               >
-                                {work?.processLotId?.billNumber || '-'}
+                                <p
+                                  className={`text-[12px] text-white ${
+                                    work?.quantityLog
+                                      ? work?.rate
+                                        ? 'bg-green-900'
+                                        : work?.processLotId?.quantity ===
+                                          work?.quantityReturned
+                                        ? 'bg-blue-500'
+                                        : 'bg-red-700'
+                                      : 'text-black'
+                                  }`}
+                                >
+                                  {work?.quantityLog || '-'}
+                                </p>
                               </TableCell>
                               <TableCell
                                 sx={{
@@ -408,7 +459,20 @@ const BasicPrint = ({
                                   fontSize: '10px'
                                 }}
                               >
-                                {work?.processLotId?.quantity || '-'}
+                                <p
+                                  className={`text-[12px] text-white ${
+                                    work?.quantityReturned
+                                      ? work?.rate
+                                        ? 'bg-green-900'
+                                        : work?.processLotId?.quantity ===
+                                          work?.quantityReturned
+                                        ? 'bg-blue-500'
+                                        : 'bg-red-700'
+                                      : 'text-black'
+                                  }`}
+                                >
+                                  {work?.quantityReturned || '-'}
+                                </p>
                               </TableCell>
                               <TableCell
                                 sx={{
@@ -418,7 +482,20 @@ const BasicPrint = ({
                                   fontSize: '10px'
                                 }}
                               >
-                                {work?.quantityLog || '-'}
+                                <p
+                                  className={`text-[12px] text-white ${
+                                    work?.rate
+                                      ? work?.rate
+                                        ? 'bg-green-900'
+                                        : work?.processLotId?.quantity ===
+                                          work?.quantityReturned
+                                        ? 'bg-blue-500'
+                                        : 'bg-red-700'
+                                      : 'text-black'
+                                  }`}
+                                >
+                                  {work?.rate || '-'}
+                                </p>
                               </TableCell>
                               <TableCell
                                 sx={{
@@ -428,7 +505,20 @@ const BasicPrint = ({
                                   fontSize: '10px'
                                 }}
                               >
-                                {work?.quantityReturned || '-'}
+                                <p
+                                  className={`text-[12px] text-white ${
+                                    work?.total
+                                      ? work?.rate
+                                        ? 'bg-green-900'
+                                        : work?.processLotId?.quantity ===
+                                          work?.quantityReturned
+                                        ? 'bg-blue-500'
+                                        : 'bg-red-700'
+                                      : 'text-black'
+                                  }`}
+                                >
+                                  {work?.total || '-'}
+                                </p>
                               </TableCell>
                               <TableCell
                                 sx={{
@@ -438,7 +528,20 @@ const BasicPrint = ({
                                   fontSize: '10px'
                                 }}
                               >
-                                {work?.rate || '-'}
+                                <p
+                                  className={`text-[12px] text-white ${
+                                    work?.lotClearDate
+                                      ? work?.rate
+                                        ? 'bg-green-900'
+                                        : work?.processLotId?.quantity ===
+                                          work?.quantityReturned
+                                        ? 'bg-blue-500'
+                                        : 'bg-red-700'
+                                      : 'text-black'
+                                  }`}
+                                >
+                                  {convertDate(work?.lotClearDate || null)}
+                                </p>
                               </TableCell>
                               <TableCell
                                 sx={{
@@ -448,27 +551,20 @@ const BasicPrint = ({
                                   fontSize: '10px'
                                 }}
                               >
-                                {work?.total || '-'}
-                              </TableCell>
-                              <TableCell
-                                sx={{
-                                  minWidth: 20,
-                                  maxWidth: 20,
-                                  minHeight: 10,
-                                  fontSize: '10px'
-                                }}
-                              >
-                                {convertDate(work?.lotClearDate || null)}
-                              </TableCell>
-                              <TableCell
-                                sx={{
-                                  minWidth: 20,
-                                  maxWidth: 20,
-                                  minHeight: 10,
-                                  fontSize: '10px'
-                                }}
-                              >
-                                {work?.paymentGiven || '-'}
+                                <p
+                                  className={`text-[12px] text-white ${
+                                    work?.paymentGiven
+                                      ? work?.rate
+                                        ? 'bg-green-900'
+                                        : work?.processLotId?.quantity ===
+                                          work?.quantityReturned
+                                        ? 'bg-blue-500'
+                                        : 'bg-red-700'
+                                      : 'text-black'
+                                  }`}
+                                >
+                                  {work?.paymentGiven || '-'}
+                                </p>
                               </TableCell>
                               {/* <TableCell
                                 sx={{
@@ -488,7 +584,20 @@ const BasicPrint = ({
                                   fontSize: '10px'
                                 }}
                               >
-                                {work?.reference || '-'}
+                                <p
+                                  className={`text-[8px] text-white ${
+                                    work?.reference
+                                      ? work?.rate
+                                        ? 'bg-green-900'
+                                        : work?.processLotId?.quantity ===
+                                          work?.quantityReturned
+                                        ? 'bg-blue-500'
+                                        : 'bg-red-700'
+                                      : 'text-black'
+                                  }`}
+                                >
+                                  {work?.reference || '-'}
+                                </p>
                               </TableCell>
                             </TableRow>
                           );

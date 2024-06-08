@@ -66,7 +66,22 @@ const WorkListTable = ({
             month: '2-digit',
             year: 'numeric'
           });
-          return newDate;
+          return (
+            <p
+              className={`p-1 text-base ${
+                params?.processLotId?.assignDate
+                  ? params?.rate
+                    ? 'bg-green-900'
+                    : params?.processLotId?.quantity ===
+                      params?.quantityReturned
+                    ? 'bg-blue-500'
+                    : 'bg-red-700'
+                  : ''
+              }`}
+            >
+              {newDate}
+            </p>
+          );
         } else {
           return '-';
         }
@@ -76,31 +91,101 @@ const WorkListTable = ({
       field: 'pageNumber',
       headerName: 'Page',
       width: '70px',
-      renderCell: (params) => <p>{params.processLotId?.pageNumber || '-'}</p>
+      renderCell: (params) => (
+        <p
+          className={`p-1 text-base ${
+            params?.processLotId?.pageNumber
+              ? params?.rate
+                ? 'bg-green-900'
+                : params?.processLotId?.quantity === params?.quantityReturned
+                ? 'bg-blue-500'
+                : 'bg-red-700'
+              : ''
+          }`}
+        >
+          {params.processLotId?.pageNumber || '-'}
+        </p>
+      )
     },
     {
       field: 'articleNumber',
       headerName: 'Article',
       width: '90px',
-      renderCell: (params) => <p>{params.processLotId?.articleNumber || '-'}</p>
+      renderCell: (params) => (
+        <p
+          className={`p-1 text-base ${
+            params?.processLotId?.articleNumber
+              ? params?.rate
+                ? 'bg-green-900'
+                : params?.processLotId?.quantity === params?.quantityReturned
+                ? 'bg-blue-500'
+                : 'bg-red-700'
+              : ''
+          }`}
+        >
+          {params.processLotId?.articleNumber || '-'}
+        </p>
+      )
     },
     {
       field: 'color',
       headerName: 'Colour',
       width: '80px',
-      renderCell: (params) => <p>{params.processLotId?.colour || '-'}</p>
+      renderCell: (params) => (
+        <p
+          className={`p-1 text-base ${
+            params?.processLotId?.colour
+              ? params?.rate
+                ? 'bg-green-900'
+                : params?.processLotId?.quantity === params?.quantityReturned
+                ? 'bg-blue-500'
+                : 'bg-red-700'
+              : ''
+          }`}
+        >
+          {params.processLotId?.colour || '-'}
+        </p>
+      )
     },
     {
       field: 'billNumber',
       headerName: 'Bill',
       width: '50px',
-      renderCell: (params) => <p>{params.processLotId?.billNumber || '-'}</p>
+      renderCell: (params) => (
+        <p
+          className={`p-1 text-base ${
+            params?.processLotId?.billNumber
+              ? params?.rate
+                ? 'bg-green-900'
+                : params?.processLotId?.quantity === params?.quantityReturned
+                ? 'bg-blue-500'
+                : 'bg-red-700'
+              : ''
+          }`}
+        >
+          {params.processLotId?.billNumber || '-'}
+        </p>
+      )
     },
     {
       field: 'quantity',
       headerName: 'Qty',
       width: '80px',
-      renderCell: (params) => <p>{params.processLotId?.quantity || '-'}</p>
+      renderCell: (params) => (
+        <p
+          className={`p-1 text-base ${
+            params?.processLotId?.quantity
+              ? params?.rate
+                ? 'bg-green-900'
+                : params?.processLotId?.quantity === params?.quantityReturned
+                ? 'bg-blue-500'
+                : 'bg-red-700'
+              : ''
+          }`}
+        >
+          {params.processLotId?.quantity || '-'}
+        </p>
+      )
     },
     // {
     //   field: 'workType',
@@ -112,25 +197,81 @@ const WorkListTable = ({
       field: 'quantityLog',
       headerName: 'Wasooli',
       width: '120px',
-      renderCell: (params) => <p>{params.quantityLog || '-'}</p>
+      renderCell: (params) => (
+        <p
+          className={`p-1 text-base ${
+            params?.quantityLog
+              ? params?.rate
+                ? 'bg-green-900'
+                : params?.processLotId?.quantity === params?.quantityReturned
+                ? 'bg-blue-500'
+                : 'bg-red-700'
+              : ''
+          }`}
+        >
+          {params.quantityLog || '-'}
+        </p>
+      )
     },
     {
       field: 'quantityReturned',
       headerName: 'Pending',
       width: '80px',
-      renderCell: (params) => <p>{params.quantityReturned || '-'}</p>
+      renderCell: (params) => (
+        <p
+          className={`p-1 text-base ${
+            params?.quantityReturned
+              ? params?.rate
+                ? 'bg-green-900'
+                : params?.processLotId?.quantity === params?.quantityReturned
+                ? 'bg-blue-500'
+                : 'bg-red-700'
+              : ''
+          }`}
+        >
+          {params.quantityReturned || '-'}
+        </p>
+      )
     },
     {
       field: 'rate',
       headerName: 'Rate',
       width: '100px',
-      renderCell: (params) => <p>{params.rate || '-'}</p>
+      renderCell: (params) => (
+        <p
+          className={`p-1 text-base ${
+            params?.rate
+              ? params?.rate
+                ? 'bg-green-900'
+                : params?.processLotId?.quantity === params?.quantityReturned
+                ? 'bg-blue-500'
+                : 'bg-red-700'
+              : ''
+          }`}
+        >
+          {params.rate || '-'}
+        </p>
+      )
     },
     {
       field: 'total',
       headerName: 'T.Amt',
       width: '150px',
-      renderCell: (params) => <p>{params.total || '-'}</p>
+      renderCell: (params) => (
+        <p
+          className={`p-1 text-base ${
+            params?.total
+              ? params?.rate
+                ? 'bg-green-900'
+                : params?.processLotId?.quantity === params?.quantityReturned
+                ? 'bg-blue-500'
+                : 'bg-red-700'
+              : ''
+          }`}
+        >
+          {params.total || '-'}
+        </p>
+      )
     },
     {
       field: 'lotClearDate',
@@ -145,7 +286,22 @@ const WorkListTable = ({
             month: '2-digit',
             year: 'numeric'
           });
-          return newDate;
+          return (
+            <p
+              className={`p-1 text-base ${
+                params?.lotClearDate
+                  ? params?.rate
+                    ? 'bg-green-900'
+                    : params?.processLotId?.quantity ===
+                      params?.quantityReturned
+                    ? 'bg-blue-500'
+                    : 'bg-red-700'
+                  : ''
+              }`}
+            >
+              {newDate}
+            </p>
+          );
         } else {
           return '-';
         }
@@ -155,7 +311,21 @@ const WorkListTable = ({
       field: 'paymentGiven',
       headerName: 'Payment',
       width: '100px',
-      renderCell: (params) => <p>{params.paymentGiven || '-'}</p>
+      renderCell: (params) => (
+        <p
+          className={`p-1 text-base ${
+            params?.paymentGiven
+              ? params?.rate
+                ? 'bg-green-900'
+                : params?.processLotId?.quantity === params?.quantityReturned
+                ? 'bg-blue-500'
+                : 'bg-red-700'
+              : ''
+          }`}
+        >
+          {params.paymentGiven || '-'}
+        </p>
+      )
     },
     // {
     //   field: 'paymentDate',
@@ -180,7 +350,21 @@ const WorkListTable = ({
       field: 'reference',
       headerName: 'References',
       width: '150px',
-      renderCell: (params) => <p>{params.reference || '-'}</p>
+      renderCell: (params) => (
+        <p
+          className={`p-1 text-base ${
+            params?.reference
+              ? params?.rate
+                ? 'bg-green-900'
+                : params?.processLotId?.quantity === params?.quantityReturned
+                ? 'bg-blue-500'
+                : 'bg-red-700'
+              : ''
+          }`}
+        >
+          {params.reference || '-'}
+        </p>
+      )
     },
     // {
     //   field: 'workerId',

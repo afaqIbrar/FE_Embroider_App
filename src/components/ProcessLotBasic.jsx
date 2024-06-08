@@ -58,33 +58,22 @@ const ProcessLotBasic = ({ processLot }) => {
       <ThemeProvider theme={localTheme}>
         <GlobalStyles styles={printStyle} />
         <Box displayPrint="block" style={{ color: 'black' }}>
-          <Box style={{ marginTop: '20px' }}>
-            <div
-              style={{
-                textAlign: 'center',
-                justifyContent: 'center',
-                alignItems: 'center'
-              }}
-            >
-              <h1 style={{ fontSize: '35px', margin: 0 }}>Taha Collection</h1>
-            </div>
-          </Box>
           <Box displayPrint="block">
-            <Box style={{ marginTop: '15px' }}>
-              <div
-                style={{
-                  textAlign: 'center',
-                  justifyContent: 'center',
-                  alignItems: 'center'
-                }}
-              >
-                <p style={{ fontSize: '20px', margin: 0 }}>
-                  ProcessLot Details
-                </p>
-              </div>
-            </Box>
             <Box style={{ marginTop: '10px' }}>
               <Grid container spacing={2} className="mb-2 text-lg">
+                <Grid item xs={6}>
+                  <div
+                    style={{
+                      textAlign: 'center',
+                      justifyContent: 'center',
+                      alignItems: 'center'
+                    }}
+                  >
+                    <h1 style={{ fontSize: '35px', margin: 0 }}>
+                      Taha Collection
+                    </h1>
+                  </div>
+                </Grid>
                 <Grid item xs={6}>
                   <div className="flex ml-5">
                     <span
@@ -112,19 +101,6 @@ const ProcessLotBasic = ({ processLot }) => {
                 </Grid>
               </Grid>
             </Box>
-            <Box>
-              <div
-                className="mt-3 text-xl border-b"
-                style={{
-                  textAlign: 'center',
-                  justifyContent: 'center',
-                  alignItems: 'center'
-                }}
-              >
-                Work Details
-              </div>
-            </Box>
-
             <Box>
               <div
                 className="mt-3 mx-8 text-xl"
@@ -248,7 +224,15 @@ const ProcessLotBasic = ({ processLot }) => {
                                   fontSize: '10px'
                                 }}
                               >
-                                {process?.pageNumber || '-'}
+                                <p
+                                  className={`text-white text-[12px] ${
+                                    process?.assignDate
+                                      ? 'bg-green-900'
+                                      : 'bg-red-700'
+                                  }`}
+                                >
+                                  {process?.pageNumber || '-'}
+                                </p>
                               </TableCell>
                               <TableCell
                                 sx={{
@@ -258,7 +242,15 @@ const ProcessLotBasic = ({ processLot }) => {
                                   fontSize: '10px'
                                 }}
                               >
-                                {process?.articleNumber || '-'}
+                                <p
+                                  className={`text-white text-[12px] ${
+                                    process?.assignDate
+                                      ? 'bg-green-900'
+                                      : 'bg-red-700'
+                                  }`}
+                                >
+                                  {process?.articleNumber || '-'}
+                                </p>
                               </TableCell>
                               <TableCell
                                 sx={{
@@ -268,7 +260,15 @@ const ProcessLotBasic = ({ processLot }) => {
                                   fontSize: '10px'
                                 }}
                               >
-                                {process?.colour || '-'}
+                                <p
+                                  className={`text-white text-[12px] ${
+                                    process?.assignDate
+                                      ? 'bg-green-900'
+                                      : 'bg-red-700'
+                                  }`}
+                                >
+                                  {process?.colour || '-'}
+                                </p>
                               </TableCell>
                               <TableCell
                                 sx={{
@@ -278,7 +278,17 @@ const ProcessLotBasic = ({ processLot }) => {
                                   fontSize: '10px'
                                 }}
                               >
-                                {process?.billNumber || '-'}
+                                <p
+                                  className={`text-white text-[12px] ${
+                                    process?.billNumber
+                                      ? process?.assignDate
+                                        ? 'bg-green-900'
+                                        : 'bg-blue-500'
+                                      : 'text-black'
+                                  }`}
+                                >
+                                  {process?.billNumber || '-'}
+                                </p>
                               </TableCell>
                               <TableCell
                                 sx={{
@@ -288,7 +298,17 @@ const ProcessLotBasic = ({ processLot }) => {
                                   fontSize: '10px'
                                 }}
                               >
-                                {process?.quantity || '-'}
+                                <p
+                                  className={`text-white text-[12px] ${
+                                    process.quantity
+                                      ? process.assignDate
+                                        ? 'bg-green-900'
+                                        : 'bg-blue-500'
+                                      : 'text-black'
+                                  }`}
+                                >
+                                  {process?.quantity || '-'}
+                                </p>
                               </TableCell>
                               <TableCell
                                 sx={{
@@ -298,7 +318,17 @@ const ProcessLotBasic = ({ processLot }) => {
                                   fontSize: '10px'
                                 }}
                               >
-                                {convertDate(process?.assignDate || null)}
+                                <p
+                                  className={`text-white text-[12px] ${
+                                    process?.assignDate
+                                      ? process?.assignDate
+                                        ? 'bg-green-900'
+                                        : 'bg-blue-500'
+                                      : 'text-black '
+                                  }`}
+                                >
+                                  {convertDate(process?.assignDate || null)}
+                                </p>
                               </TableCell>
                               <TableCell
                                 sx={{
@@ -308,7 +338,17 @@ const ProcessLotBasic = ({ processLot }) => {
                                   fontSize: '10px'
                                 }}
                               >
-                                {process?.handWorkerId?.workerName || '-'}
+                                <p
+                                  className={`text-white text-[12px] truncate ${
+                                    process?.handWorkerId?.workerName
+                                      ? process?.assignDate
+                                        ? 'bg-green-900'
+                                        : 'bg-blue-500'
+                                      : 'text-black'
+                                  }`}
+                                >
+                                  {process?.handWorkerId?.workerName || '-'}
+                                </p>
                               </TableCell>
                               <TableCell
                                 sx={{
@@ -318,7 +358,17 @@ const ProcessLotBasic = ({ processLot }) => {
                                   fontSize: '10px'
                                 }}
                               >
-                                {process?.dupattaWorkerId?.workerName || '-'}
+                                <p
+                                  className={`text-white text-[12px] truncate ${
+                                    process?.dupattaWorkerId?.workerName
+                                      ? process?.assignDate
+                                        ? 'bg-green-900'
+                                        : 'bg-blue-500'
+                                      : 'text-black'
+                                  }`}
+                                >
+                                  {process?.dupattaWorkerId?.workerName || '-'}
+                                </p>
                               </TableCell>
                               <TableCell
                                 sx={{
@@ -328,7 +378,17 @@ const ProcessLotBasic = ({ processLot }) => {
                                   fontSize: '10px'
                                 }}
                               >
-                                {process?.innerWorkerId?.workerName || '-'}
+                                <p
+                                  className={`text-white text-[12px] truncate ${
+                                    process?.innerWorkerId?.workerName
+                                      ? process?.assignDate
+                                        ? 'bg-green-900'
+                                        : 'bg-blue-500'
+                                      : 'text-black'
+                                  }`}
+                                >
+                                  {process?.innerWorkerId?.workerName || '-'}
+                                </p>
                               </TableCell>
                             </TableRow>
                           );

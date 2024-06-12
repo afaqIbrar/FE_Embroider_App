@@ -70,7 +70,8 @@ const WorkListTable = ({
             <p
               className={`p-1 text-base ${
                 params?.processLotId?.assignDate
-                  ? params?.rate
+                  ? params?.rate &&
+                    params?.quantityReturned === params?.processLotId?.quantity
                     ? 'bg-green-900'
                     : params?.processLotId?.quantity ===
                       params?.quantityReturned
@@ -95,7 +96,8 @@ const WorkListTable = ({
         <p
           className={`p-1 text-base ${
             params?.processLotId?.pageNumber
-              ? params?.rate
+              ? params?.rate &&
+                params?.quantityReturned === params?.processLotId?.quantity
                 ? 'bg-green-900'
                 : params?.processLotId?.quantity === params?.quantityReturned
                 ? 'bg-blue-500'
@@ -115,7 +117,8 @@ const WorkListTable = ({
         <p
           className={`p-1 text-base ${
             params?.processLotId?.articleNumber
-              ? params?.rate
+              ? params?.rate &&
+                params?.quantityReturned === params?.processLotId?.quantity
                 ? 'bg-green-900'
                 : params?.processLotId?.quantity === params?.quantityReturned
                 ? 'bg-blue-500'
@@ -135,7 +138,8 @@ const WorkListTable = ({
         <p
           className={`p-1 text-base ${
             params?.processLotId?.colour
-              ? params?.rate
+              ? params?.rate &&
+                params?.quantityReturned === params?.processLotId?.quantity
                 ? 'bg-green-900'
                 : params?.processLotId?.quantity === params?.quantityReturned
                 ? 'bg-blue-500'
@@ -155,7 +159,8 @@ const WorkListTable = ({
         <p
           className={`p-1 text-base ${
             params?.processLotId?.billNumber
-              ? params?.rate
+              ? params?.rate &&
+                params?.quantityReturned === params?.processLotId?.quantity
                 ? 'bg-green-900'
                 : params?.processLotId?.quantity === params?.quantityReturned
                 ? 'bg-blue-500'
@@ -175,7 +180,8 @@ const WorkListTable = ({
         <p
           className={`p-1 text-base ${
             params?.processLotId?.quantity
-              ? params?.rate
+              ? params?.rate &&
+                params?.quantityReturned === params?.processLotId?.quantity
                 ? 'bg-green-900'
                 : params?.processLotId?.quantity === params?.quantityReturned
                 ? 'bg-blue-500'
@@ -201,7 +207,8 @@ const WorkListTable = ({
         <p
           className={`p-1 text-base ${
             params?.quantityLog
-              ? params?.rate
+              ? params?.rate &&
+                params?.quantityReturned === params?.processLotId?.quantity
                 ? 'bg-green-900'
                 : params?.processLotId?.quantity === params?.quantityReturned
                 ? 'bg-blue-500'
@@ -221,7 +228,8 @@ const WorkListTable = ({
         <p
           className={`p-1 text-base ${
             params?.quantityReturned
-              ? params?.rate
+              ? params?.rate &&
+                params?.quantityReturned === params?.processLotId?.quantity
                 ? 'bg-green-900'
                 : params?.processLotId?.quantity === params?.quantityReturned
                 ? 'bg-blue-500'
@@ -241,7 +249,8 @@ const WorkListTable = ({
         <p
           className={`p-1 text-base ${
             params?.rate
-              ? params?.rate
+              ? params?.rate &&
+                params?.quantityReturned === params?.processLotId?.quantity
                 ? 'bg-green-900'
                 : params?.processLotId?.quantity === params?.quantityReturned
                 ? 'bg-blue-500'
@@ -261,7 +270,8 @@ const WorkListTable = ({
         <p
           className={`p-1 text-base ${
             params?.total
-              ? params?.rate
+              ? params?.rate &&
+                params?.quantityReturned === params?.processLotId?.quantity
                 ? 'bg-green-900'
                 : params?.processLotId?.quantity === params?.quantityReturned
                 ? 'bg-blue-500'
@@ -290,7 +300,8 @@ const WorkListTable = ({
             <p
               className={`p-1 text-base ${
                 params?.lotClearDate
-                  ? params?.rate
+                  ? params?.rate &&
+                    params?.quantityReturned === params?.processLotId?.quantity
                     ? 'bg-green-900'
                     : params?.processLotId?.quantity ===
                       params?.quantityReturned
@@ -315,7 +326,8 @@ const WorkListTable = ({
         <p
           className={`p-1 text-base ${
             params?.paymentGiven
-              ? params?.rate
+              ? params?.rate &&
+                params?.quantityReturned === params?.processLotId?.quantity
                 ? 'bg-green-900'
                 : params?.processLotId?.quantity === params?.quantityReturned
                 ? 'bg-blue-500'
@@ -354,7 +366,8 @@ const WorkListTable = ({
         <p
           className={`p-1 text-base ${
             params?.reference
-              ? params?.rate
+              ? params?.rate &&
+                params?.quantityReturned === params?.processLotId?.quantity
                 ? 'bg-green-900'
                 : params?.processLotId?.quantity === params?.quantityReturned
                 ? 'bg-blue-500'

@@ -309,9 +309,11 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[12px] text-white ${
+                                  className={`text-[12px] flex justify-center text-white ${
                                     work?.processLotId?.assignDate
-                                      ? work?.rate
+                                      ? work?.rate &&
+                                        work?.quantityReturned ===
+                                          work?.processLotId?.quantity
                                         ? 'bg-green-900'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
@@ -344,9 +346,11 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[12px] text-white ${
+                                  className={`text-[12px] flex justify-center text-white ${
                                     work?.processLotId?.articleNumber
-                                      ? work?.rate
+                                      ? work?.rate &&
+                                        work?.quantityReturned ===
+                                          work?.processLotId?.quantity
                                         ? 'bg-green-900'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
@@ -368,9 +372,11 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[12px] text-white ${
+                                  className={`text-[12px] flex justify-center text-white ${
                                     work?.processLotId?.colour
-                                      ? work?.rate
+                                      ? work?.rate &&
+                                        work?.quantityReturned ===
+                                          work?.processLotId?.quantity
                                         ? 'bg-green-900'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
@@ -391,9 +397,11 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[12px] text-white  ${
+                                  className={`text-[12px] flex justify-center text-white  ${
                                     work?.processLotId?.billNumber
-                                      ? work?.rate
+                                      ? work?.rate &&
+                                        work?.quantityReturned ===
+                                          work?.processLotId?.quantity
                                         ? 'bg-green-900'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
@@ -414,9 +422,11 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[12px] text-white ${
+                                  className={`text-[12px] flex justify-center text-white ${
                                     work?.processLotId?.quantity
-                                      ? work?.rate
+                                      ? work?.rate &&
+                                        work?.quantityReturned ===
+                                          work?.processLotId?.quantity
                                         ? 'bg-green-900'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
@@ -437,9 +447,11 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[12px] text-white ${
+                                  className={`text-[12px] flex justify-center text-white ${
                                     work?.quantityLog
-                                      ? work?.rate
+                                      ? work?.rate &&
+                                        work?.quantityReturned ===
+                                          work?.processLotId?.quantity
                                         ? 'bg-green-900'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
@@ -460,9 +472,11 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[12px] text-white ${
+                                  className={`text-[12px] flex justify-center text-white ${
                                     work?.quantityReturned
-                                      ? work?.rate
+                                      ? work?.rate &&
+                                        work?.quantityReturned ===
+                                          work?.processLotId?.quantity
                                         ? 'bg-green-900'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
@@ -483,9 +497,11 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[12px] text-white ${
+                                  className={`text-[12px] flex justify-center text-white ${
                                     work?.rate
-                                      ? work?.rate
+                                      ? work?.rate &&
+                                        work?.quantityReturned ===
+                                          work?.processLotId?.quantity
                                         ? 'bg-green-900'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
@@ -506,9 +522,11 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[12px] text-white ${
+                                  className={`text-[12px] flex justify-center text-white ${
                                     work?.total
-                                      ? work?.rate
+                                      ? work?.rate &&
+                                        work?.quantityReturned ===
+                                          work?.processLotId?.quantity
                                         ? 'bg-green-900'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
@@ -529,9 +547,11 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[12px] text-white ${
+                                  className={`text-[12px] flex justify-center text-white ${
                                     work?.lotClearDate
-                                      ? work?.rate
+                                      ? work?.rate &&
+                                        work?.quantityReturned ===
+                                          work?.processLotId?.quantity
                                         ? 'bg-green-900'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
@@ -552,9 +572,11 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[12px] text-white ${
+                                  className={`text-[12px] flex justify-center text-white ${
                                     work?.paymentGiven
-                                      ? work?.rate
+                                      ? work?.rate &&
+                                        work?.quantityReturned ===
+                                          work?.processLotId?.quantity
                                         ? 'bg-green-900'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
@@ -585,9 +607,11 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[8px] text-white ${
+                                  className={`text-[8px] flex justify-center text-white ${
                                     work?.reference
-                                      ? work?.rate
+                                      ? work?.rate &&
+                                        work?.quantityReturned ===
+                                          work?.processLotId?.quantity
                                         ? 'bg-green-900'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned

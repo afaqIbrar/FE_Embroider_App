@@ -394,7 +394,7 @@ const WorkListTable = ({
 
   return (
     <div>
-      <TableContainer className="mt-8 rounded-t-lg border border-solid border-dark300 inventory-table h-[450px]">
+      <TableContainer className="mt-8 rounded-t-lg border border-solid border-dark300 inventory-table h-[500px]">
         <Table stickyHeader>
           <TableHead className="bg-slate-400">
             <TableRow>

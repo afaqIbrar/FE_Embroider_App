@@ -323,12 +323,9 @@ const Work = () => {
   return (
     <Box m="20px">
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header
-          title={`${workerData.workerName || ''} Work List`}
-          subtitle={`Welcome to Work List and Accounts of ${
-            workerData.workerName || ''
-          }`}
-        />
+        <Box className="text-lg mb-1">
+          {`${workerData.workerName || ''} Work List`}
+        </Box>
       </Box>
       <Box>
         <Box display="flex" justifyContent="space-between">

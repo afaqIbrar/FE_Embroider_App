@@ -181,7 +181,7 @@ const ProcessLotBasic = ({ processLot }) => {
                         </TableCell>
                         <TableCell
                           sx={{
-                            minWidth: 30,
+                            minWidth: 20,
                             maxWidth: 20,
                             fontSize: '12px',
                             fontWeight: 'bold'
@@ -225,7 +225,7 @@ const ProcessLotBasic = ({ processLot }) => {
                                 }}
                               >
                                 <p
-                                  className={`text-white text-[12px] ${
+                                  className={`text-white text-[12px] flex justify-center ${
                                     process?.assignDate
                                       ? 'bg-green-900'
                                       : 'bg-red-700'
@@ -243,7 +243,7 @@ const ProcessLotBasic = ({ processLot }) => {
                                 }}
                               >
                                 <p
-                                  className={`text-white text-[12px] ${
+                                  className={`text-white text-[12px] flex justify-center  ${
                                     process?.assignDate
                                       ? 'bg-green-900'
                                       : 'bg-red-700'
@@ -261,7 +261,7 @@ const ProcessLotBasic = ({ processLot }) => {
                                 }}
                               >
                                 <p
-                                  className={`text-white text-[12px] ${
+                                  className={`text-white text-[12px] flex justify-center ${
                                     process?.assignDate
                                       ? 'bg-green-900'
                                       : 'bg-red-700'
@@ -279,7 +279,7 @@ const ProcessLotBasic = ({ processLot }) => {
                                 }}
                               >
                                 <p
-                                  className={`text-white text-[12px] ${
+                                  className={`text-white text-[12px] flex justify-center ${
                                     process?.billNumber
                                       ? process?.assignDate
                                         ? 'bg-green-900'
@@ -299,7 +299,7 @@ const ProcessLotBasic = ({ processLot }) => {
                                 }}
                               >
                                 <p
-                                  className={`text-white text-[12px] ${
+                                  className={`text-white text-[12px] flex justify-center  ${
                                     process.quantity
                                       ? process.assignDate
                                         ? 'bg-green-900'
@@ -312,14 +312,14 @@ const ProcessLotBasic = ({ processLot }) => {
                               </TableCell>
                               <TableCell
                                 sx={{
-                                  minWidth: 20,
+                                  minWidth: 10,
                                   maxWidth: 20,
                                   minHeight: 10,
                                   fontSize: '10px'
                                 }}
                               >
                                 <p
-                                  className={`text-white text-[12px] ${
+                                  className={`text-white text-[12px] flex justify-center ${
                                     process?.assignDate
                                       ? process?.assignDate
                                         ? 'bg-green-900'
@@ -332,14 +332,14 @@ const ProcessLotBasic = ({ processLot }) => {
                               </TableCell>
                               <TableCell
                                 sx={{
-                                  minWidth: 20,
-                                  maxWidth: 20,
+                                  minWidth: 10,
+                                  maxWidth: 10,
                                   minHeight: 10,
                                   fontSize: '10px'
                                 }}
                               >
                                 <p
-                                  className={`text-white text-[12px] truncate ${
+                                  className={`text-white text-[12px] truncate flex justify-center  ${
                                     process?.handWorkerId?.workerName
                                       ? process?.assignDate
                                         ? 'bg-green-900'
@@ -359,7 +359,7 @@ const ProcessLotBasic = ({ processLot }) => {
                                 }}
                               >
                                 <p
-                                  className={`text-white text-[12px] truncate ${
+                                  className={`text-white text-[12px] truncate flex justify-center  ${
                                     process?.dupattaWorkerId?.workerName
                                       ? process?.assignDate
                                         ? 'bg-green-900'
@@ -379,7 +379,7 @@ const ProcessLotBasic = ({ processLot }) => {
                                 }}
                               >
                                 <p
-                                  className={`text-white text-[12px] truncate ${
+                                  className={`text-white text-[12px] truncate flex justify-center ${
                                     process?.innerWorkerId?.workerName
                                       ? process?.assignDate
                                         ? 'bg-green-900'

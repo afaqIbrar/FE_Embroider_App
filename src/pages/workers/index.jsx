@@ -135,21 +135,21 @@ const Workers = () => {
       width: 150,
       renderCell: (params) => <p>{WORKERTYPE[params.value]}</p>
     },
-    {
-      field: 'phoneNumber',
-      headerName: 'Phone #',
-      width: 150
-    },
-    {
-      field: 'createdAt',
-      headerName: 'Created At',
-      width: 200,
-      valueGetter: (params) => {
-        const createdAt = params.row.createdAt; // Get the createdAt value from the row
-        const localCreatedAt = new Date(createdAt).toLocaleString();
-        return localCreatedAt;
-      }
-    },
+    // {
+    //   field: 'phoneNumber',
+    //   headerName: 'Phone #',
+    //   width: 150
+    // },
+    // {
+    //   field: 'createdAt',
+    //   headerName: 'Created At',
+    //   width: 200,
+    //   valueGetter: (params) => {
+    //     const createdAt = params.row.createdAt; // Get the createdAt value from the row
+    //     const localCreatedAt = new Date(createdAt).toLocaleString();
+    //     return localCreatedAt;
+    //   }
+    // },
     {
       field: 'actions',
       headerName: 'Actions',

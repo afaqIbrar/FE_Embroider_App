@@ -45,7 +45,7 @@ const Topbar = () => {
   };
 
   return (
-    <Box display="flex" justifyContent="space-between" p={2}>
+    <Box display="flex" justifyContent="space-between" p={1} m={0}>
       <Box display="flex">
         {broken && !rtl && (
           <IconButton

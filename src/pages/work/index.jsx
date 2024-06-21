@@ -73,10 +73,7 @@ const Work = () => {
   return (
     <Box m="20px">
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header
-          title="Work Assignment"
-          subtitle="Welcome to Work Assignment and Accounts"
-        />
+        <Box className="text-lg mb-1">Work Assignment</Box>
       </Box>
       <Box>
         <Box display="flex" justifyContent="space-between">

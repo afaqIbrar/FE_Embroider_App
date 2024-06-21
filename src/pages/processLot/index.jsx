@@ -348,7 +348,8 @@ const ProcessLot = () => {
   return (
     <Box m="20px">
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="Process Lot" subtitle="Welcome to Process Lot" />
+        {/* <Header title="Process Lot" subtitle="Welcome to Process Lot" /> */}
+        <Box className="text-lg mb-1">Process Lot</Box>
       </Box>
       <Box display="flex" justifyContent="space-between">
         <Box

@@ -40,22 +40,22 @@ const Work = () => {
       headerName: 'Worker Type',
       width: 150,
       renderCell: (params) => <p>{WORKERTYPE[params.value]}</p>
-    },
-    {
-      field: 'phoneNumber',
-      headerName: 'Phone #',
-      width: 150
-    },
-    {
-      field: 'createdAt',
-      headerName: 'Created At',
-      width: 150,
-      valueGetter: (params) => {
-        const createdAt = params.row.createdAt; // Get the createdAt value from the row
-        const localCreatedAt = new Date(createdAt).toLocaleString();
-        return localCreatedAt;
-      }
     }
+    // {
+    //   field: 'phoneNumber',
+    //   headerName: 'Phone #',
+    //   width: 150
+    // },
+    // {
+    //   field: 'createdAt',
+    //   headerName: 'Created At',
+    //   width: 150,
+    //   valueGetter: (params) => {
+    //     const createdAt = params.row.createdAt; // Get the createdAt value from the row
+    //     const localCreatedAt = new Date(createdAt).toLocaleString();
+    //     return localCreatedAt;
+    //   }
+    // }
   ];
   const handleRowClick = (params) => {
     window.location.href = `work/${params.row._id}`;
@@ -100,7 +100,7 @@ const Work = () => {
       <Box
         m="8px 0 0 0"
         width="100%"
-        height="450px"
+        height="625px"
         sx={{
           '& .MuiDataGrid-root': {
             border: 'none'
@@ -133,9 +133,9 @@ const Work = () => {
         <DataGrid
           rows={worker}
           columns={columns}
-          components={{ Toolbar: GridToolbar }}
           getRowId={(row) => row._id}
           onRowClick={handleRowClick}
+          density="compact"
         />
       </Box>
     </Box>

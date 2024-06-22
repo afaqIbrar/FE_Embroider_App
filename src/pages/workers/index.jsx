@@ -182,7 +182,8 @@ const Workers = () => {
   return (
     <Box m="20px">
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="Workers" subtitle="Welcome to Workers Screen" />
+        {/* <Header title="Workers" subtitle="Welcome to Workers Screen" /> */}
+        <Box className="text-lg mb-1">Workers</Box>
       </Box>
       <Box>
         <Box display="flex" justifyContent="space-between">
@@ -221,7 +222,7 @@ const Workers = () => {
       <Box
         m="8px 0 0 0"
         width="100%"
-        height="450px"
+        height="625px"
         sx={{
           '& .MuiDataGrid-root': {
             border: 'none'
@@ -254,8 +255,8 @@ const Workers = () => {
         <DataGrid
           rows={worker}
           columns={columns}
-          components={{ Toolbar: GridToolbar }}
           getRowId={(row) => row._id}
+          density="compact"
         />
       </Box>
 

@@ -318,7 +318,8 @@ const Users = () => {
         title={'Add User'}
       />
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="Users" subtitle="Welcome to Users Screen" />
+        {/* <Header title="Users" subtitle="Welcome to Users Screen" /> */}
+        <Box className="text-lg mb-1">Users</Box>
       </Box>
       <Box display="flex" justifyContent="space-between">
         <Box
@@ -356,7 +357,7 @@ const Users = () => {
       <Box
         m="8px 0 0 0"
         width="100%"
-        height="450px"
+        height="625px"
         sx={{
           '& .MuiDataGrid-root': {
             border: 'none'
@@ -389,7 +390,7 @@ const Users = () => {
         <DataGrid
           rows={users}
           columns={columns}
-          components={{ Toolbar: GridToolbar }}
+          density="compact"
           getRowId={(row) => row._id}
         />
       </Box>

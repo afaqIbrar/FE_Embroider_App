@@ -401,7 +401,7 @@ const ProcessLot = () => {
       <Box
         m="8px 0 0 0"
         width="100%"
-        height="500px"
+        height="600px"
         sx={{
           '& .MuiDataGrid-root': {
             border: 'none'
@@ -434,8 +434,8 @@ const ProcessLot = () => {
         <DataGrid
           rows={processLot}
           columns={columns}
-          components={{ Toolbar: GridToolbar }}
           getRowId={(row) => row._id}
+          density="compact"
         />
       </Box>
 

@@ -401,7 +401,7 @@ const ProcessLot = () => {
       <Box
         m="8px 0 0 0"
         width="100%"
-        height="600px"
+        height="640px"
         sx={{
           '& .MuiDataGrid-root': {
             border: 'none'

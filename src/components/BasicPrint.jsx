@@ -156,7 +156,7 @@ const BasicPrint = ({
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '12px',
+                            fontSize: '14px',
                             fontWeight: 'bold'
                           }}
                         >
@@ -176,7 +176,7 @@ const BasicPrint = ({
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '12px',
+                            fontSize: '14px',
                             fontWeight: 'bold'
                           }}
                         >
@@ -186,7 +186,7 @@ const BasicPrint = ({
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '12px',
+                            fontSize: '14px',
                             fontWeight: 'bold'
                           }}
                         >
@@ -196,7 +196,7 @@ const BasicPrint = ({
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '12px',
+                            fontSize: '14px',
                             fontWeight: 'bold'
                           }}
                         >
@@ -206,7 +206,7 @@ const BasicPrint = ({
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '12px',
+                            fontSize: '14px',
                             fontWeight: 'bold'
                           }}
                         >
@@ -216,7 +216,7 @@ const BasicPrint = ({
                           sx={{
                             minWidth: 30,
                             maxWidth: 20,
-                            fontSize: '12px',
+                            fontSize: '14px',
                             fontWeight: 'bold'
                           }}
                         >
@@ -226,7 +226,7 @@ const BasicPrint = ({
                           sx={{
                             minWidth: 10,
                             maxWidth: 20,
-                            fontSize: '12px',
+                            fontSize: '14px',
                             fontWeight: 'bold'
                           }}
                         >
@@ -236,7 +236,7 @@ const BasicPrint = ({
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '12px',
+                            fontSize: '14px',
                             fontWeight: 'bold'
                           }}
                         >
@@ -246,7 +246,7 @@ const BasicPrint = ({
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '12px',
+                            fontSize: '14px',
                             fontWeight: 'bold'
                           }}
                         >
@@ -256,7 +256,7 @@ const BasicPrint = ({
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '12px',
+                            fontSize: '14px',
                             fontWeight: 'bold'
                           }}
                         >
@@ -266,7 +266,7 @@ const BasicPrint = ({
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '12px',
+                            fontSize: '14px',
                             fontWeight: 'bold'
                           }}
                         >
@@ -286,7 +286,7 @@ const BasicPrint = ({
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '12px',
+                            fontSize: '14px',
                             fontWeight: 'bold'
                           }}
                         >
@@ -305,11 +305,13 @@ const BasicPrint = ({
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '10px'
+                                  fontSize: '10px',
+                                  paddingBottom: 0,
+                                  paddingTop: 0
                                 }}
                               >
                                 <p
-                                  className={`text-[12px] flex justify-center text-white ${
+                                  className={`text-[16px] font-bold flex justify-center text-white ${
                                     work?.processLotId?.assignDate
                                       ? work?.rate &&
                                         work?.quantityReturned ===
@@ -342,11 +344,13 @@ const BasicPrint = ({
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '10px'
+                                  fontSize: '10px',
+                                  paddingBottom: 0,
+                                  paddingTop: 0
                                 }}
                               >
                                 <p
-                                  className={`text-[12px] flex justify-center text-white ${
+                                  className={`text-[16px] font-bold flex justify-center text-white ${
                                     work?.processLotId?.articleNumber
                                       ? work?.rate &&
                                         work?.quantityReturned ===
@@ -367,12 +371,14 @@ const BasicPrint = ({
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '10px'
-                                  // color: 'white'
+                                  fontSize: '10px',
+                                  // color: 'white',
+                                  paddingBottom: 0,
+                                  paddingTop: 0
                                 }}
                               >
                                 <p
-                                  className={`text-[12px] flex justify-center text-white ${
+                                  className={`text-[16px] font-bold flex justify-center text-white ${
                                     work?.processLotId?.colour
                                       ? work?.rate &&
                                         work?.quantityReturned ===
@@ -393,11 +399,13 @@ const BasicPrint = ({
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '10px'
+                                  fontSize: '10px',
+                                  paddingBottom: 0,
+                                  paddingTop: 0
                                 }}
                               >
                                 <p
-                                  className={`text-[12px] flex justify-center text-white  ${
+                                  className={`text-[16px] font-bold flex justify-center text-white  ${
                                     work?.processLotId?.billNumber
                                       ? work?.rate &&
                                         work?.quantityReturned ===
@@ -418,11 +426,13 @@ const BasicPrint = ({
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '10px'
+                                  fontSize: '10px',
+                                  paddingBottom: 0,
+                                  paddingTop: 0
                                 }}
                               >
                                 <p
-                                  className={`text-[12px] flex justify-center text-white ${
+                                  className={`text-[16px] font-bold flex justify-center text-white ${
                                     work?.processLotId?.quantity
                                       ? work?.rate &&
                                         work?.quantityReturned ===
@@ -443,11 +453,13 @@ const BasicPrint = ({
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '10px'
+                                  fontSize: '10px',
+                                  paddingBottom: 0,
+                                  paddingTop: 0
                                 }}
                               >
                                 <p
-                                  className={`text-[12px] flex justify-center text-white ${
+                                  className={`text-[16px] font-bold flex justify-center text-white ${
                                     work?.quantityLog
                                       ? work?.rate &&
                                         work?.quantityReturned ===
@@ -468,11 +480,13 @@ const BasicPrint = ({
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '10px'
+                                  fontSize: '10px',
+                                  paddingBottom: 0,
+                                  paddingTop: 0
                                 }}
                               >
                                 <p
-                                  className={`text-[12px] flex justify-center text-white ${
+                                  className={`text-[16px] font-bold flex justify-center text-white ${
                                     work?.quantityReturned
                                       ? work?.rate &&
                                         work?.quantityReturned ===
@@ -493,11 +507,13 @@ const BasicPrint = ({
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '10px'
+                                  fontSize: '10px',
+                                  paddingBottom: 0,
+                                  paddingTop: 0
                                 }}
                               >
                                 <p
-                                  className={`text-[12px] flex justify-center text-white ${
+                                  className={`text-[16px] font-bold flex justify-center text-white ${
                                     work?.rate
                                       ? work?.rate &&
                                         work?.quantityReturned ===
@@ -518,11 +534,14 @@ const BasicPrint = ({
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '10px'
+                                  fontSize: '10px',
+                                  paddingBottom: 0,
+                                  paddingTop: 0,
+                                  paddingLeft: 0
                                 }}
                               >
                                 <p
-                                  className={`text-[12px] flex justify-center text-white ${
+                                  className={`text-[16px] font-bold flex justify-center text-white ${
                                     work?.total
                                       ? work?.rate &&
                                         work?.quantityReturned ===
@@ -543,11 +562,13 @@ const BasicPrint = ({
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '10px'
+                                  fontSize: '10px',
+                                  paddingBottom: 0,
+                                  paddingTop: 0
                                 }}
                               >
                                 <p
-                                  className={`text-[12px] flex justify-center text-white ${
+                                  className={`text-[16px] font-bold flex justify-center text-white ${
                                     work?.lotClearDate
                                       ? work?.rate &&
                                         work?.quantityReturned ===
@@ -568,11 +589,14 @@ const BasicPrint = ({
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '10px'
+                                  fontSize: '10px',
+                                  paddingBottom: 0,
+                                  paddingTop: 0,
+                                  paddingLeft: 0
                                 }}
                               >
                                 <p
-                                  className={`text-[12px] flex justify-center text-white ${
+                                  className={`text-[16px] font-bold flex justify-center text-white ${
                                     work?.paymentGiven
                                       ? work?.rate &&
                                         work?.quantityReturned ===
@@ -603,7 +627,9 @@ const BasicPrint = ({
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '10px'
+                                  fontSize: '10px',
+                                  paddingBottom: 0,
+                                  paddingTop: 0
                                 }}
                               >
                                 <p

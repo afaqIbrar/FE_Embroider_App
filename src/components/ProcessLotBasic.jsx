@@ -121,7 +121,7 @@ const ProcessLotBasic = ({ processLot }) => {
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '12px',
+                            fontSize: '14px',
                             fontWeight: 'bold'
                           }}
                         >
@@ -131,7 +131,7 @@ const ProcessLotBasic = ({ processLot }) => {
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '12px',
+                            fontSize: '14px',
                             fontWeight: 'bold'
                           }}
                         >
@@ -141,7 +141,7 @@ const ProcessLotBasic = ({ processLot }) => {
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '12px',
+                            fontSize: '14px',
                             fontWeight: 'bold'
                           }}
                         >
@@ -151,7 +151,7 @@ const ProcessLotBasic = ({ processLot }) => {
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '12px',
+                            fontSize: '14px',
                             fontWeight: 'bold'
                           }}
                         >
@@ -161,7 +161,7 @@ const ProcessLotBasic = ({ processLot }) => {
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '12px',
+                            fontSize: '14px',
                             fontWeight: 'bold'
                           }}
                           className="truncate"
@@ -172,7 +172,7 @@ const ProcessLotBasic = ({ processLot }) => {
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '12px',
+                            fontSize: '14px',
                             fontWeight: 'bold'
                           }}
                           className="truncate"
@@ -183,7 +183,7 @@ const ProcessLotBasic = ({ processLot }) => {
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '12px',
+                            fontSize: '14px',
                             fontWeight: 'bold'
                           }}
                         >
@@ -193,7 +193,7 @@ const ProcessLotBasic = ({ processLot }) => {
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '12px',
+                            fontSize: '14px',
                             fontWeight: 'bold'
                           }}
                         >
@@ -203,7 +203,7 @@ const ProcessLotBasic = ({ processLot }) => {
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
-                            fontSize: '12px',
+                            fontSize: '14px',
                             fontWeight: 'bold'
                           }}
                         >
@@ -221,11 +221,13 @@ const ProcessLotBasic = ({ processLot }) => {
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '10px'
+                                  fontSize: '10px',
+                                  paddingBottom: 0,
+                                  paddingTop: 0
                                 }}
                               >
                                 <p
-                                  className={`text-white text-[12px] flex justify-center ${
+                                  className={`text-white text-[15px] font-bold flex justify-center ${
                                     process?.assignDate
                                       ? 'bg-green-900'
                                       : 'bg-red-700'
@@ -239,11 +241,13 @@ const ProcessLotBasic = ({ processLot }) => {
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '10px'
+                                  fontSize: '10px',
+                                  paddingBottom: 0,
+                                  paddingTop: 0
                                 }}
                               >
                                 <p
-                                  className={`text-white text-[12px] flex justify-center  ${
+                                  className={`text-white text-[15px] font-bold flex justify-center  ${
                                     process?.assignDate
                                       ? 'bg-green-900'
                                       : 'bg-red-700'
@@ -257,11 +261,13 @@ const ProcessLotBasic = ({ processLot }) => {
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '10px'
+                                  fontSize: '10px',
+                                  paddingBottom: 0,
+                                  paddingTop: 0
                                 }}
                               >
                                 <p
-                                  className={`text-white text-[12px] flex justify-center ${
+                                  className={`text-white text-[15px] font-bold flex justify-center ${
                                     process?.assignDate
                                       ? 'bg-green-900'
                                       : 'bg-red-700'
@@ -275,11 +281,13 @@ const ProcessLotBasic = ({ processLot }) => {
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '10px'
+                                  fontSize: '10px',
+                                  paddingBottom: 0,
+                                  paddingTop: 0
                                 }}
                               >
                                 <p
-                                  className={`text-white text-[12px] flex justify-center ${
+                                  className={`text-white text-[15px] font-bold flex justify-center ${
                                     process?.billNumber
                                       ? process?.assignDate
                                         ? 'bg-green-900'
@@ -295,11 +303,13 @@ const ProcessLotBasic = ({ processLot }) => {
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '10px'
+                                  fontSize: '10px',
+                                  paddingBottom: 0,
+                                  paddingTop: 0
                                 }}
                               >
                                 <p
-                                  className={`text-white text-[12px] flex justify-center  ${
+                                  className={`text-white text-[15px] font-bold flex justify-center  ${
                                     process.quantity
                                       ? process.assignDate
                                         ? 'bg-green-900'
@@ -315,11 +325,13 @@ const ProcessLotBasic = ({ processLot }) => {
                                   minWidth: 10,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '10px'
+                                  fontSize: '10px',
+                                  paddingBottom: 0,
+                                  paddingTop: 0
                                 }}
                               >
                                 <p
-                                  className={`text-white text-[12px] flex justify-center ${
+                                  className={`text-white text-[15px] font-bold flex justify-center ${
                                     process?.assignDate
                                       ? process?.assignDate
                                         ? 'bg-green-900'
@@ -335,11 +347,14 @@ const ProcessLotBasic = ({ processLot }) => {
                                   minWidth: 10,
                                   maxWidth: 10,
                                   minHeight: 10,
-                                  fontSize: '10px'
+                                  fontSize: '10px',
+                                  paddingBottom: 0,
+                                  paddingTop: 0,
+                                  paddingLeft: 0
                                 }}
                               >
                                 <p
-                                  className={`text-white text-[12px] truncate flex justify-center  ${
+                                  className={`text-white text-[12px] font-bold truncate flex justify-center  ${
                                     process?.handWorkerId?.workerName
                                       ? process?.assignDate
                                         ? 'bg-green-900'
@@ -355,11 +370,14 @@ const ProcessLotBasic = ({ processLot }) => {
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '10px'
+                                  fontSize: '10px',
+                                  paddingBottom: 0,
+                                  paddingTop: 0,
+                                  paddingLeft: 0
                                 }}
                               >
                                 <p
-                                  className={`text-white text-[12px] truncate flex justify-center  ${
+                                  className={`text-white text-[12px] font-bold truncate flex justify-center  ${
                                     process?.dupattaWorkerId?.workerName
                                       ? process?.assignDate
                                         ? 'bg-green-900'
@@ -375,11 +393,14 @@ const ProcessLotBasic = ({ processLot }) => {
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '10px'
+                                  fontSize: '10px',
+                                  paddingBottom: 0,
+                                  paddingTop: 0,
+                                  paddingLeft: 0
                                 }}
                               >
                                 <p
-                                  className={`text-white text-[12px] truncate flex justify-center ${
+                                  className={`text-white text-[12px] font-bold truncate flex justify-center ${
                                     process?.innerWorkerId?.workerName
                                       ? process?.assignDate
                                         ? 'bg-green-900'

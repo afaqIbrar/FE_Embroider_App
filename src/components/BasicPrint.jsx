@@ -598,14 +598,13 @@ const BasicPrint = ({
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '10px',
                                   paddingBottom: 0,
                                   paddingTop: 0,
                                   paddingLeft: 0
                                 }}
                               >
                                 <p
-                                  className={`text-[16px] font-bold flex justify-center text-white ${
+                                  className={`text-[14px] font-bold flex justify-center text-white ${
                                     work?.paymentGiven
                                       ? work?.rate &&
                                         work?.quantityReturned ===

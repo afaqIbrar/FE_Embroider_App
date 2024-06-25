@@ -373,7 +373,7 @@ const WorkListTable = ({
       width: 100,
       renderCell: (params) => (
         <p
-          className={`p-2 text-base  ${
+          className={`p-2 text-base break-words  ${
             params?.row?.processLotId?.pageNumber
               ? params?.row?.rate &&
                 params?.row?.quantityReturned ===
@@ -385,10 +385,6 @@ const WorkListTable = ({
                 : 'bg-red-700'
               : ''
           }`}
-          style={{
-            whiteSpace: 'pre-line',
-            wordWrap: 'break-word'
-          }}
         >
           {params?.row?.reference || '-'}
         </p>

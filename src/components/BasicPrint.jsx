@@ -297,7 +297,7 @@ const BasicPrint = ({
                     <TableBody>
                       {works &&
                         works.map((work, index) => {
-                          console.log('work', work);
+                          console.log('object', work.quantityLog.length);
                           return (
                             <TableRow key={index} sx={{ minHeight: 10 }}>
                               <TableCell
@@ -372,13 +372,11 @@ const BasicPrint = ({
                                   maxWidth: 20,
                                   minHeight: 10,
                                   fontSize: '10px',
-                                  // color: 'white',
-                                  paddingBottom: 0,
-                                  paddingTop: 0
+                                  padding: 0
                                 }}
                               >
                                 <p
-                                  className={`text-[16px] font-bold flex justify-center text-white ${
+                                  className={`w-16 text-[14px] font-bold flex justify-center text-white ${
                                     work?.processLotId?.colour
                                       ? work?.rate &&
                                         work?.quantityReturned ===
@@ -452,14 +450,11 @@ const BasicPrint = ({
                                 sx={{
                                   minWidth: 20,
                                   maxWidth: 20,
-                                  minHeight: 10,
-                                  fontSize: '10px',
-                                  paddingBottom: 0,
-                                  paddingTop: 0
+                                  fontSize: '10px'
                                 }}
                               >
                                 <p
-                                  className={`text-[16px] font-bold flex justify-center text-white ${
+                                  className={`text-[14px] font-bold flex justify-center text-white ${
                                     work?.quantityLog
                                       ? work?.rate &&
                                         work?.quantityReturned ===
@@ -472,7 +467,23 @@ const BasicPrint = ({
                                       : 'text-black'
                                   }`}
                                 >
-                                  {work?.quantityLog || '-'}
+                                  {work?.quantityLog
+                                    ? work.quantityLog.length > 9
+                                      ? work.quantityLog
+                                          .split(',')
+                                          .reduce((acc, curr, index) => {
+                                            return (
+                                              acc +
+                                              (index && index % 4 === 0
+                                                ? '\n'
+                                                : '') +
+                                              curr +
+                                              ','
+                                            );
+                                          }, '')
+                                          .slice(0, -1) // Remove the trailing comma
+                                      : work.quantityLog
+                                    : '-'}
                                 </p>
                               </TableCell>
                               <TableCell
@@ -487,7 +498,7 @@ const BasicPrint = ({
                               >
                                 <p
                                   className={`text-[16px] font-bold flex justify-center text-white ${
-                                    work?.quantityReturned
+                                    work?.processLotId?.quantity
                                       ? work?.rate &&
                                         work?.quantityReturned ===
                                           work?.processLotId?.quantity
@@ -496,7 +507,7 @@ const BasicPrint = ({
                                           work?.quantityReturned
                                         ? 'bg-blue-500'
                                         : 'bg-red-700'
-                                      : 'text-black'
+                                      : ''
                                   }`}
                                 >
                                   {work?.quantityReturned || '-'}
@@ -535,9 +546,7 @@ const BasicPrint = ({
                                   maxWidth: 20,
                                   minHeight: 10,
                                   fontSize: '10px',
-                                  paddingBottom: 0,
-                                  paddingTop: 0,
-                                  paddingLeft: 0
+                                  padding: 0
                                 }}
                               >
                                 <p
@@ -626,7 +635,6 @@ const BasicPrint = ({
                                 sx={{
                                   minWidth: 20,
                                   maxWidth: 20,
-                                  minHeight: 10,
                                   fontSize: '10px',
                                   paddingBottom: 0,
                                   paddingTop: 0

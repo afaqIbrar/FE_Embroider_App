@@ -366,7 +366,7 @@ const Work = () => {
       <Box
         m="8px 0 0 0"
         width="100%"
-        height="450px"
+        height="540px"
         sx={{
           '& .MuiDataGrid-root': {
             border: 'none'

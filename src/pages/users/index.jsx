@@ -357,7 +357,7 @@ const Users = () => {
       <Box
         m="8px 0 0 0"
         width="100%"
-        height="625px"
+        height="580px"
         sx={{
           '& .MuiDataGrid-root': {
             border: 'none'

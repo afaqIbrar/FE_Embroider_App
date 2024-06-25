@@ -1,17 +1,10 @@
-import {
-  Box,
-  Table,
-  TableContainer,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody
-} from '@mui/material';
+import { Box } from '@mui/material';
 import { IconButton } from '@mui/material';
 import { Edit, Visibility } from '@mui/icons-material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { WORKTYPE } from '../utils/constants';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { DataGrid } from '@mui/x-data-grid';
+
 import clsx from 'clsx';
 
 const WorkListTable = ({
@@ -56,11 +49,11 @@ const WorkListTable = ({
     {
       field: 'assignDate',
       headerName: 'Date',
-      width: '100px',
+      width: 100,
       renderCell: (params) => {
-        if (params?.processLotId?.assignDate) {
+        if (params?.row?.processLotId?.assignDate) {
           // Check if assignDate exists in params.row
-          const date = params?.processLotId?.assignDate;
+          const date = params?.row?.processLotId?.assignDate;
           const newDate = new Date(date).toLocaleString('en-GB', {
             day: '2-digit',
             month: '2-digit',
@@ -69,12 +62,13 @@ const WorkListTable = ({
           return (
             <p
               className={`p-1 text-base ${
-                params?.processLotId?.assignDate
-                  ? params?.rate &&
-                    params?.quantityReturned === params?.processLotId?.quantity
+                params?.row?.processLotId?.assignDate
+                  ? params?.row?.rate &&
+                    params?.row?.quantityReturned ===
+                      params?.row?.processLotId?.quantity
                     ? 'bg-green-900'
-                    : params?.processLotId?.quantity ===
-                      params?.quantityReturned
+                    : params?.row?.processLotId?.quantity ===
+                      params?.row?.quantityReturned
                     ? 'bg-blue-500'
                     : 'bg-red-700'
                   : ''
@@ -91,206 +85,218 @@ const WorkListTable = ({
     {
       field: 'pageNumber',
       headerName: 'Page',
-      width: '70px',
+      width: 40,
       renderCell: (params) => (
         <p
           className={`p-1 text-base ${
-            params?.processLotId?.pageNumber
-              ? params?.rate &&
-                params?.quantityReturned === params?.processLotId?.quantity
+            params?.row?.processLotId?.pageNumber
+              ? params?.row?.rate &&
+                params?.row?.quantityReturned ===
+                  params?.row?.processLotId?.quantity
                 ? 'bg-green-900'
-                : params?.processLotId?.quantity === params?.quantityReturned
+                : params?.row?.processLotId?.quantity ===
+                  params?.row?.quantityReturned
                 ? 'bg-blue-500'
                 : 'bg-red-700'
               : ''
           }`}
         >
-          {params.processLotId?.pageNumber || '-'}
+          {params?.row.processLotId?.pageNumber || '-'}
         </p>
       )
     },
     {
       field: 'articleNumber',
       headerName: 'Article',
-      width: '90px',
+      width: 50,
       renderCell: (params) => (
         <p
           className={`p-1 text-base ${
-            params?.processLotId?.articleNumber
-              ? params?.rate &&
-                params?.quantityReturned === params?.processLotId?.quantity
+            params?.row?.processLotId?.pageNumber
+              ? params?.row?.rate &&
+                params?.row?.quantityReturned ===
+                  params?.row?.processLotId?.quantity
                 ? 'bg-green-900'
-                : params?.processLotId?.quantity === params?.quantityReturned
+                : params?.row?.processLotId?.quantity ===
+                  params?.row?.quantityReturned
                 ? 'bg-blue-500'
                 : 'bg-red-700'
               : ''
           }`}
         >
-          {params.processLotId?.articleNumber || '-'}
+          {params?.row?.processLotId?.articleNumber || '-'}
         </p>
       )
     },
     {
       field: 'color',
       headerName: 'Colour',
-      width: '80px',
+      width: 100,
       renderCell: (params) => (
         <p
           className={`p-1 text-base ${
-            params?.processLotId?.colour
-              ? params?.rate &&
-                params?.quantityReturned === params?.processLotId?.quantity
+            params?.row?.processLotId?.pageNumber
+              ? params?.row?.rate &&
+                params?.row?.quantityReturned ===
+                  params?.row?.processLotId?.quantity
                 ? 'bg-green-900'
-                : params?.processLotId?.quantity === params?.quantityReturned
+                : params?.row?.processLotId?.quantity ===
+                  params?.row?.quantityReturned
                 ? 'bg-blue-500'
                 : 'bg-red-700'
               : ''
           }`}
         >
-          {params.processLotId?.colour || '-'}
+          {params?.row?.processLotId?.colour || '-'}
         </p>
       )
     },
     {
       field: 'billNumber',
       headerName: 'Bill',
-      width: '50px',
+      width: 40,
       renderCell: (params) => (
         <p
           className={`p-1 text-base ${
-            params?.processLotId?.billNumber
-              ? params?.rate &&
-                params?.quantityReturned === params?.processLotId?.quantity
+            params?.row?.processLotId?.pageNumber
+              ? params?.row?.rate &&
+                params?.row?.quantityReturned ===
+                  params?.row?.processLotId?.quantity
                 ? 'bg-green-900'
-                : params?.processLotId?.quantity === params?.quantityReturned
+                : params?.row?.processLotId?.quantity ===
+                  params?.row?.quantityReturned
                 ? 'bg-blue-500'
                 : 'bg-red-700'
               : ''
           }`}
         >
-          {params.processLotId?.billNumber || '-'}
+          {params?.row?.processLotId?.billNumber || '-'}
         </p>
       )
     },
     {
       field: 'quantity',
       headerName: 'Qty',
-      width: '80px',
+      width: 30,
       renderCell: (params) => (
         <p
           className={`p-1 text-base ${
-            params?.processLotId?.quantity
-              ? params?.rate &&
-                params?.quantityReturned === params?.processLotId?.quantity
+            params?.row?.processLotId?.pageNumber
+              ? params?.row?.rate &&
+                params?.row?.quantityReturned ===
+                  params?.row?.processLotId?.quantity
                 ? 'bg-green-900'
-                : params?.processLotId?.quantity === params?.quantityReturned
+                : params?.row?.processLotId?.quantity ===
+                  params?.row?.quantityReturned
                 ? 'bg-blue-500'
                 : 'bg-red-700'
               : ''
           }`}
         >
-          {params.processLotId?.quantity || '-'}
+          {params?.row?.processLotId?.quantity || '-'}
         </p>
       )
     },
-    // {
-    //   field: 'workType',
-    //   headerName: 'Work Type',
-    //   width: 100,
-    //   renderCell: (params) => <p>{WORKTYPE[params.workType] || '-'}</p>
-    // },
     {
       field: 'quantityLog',
       headerName: 'Wasooli',
-      width: '120px',
+      width: 140,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base ${
-            params?.quantityLog
-              ? params?.rate &&
-                params?.quantityReturned === params?.processLotId?.quantity
+          className={`p-1 text-base  ${
+            params?.row?.processLotId?.pageNumber
+              ? params?.row?.rate &&
+                params?.row?.quantityReturned ===
+                  params?.row?.processLotId?.quantity
                 ? 'bg-green-900'
-                : params?.processLotId?.quantity === params?.quantityReturned
+                : params?.row?.processLotId?.quantity ===
+                  params?.row?.quantityReturned
                 ? 'bg-blue-500'
                 : 'bg-red-700'
               : ''
           }`}
         >
-          {params.quantityLog || '-'}
+          {params?.row.quantityLog || '-'}
         </p>
       )
     },
     {
       field: 'quantityReturned',
       headerName: 'Pending',
-      width: '80px',
+      width: 60,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base ${
-            params?.quantityReturned
-              ? params?.rate &&
-                params?.quantityReturned === params?.processLotId?.quantity
+          className={`p-1 text-base  ${
+            params?.row?.processLotId?.pageNumber
+              ? params?.row?.rate &&
+                params?.row?.quantityReturned ===
+                  params?.row?.processLotId?.quantity
                 ? 'bg-green-900'
-                : params?.processLotId?.quantity === params?.quantityReturned
+                : params?.row?.processLotId?.quantity ===
+                  params?.row?.quantityReturned
                 ? 'bg-blue-500'
                 : 'bg-red-700'
               : ''
           }`}
         >
-          {params.quantityReturned || '-'}
+          {params?.row?.quantityReturned || '-'}
         </p>
       )
     },
     {
       field: 'rate',
       headerName: 'Rate',
-      width: '100px',
+      width: 90,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base ${
-            params?.rate
-              ? params?.rate &&
-                params?.quantityReturned === params?.processLotId?.quantity
+          className={`p-1 text-base  ${
+            params?.row?.processLotId?.pageNumber
+              ? params?.row?.rate &&
+                params?.row?.quantityReturned ===
+                  params?.row?.processLotId?.quantity
                 ? 'bg-green-900'
-                : params?.processLotId?.quantity === params?.quantityReturned
+                : params?.row?.processLotId?.quantity ===
+                  params?.row?.quantityReturned
                 ? 'bg-blue-500'
                 : 'bg-red-700'
               : ''
           }`}
         >
-          {params.rate || '-'}
+          {params?.row.rate || '-'}
         </p>
       )
     },
     {
       field: 'total',
       headerName: 'T.Amt',
-      width: '150px',
+      width: 100,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base ${
-            params?.total
-              ? params?.rate &&
-                params?.quantityReturned === params?.processLotId?.quantity
+          className={`p-1 text-base  ${
+            params?.row?.processLotId?.pageNumber
+              ? params?.row?.rate &&
+                params?.row?.quantityReturned ===
+                  params?.row?.processLotId?.quantity
                 ? 'bg-green-900'
-                : params?.processLotId?.quantity === params?.quantityReturned
+                : params?.row?.processLotId?.quantity ===
+                  params?.row?.quantityReturned
                 ? 'bg-blue-500'
                 : 'bg-red-700'
               : ''
           }`}
         >
-          {params.total || '-'}
+          {params?.row?.total || '-'}
         </p>
       )
     },
     {
       field: 'lotClearDate',
       headerName: 'Nil',
-      width: '80px',
+      width: 100,
       renderCell: (params) => {
-        if (params?.lotClearDate) {
+        if (params?.row?.lotClearDate) {
           // Check if assignDate exists in params.row
-          const date = params?.lotClearDate;
+          const date = params?.row?.lotClearDate;
           const newDate = new Date(date).toLocaleString('en-GB', {
             day: '2-digit',
             month: '2-digit',
@@ -298,13 +304,14 @@ const WorkListTable = ({
           });
           return (
             <p
-              className={`p-1 text-base ${
-                params?.lotClearDate
-                  ? params?.rate &&
-                    params?.quantityReturned === params?.processLotId?.quantity
+              className={`p-1 text-base  ${
+                params?.row?.processLotId?.pageNumber
+                  ? params?.row?.rate &&
+                    params?.row?.quantityReturned ===
+                      params?.row?.processLotId?.quantity
                     ? 'bg-green-900'
-                    : params?.processLotId?.quantity ===
-                      params?.quantityReturned
+                    : params?.row?.processLotId?.quantity ===
+                      params?.row?.quantityReturned
                     ? 'bg-blue-500'
                     : 'bg-red-700'
                   : ''
@@ -321,21 +328,23 @@ const WorkListTable = ({
     {
       field: 'paymentGiven',
       headerName: 'Payment',
-      width: '100px',
+      width: 100,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base ${
-            params?.paymentGiven
-              ? params?.rate &&
-                params?.quantityReturned === params?.processLotId?.quantity
+          className={`p-1 text-base  ${
+            params?.row?.processLotId?.pageNumber
+              ? params?.row?.rate &&
+                params?.row?.quantityReturned ===
+                  params?.row?.processLotId?.quantity
                 ? 'bg-green-900'
-                : params?.processLotId?.quantity === params?.quantityReturned
+                : params?.row?.processLotId?.quantity ===
+                  params?.row?.quantityReturned
                 ? 'bg-blue-500'
                 : 'bg-red-700'
               : ''
           }`}
         >
-          {params.paymentGiven || '-'}
+          {params?.row?.paymentGiven || '-'}
         </p>
       )
     },
@@ -361,40 +370,72 @@ const WorkListTable = ({
     {
       field: 'reference',
       headerName: 'References',
-      width: '150px',
+      width: 100,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base ${
-            params?.reference
-              ? params?.rate &&
-                params?.quantityReturned === params?.processLotId?.quantity
+          className={`p-2 text-base  ${
+            params?.row?.processLotId?.pageNumber
+              ? params?.row?.rate &&
+                params?.row?.quantityReturned ===
+                  params?.row?.processLotId?.quantity
                 ? 'bg-green-900'
-                : params?.processLotId?.quantity === params?.quantityReturned
+                : params?.row?.processLotId?.quantity ===
+                  params?.row?.quantityReturned
                 ? 'bg-blue-500'
                 : 'bg-red-700'
               : ''
           }`}
+          style={{
+            whiteSpace: 'pre-line',
+            wordWrap: 'break-word'
+          }}
         >
-          {params.reference || '-'}
+          {params?.row?.reference || '-'}
         </p>
       )
     },
-    // {
-    //   field: 'workerId',
-    //   headerName: 'Worker Name',
-    //   width: 200,
-    //   renderCell: (params) => <p>{params.workerId?.workerName || '-'}</p>
-    // },
     {
-      field: 'action',
-      headerName: '',
-      width: '50px'
+      field: 'actions',
+      headerName: 'Actions',
+      sortable: false,
+      width: 50,
+      renderCell: (params) => (
+        <Box>
+          <IconButton
+            aria-label="View"
+            style={{ padding: '0px', marginRight: '10px' }}
+            onClick={() => handleViewClick(params?.row)}
+          >
+            <Visibility />
+          </IconButton>
+          <IconButton
+            aria-label="View"
+            style={{ padding: '0px', marginRight: '10px' }}
+            onClick={() => handleDeleteClick(params?.row)}
+          >
+            <DeleteIcon color="error" />
+          </IconButton>
+          <IconButton
+            aria-label="Edit"
+            style={{ padding: '0px', marginRight: '10px' }}
+            onClick={() => handleEditClick(params?.row)}
+          >
+            <Edit />
+          </IconButton>
+        </Box>
+      )
     }
   ];
-
   return (
-    <div>
-      <TableContainer className="mt-8 rounded-t-lg border border-solid border-dark300 inventory-table h-[500px]">
+    <>
+      <DataGrid
+        rows={works}
+        columns={columns}
+        getRowId={(row) => row._id}
+        density="compact"
+        getRowHeight={() => 'auto'}
+      />
+      {/* <TableContainer className="mt-8 rounded-t-lg border border-solid border-dark300 inventory-table h-[500px]">
         <Table stickyHeader>
           <TableHead className="bg-slate-400">
             <TableRow>
@@ -450,7 +491,7 @@ const WorkListTable = ({
               ))}
           </TableBody>
         </Table>
-      </TableContainer>
+      </TableContainer> */}
       <div className="w-ful rounded-b-lg h-10  border flex justify-end items-center text-[16px] font-bold pr-16">
         <div className="mr-24">Total Amount : {totalAmount}</div>
         <div className="mr-24">Total Amount Given : {totalAmountGiven}</div>
@@ -467,7 +508,7 @@ const WorkListTable = ({
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

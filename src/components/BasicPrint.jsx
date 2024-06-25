@@ -160,7 +160,7 @@ const BasicPrint = ({
                             fontWeight: 'bold'
                           }}
                         >
-                          Date
+                          DATE
                         </TableCell>
                         {/* <TableCell
                           sx={{
@@ -180,7 +180,7 @@ const BasicPrint = ({
                             fontWeight: 'bold'
                           }}
                         >
-                          Art
+                          ART
                         </TableCell>
                         <TableCell
                           sx={{
@@ -190,7 +190,7 @@ const BasicPrint = ({
                             fontWeight: 'bold'
                           }}
                         >
-                          Clr
+                          CLR
                         </TableCell>
                         <TableCell
                           sx={{
@@ -200,7 +200,7 @@ const BasicPrint = ({
                             fontWeight: 'bold'
                           }}
                         >
-                          Bill
+                          BILL
                         </TableCell>
                         <TableCell
                           sx={{
@@ -210,7 +210,7 @@ const BasicPrint = ({
                             fontWeight: 'bold'
                           }}
                         >
-                          Qty
+                          QTY
                         </TableCell>
                         <TableCell
                           sx={{
@@ -220,7 +220,7 @@ const BasicPrint = ({
                             fontWeight: 'bold'
                           }}
                         >
-                          Log
+                          LOG
                         </TableCell>
                         <TableCell
                           sx={{
@@ -230,7 +230,7 @@ const BasicPrint = ({
                             fontWeight: 'bold'
                           }}
                         >
-                          Ret
+                          RET
                         </TableCell>
                         <TableCell
                           sx={{
@@ -240,7 +240,7 @@ const BasicPrint = ({
                             fontWeight: 'bold'
                           }}
                         >
-                          Rate
+                          RATE
                         </TableCell>
                         <TableCell
                           sx={{
@@ -250,7 +250,7 @@ const BasicPrint = ({
                             fontWeight: 'bold'
                           }}
                         >
-                          Total
+                          TOTAL
                         </TableCell>
                         <TableCell
                           sx={{
@@ -260,7 +260,7 @@ const BasicPrint = ({
                             fontWeight: 'bold'
                           }}
                         >
-                          Date
+                          DATE
                         </TableCell>
                         <TableCell
                           sx={{
@@ -270,7 +270,7 @@ const BasicPrint = ({
                             fontWeight: 'bold'
                           }}
                         >
-                          Paym
+                          PAYM
                         </TableCell>
                         {/* <TableCell
                           sx={{
@@ -290,7 +290,7 @@ const BasicPrint = ({
                             fontWeight: 'bold'
                           }}
                         >
-                          Ref
+                          REF
                         </TableCell>
                       </TableRow>
                     </TableHead>
@@ -641,7 +641,7 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[8px] flex justify-center text-white ${
+                                  className={`text-[12px] flex justify-center text-white ${
                                     work?.reference
                                       ? work?.rate &&
                                         work?.quantityReturned ===

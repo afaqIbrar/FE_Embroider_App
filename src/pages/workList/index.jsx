@@ -33,6 +33,7 @@ const Work = () => {
   const [works, setWorks] = useState([]);
   const [workerData, setWorkerData] = useState({});
   const [searchText, setSearchText] = useState('');
+  const [extraInfo, setExtraInfo] = useState('');
   const debouncedSearchText = useDebounce(searchText, 300);
   const [selectedWork, setSelectedWork] = useState({});
   const [openWorkPopup, setOpenWorkPopup] = useState(false);
@@ -86,6 +87,18 @@ const Work = () => {
   useEffect(() => {
     fetchWorkAgainstWorker(debouncedSearchText);
   }, [debouncedSearchText]);
+
+  const updateWorkerExtraInfo = async () => {
+    if (workerData._id) {
+      await API.put(
+        'workers/' + workerData._id,
+        { extraInfo: extraInfo },
+        {
+          withCredentials: true
+        }
+      );
+    }
+  };
 
   useEffect(() => {
     fetchWorkerData();
@@ -308,6 +321,7 @@ const Work = () => {
       }
     });
     setWorkerData(data.data);
+    setExtraInfo(data?.data?.extraInfo || '');
   };
 
   const fetchWorkAgainstWorker = async (searchText) => {
@@ -346,6 +360,39 @@ const Work = () => {
             <IconButton type="button">
               <SearchIcon />
             </IconButton>
+          </Box>
+          <Box display="flex" sx={{ m: 0, p: 0 }}>
+            <Box
+              display="flex"
+              backgroundColor={colors.primary[400]}
+              p={1}
+              borderRadius={1}
+              sx={{ ml: 3, width: 300 }}
+            >
+              <InputBase
+                onChange={(e) => {
+                  setExtraInfo(e.target.value);
+                }}
+                value={extraInfo}
+                sx={{ ml: 1, flex: 1 }}
+                placeholder="Extra Data"
+              />
+            </Box>
+            <Box>
+              <Button
+                sx={{
+                  backgroundColor: colors.blueAccent[700],
+                  color: colors.grey[100],
+                  fontSize: '14px',
+                  fontWeight: 'bold',
+                  padding: '10px',
+                  marginLeft: '10px'
+                }}
+                onClick={() => updateWorkerExtraInfo()}
+              >
+                Save Info
+              </Button>
+            </Box>
           </Box>
           <Box>
             <Button

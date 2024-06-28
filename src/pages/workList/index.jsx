@@ -410,58 +410,26 @@ const Work = () => {
           </Box>
         </Box>
       </Box>
-      <Box
-        m="8px 0 0 0"
-        width="100%"
-        height="540px"
-        sx={{
-          '& .MuiDataGrid-root': {
-            border: 'none'
-          },
-          '& .MuiDataGrid-cell': {
-            borderBottom: 'none'
-          },
-          '& .name-column--cell': {
-            color: colors.greenAccent[300]
-          },
-          '& .MuiDataGrid-columnHeaders': {
-            backgroundColor: colors.blueAccent[700],
-            borderBottom: 'none'
-          },
-          '& .MuiDataGrid-virtualScroller': {
-            backgroundColor: colors.primary[400]
-          },
-          '& .MuiDataGrid-footerContainer': {
-            borderTop: 'none',
-            backgroundColor: colors.blueAccent[700]
-          },
-          '& .MuiCheckbox-root': {
-            color: `${colors.greenAccent[200]} !important`
-          },
-          '& .MuiDataGrid-toolbarContainer .MuiButton-text': {
-            color: `${colors.grey[100]} !important`
-          }
-        }}
-      >
-        {/* <DataGrid
+
+      {/* <DataGrid
           rows={works}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
           getRowId={(row) => row._id}
         /> */}
-        <WorkListTable
-          works={works}
-          handleDeleteClick={handleDeleteClick}
-          handleEditClick={handleEditClick}
-          handleViewClick={handleViewClick}
-          totalAmount={totalAmount}
-          totalAmountGiven={totalAmountGiven}
-          balance={balance}
-          setBalance={setBalance}
-          setTotalAmount={setTotalAmount}
-          setTotalAmoutGiven={setTotalAmoutGiven}
-        />
-        {/* <div>
+      <WorkListTable
+        works={works}
+        handleDeleteClick={handleDeleteClick}
+        handleEditClick={handleEditClick}
+        handleViewClick={handleViewClick}
+        totalAmount={totalAmount}
+        totalAmountGiven={totalAmountGiven}
+        balance={balance}
+        setBalance={setBalance}
+        setTotalAmount={setTotalAmount}
+        setTotalAmoutGiven={setTotalAmoutGiven}
+      />
+      {/* <div>
           <TableContainer className="mt-8 rounded-t-lg border border-solid border-dark300 inventory-table h-[580px]">
             <Table stickyHeader>
               <TableHead className="bg-slate-400">
@@ -535,7 +503,6 @@ const Work = () => {
             </div>
           </div>
         </div> */}
-      </Box>
       <Popup
         open={openWorkPopup}
         setOpen={setOpenWorkPopup}

@@ -1,10 +1,10 @@
-import { Box } from '@mui/material';
+import { Box, useTheme } from '@mui/material';
 import { IconButton } from '@mui/material';
 import { Edit, Visibility } from '@mui/icons-material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-
+import { tokens } from '../theme';
 import clsx from 'clsx';
 
 const WorkListTable = ({
@@ -19,6 +19,8 @@ const WorkListTable = ({
   setTotalAmount,
   setTotalAmoutGiven
 }) => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   function calculateBalance() {
     const { totalAmount, totalAmountGiven } = works?.reduce(
       (acc, item) => {
@@ -61,16 +63,16 @@ const WorkListTable = ({
           });
           return (
             <p
-              className={`p-1 text-base ${
+              className={`p-1 text-base font-bold ${
                 params?.row?.processLotId?.assignDate
                   ? params?.row?.rate &&
                     params?.row?.quantityReturned ===
                       params?.row?.processLotId?.quantity
-                    ? 'bg-green-900'
+                    ? 'text-green-500'
                     : params?.row?.processLotId?.quantity ===
                       params?.row?.quantityReturned
-                    ? 'bg-blue-500'
-                    : 'bg-red-700'
+                    ? 'text-newBlue'
+                    : 'text-red-600'
                   : ''
               }`}
             >
@@ -88,16 +90,16 @@ const WorkListTable = ({
       width: 40,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base ${
+          className={`p-1 text-base font-bold ${
             params?.row?.processLotId?.pageNumber
               ? params?.row?.rate &&
                 params?.row?.quantityReturned ===
                   params?.row?.processLotId?.quantity
-                ? 'bg-green-900'
+                ? 'text-green-500'
                 : params?.row?.processLotId?.quantity ===
                   params?.row?.quantityReturned
-                ? 'bg-blue-500'
-                : 'bg-red-700'
+                ? 'text-newBlue'
+                : 'text-red-600'
               : ''
           }`}
         >
@@ -111,16 +113,16 @@ const WorkListTable = ({
       width: 50,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base ${
+          className={`p-1 text-base font-bold ${
             params?.row?.processLotId?.pageNumber
               ? params?.row?.rate &&
                 params?.row?.quantityReturned ===
                   params?.row?.processLotId?.quantity
-                ? 'bg-green-900'
+                ? 'text-green-500'
                 : params?.row?.processLotId?.quantity ===
                   params?.row?.quantityReturned
-                ? 'bg-blue-500'
-                : 'bg-red-700'
+                ? 'text-newBlue'
+                : 'text-red-600'
               : ''
           }`}
         >
@@ -134,16 +136,16 @@ const WorkListTable = ({
       width: 100,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base ${
+          className={`p-1 text-base font-bold ${
             params?.row?.processLotId?.pageNumber
               ? params?.row?.rate &&
                 params?.row?.quantityReturned ===
                   params?.row?.processLotId?.quantity
-                ? 'bg-green-900'
+                ? 'text-green-500'
                 : params?.row?.processLotId?.quantity ===
                   params?.row?.quantityReturned
-                ? 'bg-blue-500'
-                : 'bg-red-700'
+                ? 'text-newBlue'
+                : 'text-red-600'
               : ''
           }`}
         >
@@ -157,16 +159,16 @@ const WorkListTable = ({
       width: 40,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base ${
+          className={`p-1 text-base font-bold ${
             params?.row?.processLotId?.pageNumber
               ? params?.row?.rate &&
                 params?.row?.quantityReturned ===
                   params?.row?.processLotId?.quantity
-                ? 'bg-green-900'
+                ? 'text-green-500'
                 : params?.row?.processLotId?.quantity ===
                   params?.row?.quantityReturned
-                ? 'bg-blue-500'
-                : 'bg-red-700'
+                ? 'text-newBlue'
+                : 'text-red-600'
               : ''
           }`}
         >
@@ -180,16 +182,16 @@ const WorkListTable = ({
       width: 30,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base ${
+          className={`p-1 text-base font-bold ${
             params?.row?.processLotId?.pageNumber
               ? params?.row?.rate &&
                 params?.row?.quantityReturned ===
                   params?.row?.processLotId?.quantity
-                ? 'bg-green-900'
+                ? 'text-green-500'
                 : params?.row?.processLotId?.quantity ===
                   params?.row?.quantityReturned
-                ? 'bg-blue-500'
-                : 'bg-red-700'
+                ? 'text-newBlue'
+                : 'text-red-600'
               : ''
           }`}
         >
@@ -203,16 +205,16 @@ const WorkListTable = ({
       width: 140,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base  ${
+          className={`p-1 text-base font-bold  ${
             params?.row?.processLotId?.pageNumber
               ? params?.row?.rate &&
                 params?.row?.quantityReturned ===
                   params?.row?.processLotId?.quantity
-                ? 'bg-green-900'
+                ? 'text-green-500'
                 : params?.row?.processLotId?.quantity ===
                   params?.row?.quantityReturned
-                ? 'bg-blue-500'
-                : 'bg-red-700'
+                ? 'text-newBlue'
+                : 'text-red-600'
               : ''
           }`}
         >
@@ -226,16 +228,16 @@ const WorkListTable = ({
       width: 60,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base  ${
+          className={`p-1 text-base font-bold  ${
             params?.row?.processLotId?.pageNumber
               ? params?.row?.rate &&
                 params?.row?.quantityReturned ===
                   params?.row?.processLotId?.quantity
-                ? 'bg-green-900'
+                ? 'text-green-500'
                 : params?.row?.processLotId?.quantity ===
                   params?.row?.quantityReturned
-                ? 'bg-blue-500'
-                : 'bg-red-700'
+                ? 'text-newBlue'
+                : 'text-red-600'
               : ''
           }`}
         >
@@ -249,16 +251,16 @@ const WorkListTable = ({
       width: 90,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base  ${
+          className={`p-1 text-base font-bold  ${
             params?.row?.processLotId?.pageNumber
               ? params?.row?.rate &&
                 params?.row?.quantityReturned ===
                   params?.row?.processLotId?.quantity
-                ? 'bg-green-900'
+                ? 'text-green-500'
                 : params?.row?.processLotId?.quantity ===
                   params?.row?.quantityReturned
-                ? 'bg-blue-500'
-                : 'bg-red-700'
+                ? 'text-newBlue'
+                : 'text-red-600'
               : ''
           }`}
         >
@@ -272,16 +274,16 @@ const WorkListTable = ({
       width: 100,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base  ${
+          className={`p-1 text-base font-bold  ${
             params?.row?.processLotId?.pageNumber
               ? params?.row?.rate &&
                 params?.row?.quantityReturned ===
                   params?.row?.processLotId?.quantity
-                ? 'bg-green-900'
+                ? 'text-green-500'
                 : params?.row?.processLotId?.quantity ===
                   params?.row?.quantityReturned
-                ? 'bg-blue-500'
-                : 'bg-red-700'
+                ? 'text-newBlue'
+                : 'text-red-600'
               : ''
           }`}
         >
@@ -304,16 +306,16 @@ const WorkListTable = ({
           });
           return (
             <p
-              className={`p-1 text-base  ${
+              className={`p-1 text-base font-bold  ${
                 params?.row?.processLotId?.pageNumber
                   ? params?.row?.rate &&
                     params?.row?.quantityReturned ===
                       params?.row?.processLotId?.quantity
-                    ? 'bg-green-900'
+                    ? 'text-green-500'
                     : params?.row?.processLotId?.quantity ===
                       params?.row?.quantityReturned
-                    ? 'bg-blue-500'
-                    : 'bg-red-700'
+                    ? 'text-newBlue'
+                    : 'text-red-600'
                   : ''
               }`}
             >
@@ -331,16 +333,16 @@ const WorkListTable = ({
       width: 100,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base  ${
+          className={`p-1 text-base font-bold  ${
             params?.row?.processLotId?.pageNumber
               ? params?.row?.rate &&
                 params?.row?.quantityReturned ===
                   params?.row?.processLotId?.quantity
-                ? 'bg-green-900'
+                ? 'text-green-500'
                 : params?.row?.processLotId?.quantity ===
                   params?.row?.quantityReturned
-                ? 'bg-blue-500'
-                : 'bg-red-700'
+                ? 'text-newBlue'
+                : 'text-red-600'
               : ''
           }`}
         >
@@ -373,16 +375,16 @@ const WorkListTable = ({
       width: 100,
       renderCell: (params) => (
         <p
-          className={`p-2 text-base break-words  ${
+          className={`p-2 text-base font-bold break-words  ${
             params?.row?.processLotId?.pageNumber
               ? params?.row?.rate &&
                 params?.row?.quantityReturned ===
                   params?.row?.processLotId?.quantity
-                ? 'bg-green-900'
+                ? 'text-green-500'
                 : params?.row?.processLotId?.quantity ===
                   params?.row?.quantityReturned
-                ? 'bg-blue-500'
-                : 'bg-red-700'
+                ? 'text-newBlue'
+                : 'text-red-600'
               : ''
           }`}
         >
@@ -423,7 +425,39 @@ const WorkListTable = ({
     }
   ];
   return (
-    <>
+    <Box
+      m="8px 0 0 0"
+      width="100%"
+      height="540px"
+      sx={{
+        '& .MuiDataGrid-root': {
+          border: 'none'
+        },
+        '& .MuiDataGrid-cell': {
+          borderBottom: 'none !important'
+        },
+        '& .name-column--cell': {
+          color: colors.greenAccent[300]
+        },
+        '& .MuiDataGrid-columnHeaders': {
+          backgroundColor: colors.blueAccent[700],
+          borderBottom: 'none'
+        },
+        '& .MuiDataGrid-virtualScroller': {
+          backgroundColor: colors.primary[400]
+        },
+        '& .MuiDataGrid-footerContainer': {
+          borderTop: 'none',
+          backgroundColor: colors.blueAccent[700]
+        },
+        '& .MuiCheckbox-root': {
+          color: `${colors.greenAccent[200]} !important`
+        },
+        '& .MuiDataGrid-toolbarContainer .MuiButton-text': {
+          color: `${colors.grey[100]} !important`
+        }
+      }}
+    >
       <DataGrid
         rows={works}
         columns={columns}
@@ -504,7 +538,7 @@ const WorkListTable = ({
           )}
         </div>
       </div>
-    </>
+    </Box>
   );
 };
 

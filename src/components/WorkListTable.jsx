@@ -399,13 +399,13 @@ const WorkListTable = ({
       width: 50,
       renderCell: (params) => (
         <Box>
-          <IconButton
+          {/* <IconButton
             aria-label="View"
             style={{ padding: '0px', marginRight: '10px' }}
             onClick={() => handleViewClick(params?.row)}
           >
             <Visibility />
-          </IconButton>
+          </IconButton> */}
           <IconButton
             aria-label="View"
             style={{ padding: '0px', marginRight: '10px' }}

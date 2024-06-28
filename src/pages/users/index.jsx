@@ -148,12 +148,12 @@ const Users = () => {
       width: 150,
       renderCell: (params) => (
         <Box>
-          <IconButton
+          {/* <IconButton
             aria-label="View"
             onClick={() => handleViewClick(params.row)}
           >
             <Visibility />
-          </IconButton>
+          </IconButton> */}
           <IconButton
             aria-label="View"
             onClick={() => handleDeleteClick(params.row)}

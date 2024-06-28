@@ -156,8 +156,8 @@ const ProcessLot = () => {
       width: 55,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base ${
-            params.row.assignDate ? 'bg-green-900' : 'bg-red-700'
+          className={`p-1 text-sm ${
+            params.row.assignDate ? 'text-green-600' : 'text-red-600'
           }`}
         >
           {params.row.pageNumber || '-'}
@@ -170,8 +170,8 @@ const ProcessLot = () => {
       width: 80,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base ${
-            params.row.assignDate ? 'bg-green-900' : 'bg-red-700'
+          className={`p-1 text-sm ${
+            params.row.assignDate ? 'text-green-600' : 'text-red-600'
           }`}
         >
           {params.row.articleNumber || '-'}
@@ -184,8 +184,8 @@ const ProcessLot = () => {
       width: 100,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base ${
-            params.row.assignDate ? 'bg-green-900' : 'bg-red-700'
+          className={`p-1 text-sm ${
+            params.row.assignDate ? 'text-green-600' : 'text-red-600'
           }`}
         >
           {params.row.colour || '-'}
@@ -198,12 +198,12 @@ const ProcessLot = () => {
       width: 50,
       renderCell: (params) => (
         <p
-          // className={`${params.row.billNumber ? ${params.row.assignDate ? 'bg-green-500 p-2 text-sm' : 'bg-blue-500 p-2 text-sm'} :  '' }}
-          className={`p-1 text-base ${
+          // className={`${params.row.billNumber ? ${params.row.assignDate ? 'bg-green-600 p-2 text-sm' : 'bg-blue-600 p-2 text-sm'} :  '' }}
+          className={`p-1 text-sm ${
             params.row.billNumber
               ? params.row.assignDate
-                ? 'bg-green-900'
-                : 'bg-blue-500'
+                ? 'text-green-600'
+                : 'text-blue-600'
               : ''
           }`}
         >
@@ -217,11 +217,11 @@ const ProcessLot = () => {
       width: 60,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base ${
+          className={`p-1 text-sm ${
             params.row.quantity
               ? params.row.assignDate
-                ? 'bg-green-900'
-                : 'bg-blue-500'
+                ? 'text-green-600'
+                : 'text-blue-600'
               : ''
           }`}
         >
@@ -249,11 +249,11 @@ const ProcessLot = () => {
       },
       renderCell: (params) => (
         <p
-          className={`p-1 text-base ${
+          className={`p-1 text-sm ${
             params.row.assignDate
               ? params.row.assignDate
-                ? 'bg-green-900'
-                : 'bg-blue-500'
+                ? 'text-green-600'
+                : 'text-blue-600'
               : ''
           }`}
         >
@@ -267,11 +267,11 @@ const ProcessLot = () => {
       width: 110,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base truncate ${
+          className={`p-1 text-sm truncate ${
             params.row?.handWorkerId?.workerName
               ? params?.row?.assignDate
-                ? 'bg-green-900'
-                : 'bg-blue-500'
+                ? 'text-green-600'
+                : 'text-blue-600'
               : ''
           }`}
         >
@@ -285,11 +285,11 @@ const ProcessLot = () => {
       width: 110,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base truncate ${
+          className={`p-1 text-sm truncate ${
             params.row?.dupattaWorkerId?.workerName
               ? params.row.assignDate
-                ? 'bg-green-900'
-                : 'bg-blue-500'
+                ? 'text-green-600'
+                : 'text-blue-600'
               : ''
           }`}
         >
@@ -303,11 +303,11 @@ const ProcessLot = () => {
       width: 110,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base truncate ${
+          className={`p-1 text-sm truncate ${
             params.row?.innerWorkerId?.workerName
               ? params.row.assignDate
-                ? 'bg-green-900'
-                : 'bg-blue-500'
+                ? 'text-green-600'
+                : 'text-blue-600'
               : ''
           }`}
         >
@@ -559,7 +559,7 @@ const ProcessLot = () => {
           <div className="flex gap-2">
             <Button
               sx={{
-                backgroundColor: colors.redAccent[500],
+                backgroundColor: colors.redAccent[400],
                 color: colors.grey[100],
                 fontSize: '12px',
                 fontWeight: 'bold',

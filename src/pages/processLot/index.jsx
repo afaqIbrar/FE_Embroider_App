@@ -156,7 +156,7 @@ const ProcessLot = () => {
       width: 55,
       renderCell: (params) => (
         <p
-          className={`p-1 text-sm font-bold ${
+          className={`p-1 text-base font-bold ${
             params.row.assignDate ? 'text-green-500' : 'text-red-600'
           }`}
         >
@@ -170,7 +170,7 @@ const ProcessLot = () => {
       width: 80,
       renderCell: (params) => (
         <p
-          className={`p-1 text-sm font-bold ${
+          className={`p-1 text-base font-bold ${
             params.row.assignDate ? 'text-green-500' : 'text-red-600'
           }`}
         >
@@ -184,7 +184,7 @@ const ProcessLot = () => {
       width: 100,
       renderCell: (params) => (
         <p
-          className={`p-1 text-sm font-bold ${
+          className={`p-1 text-base font-bold ${
             params.row.assignDate ? 'text-green-500' : 'text-red-600'
           }`}
         >
@@ -199,11 +199,11 @@ const ProcessLot = () => {
       renderCell: (params) => (
         <p
           // className={`${params.row.billNumber ? ${params.row.assignDate ? 'bg-green-500 p-2 text-sm' : 'bg-blue-500 p-2 text-sm'} :  '' }}
-          className={`p-1 text-sm font-bold ${
+          className={`p-1 text-base font-bold ${
             params.row.billNumber
               ? params.row.assignDate
                 ? 'text-green-500'
-                : 'text-blue-600'
+                : 'text-newBlue'
               : ''
           }`}
         >
@@ -217,11 +217,11 @@ const ProcessLot = () => {
       width: 60,
       renderCell: (params) => (
         <p
-          className={`p-1 text-sm font-bold ${
+          className={`p-1 text-base font-bold ${
             params.row.quantity
               ? params.row.assignDate
                 ? 'text-green-500'
-                : 'text-blue-600'
+                : 'text-newBlue'
               : ''
           }`}
         >
@@ -249,11 +249,11 @@ const ProcessLot = () => {
       },
       renderCell: (params) => (
         <p
-          className={`p-1 text-sm font-bold ${
+          className={`p-1 text-base font-bold ${
             params.row.assignDate
               ? params.row.assignDate
                 ? 'text-green-500'
-                : 'text-blue-600'
+                : 'text-newBlue'
               : ''
           }`}
         >
@@ -267,11 +267,11 @@ const ProcessLot = () => {
       width: 110,
       renderCell: (params) => (
         <p
-          className={`p-1 text-sm font-bold truncate ${
+          className={`p-1 text-base font-bold truncate ${
             params.row?.handWorkerId?.workerName
               ? params?.row?.assignDate
                 ? 'text-green-500'
-                : 'text-blue-600'
+                : 'text-newBlue'
               : ''
           }`}
         >
@@ -285,11 +285,11 @@ const ProcessLot = () => {
       width: 110,
       renderCell: (params) => (
         <p
-          className={`p-1 text-sm font-bold truncate ${
+          className={`p-1 text-base font-bold truncate ${
             params.row?.dupattaWorkerId?.workerName
               ? params.row.assignDate
                 ? 'text-green-500'
-                : 'text-blue-600'
+                : 'text-newBlue'
               : ''
           }`}
         >
@@ -303,11 +303,11 @@ const ProcessLot = () => {
       width: 110,
       renderCell: (params) => (
         <p
-          className={`p-1 text-sm font-bold truncate ${
+          className={`p-1 text-base font-bold truncate ${
             params.row?.innerWorkerId?.workerName
               ? params.row.assignDate
                 ? 'text-green-500'
-                : 'text-blue-600'
+                : 'text-newBlue'
               : ''
           }`}
         >

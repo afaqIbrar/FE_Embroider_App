@@ -157,7 +157,7 @@ const ProcessLot = () => {
       renderCell: (params) => (
         <p
           className={`p-1 text-sm ${
-            params.row.assignDate ? 'text-green-600' : 'text-red-600'
+            params.row.assignDate ? 'text-green-500' : 'text-red-500'
           }`}
         >
           {params.row.pageNumber || '-'}
@@ -171,7 +171,7 @@ const ProcessLot = () => {
       renderCell: (params) => (
         <p
           className={`p-1 text-sm ${
-            params.row.assignDate ? 'text-green-600' : 'text-red-600'
+            params.row.assignDate ? 'text-green-500' : 'text-red-500'
           }`}
         >
           {params.row.articleNumber || '-'}
@@ -185,7 +185,7 @@ const ProcessLot = () => {
       renderCell: (params) => (
         <p
           className={`p-1 text-sm ${
-            params.row.assignDate ? 'text-green-600' : 'text-red-600'
+            params.row.assignDate ? 'text-green-500' : 'text-red-500'
           }`}
         >
           {params.row.colour || '-'}
@@ -198,12 +198,12 @@ const ProcessLot = () => {
       width: 50,
       renderCell: (params) => (
         <p
-          // className={`${params.row.billNumber ? ${params.row.assignDate ? 'bg-green-600 p-2 text-sm' : 'bg-blue-600 p-2 text-sm'} :  '' }}
+          // className={`${params.row.billNumber ? ${params.row.assignDate ? 'bg-green-500 p-2 text-sm' : 'bg-blue-500 p-2 text-sm'} :  '' }}
           className={`p-1 text-sm ${
             params.row.billNumber
               ? params.row.assignDate
-                ? 'text-green-600'
-                : 'text-blue-600'
+                ? 'text-green-500'
+                : 'text-blue-500'
               : ''
           }`}
         >
@@ -220,8 +220,8 @@ const ProcessLot = () => {
           className={`p-1 text-sm ${
             params.row.quantity
               ? params.row.assignDate
-                ? 'text-green-600'
-                : 'text-blue-600'
+                ? 'text-green-500'
+                : 'text-blue-500'
               : ''
           }`}
         >
@@ -252,8 +252,8 @@ const ProcessLot = () => {
           className={`p-1 text-sm ${
             params.row.assignDate
               ? params.row.assignDate
-                ? 'text-green-600'
-                : 'text-blue-600'
+                ? 'text-green-500'
+                : 'text-blue-500'
               : ''
           }`}
         >
@@ -270,8 +270,8 @@ const ProcessLot = () => {
           className={`p-1 text-sm truncate ${
             params.row?.handWorkerId?.workerName
               ? params?.row?.assignDate
-                ? 'text-green-600'
-                : 'text-blue-600'
+                ? 'text-green-500'
+                : 'text-blue-500'
               : ''
           }`}
         >
@@ -288,8 +288,8 @@ const ProcessLot = () => {
           className={`p-1 text-sm truncate ${
             params.row?.dupattaWorkerId?.workerName
               ? params.row.assignDate
-                ? 'text-green-600'
-                : 'text-blue-600'
+                ? 'text-green-500'
+                : 'text-blue-500'
               : ''
           }`}
         >
@@ -306,8 +306,8 @@ const ProcessLot = () => {
           className={`p-1 text-sm truncate ${
             params.row?.innerWorkerId?.workerName
               ? params.row.assignDate
-                ? 'text-green-600'
-                : 'text-blue-600'
+                ? 'text-green-500'
+                : 'text-blue-500'
               : ''
           }`}
         >

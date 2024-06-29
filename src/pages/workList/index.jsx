@@ -15,6 +15,7 @@ import { toast } from 'react-toastify';
 import { useReactToPrint } from 'react-to-print';
 import AccountsPrint from '../../components/accountsPrint';
 import WorkListTable from '../../components/WorkListTable';
+import { TextareaAutosize } from '@mui/base';
 
 const workInitialValues = {
   // quantityLog: '',
@@ -43,6 +44,7 @@ const Work = () => {
   const [totalAmount, setTotalAmount] = useState(0);
   const [totalAmountGiven, setTotalAmoutGiven] = useState(0);
   const [balance, setBalance] = useState(0);
+  const [extraInfoPopup, setExtraInfoPopup] = useState(false);
 
   function calculateBalance() {
     const { totalAmount, totalAmountGiven } = works?.reduce(
@@ -102,7 +104,7 @@ const Work = () => {
 
   useEffect(() => {
     fetchWorkerData();
-  }, []);
+  }, [extraInfoPopup]);
 
   const formik = useFormik({
     initialValues: {
@@ -312,7 +314,10 @@ const Work = () => {
   //     width: 200
   //   }
   // ];
-
+  const handleSaveExtraInfo = async () => {
+    updateWorkerExtraInfo();
+    setExtraInfoPopup(false);
+  };
   const fetchWorkerData = async () => {
     const data = await API.get('workers/byId/' + workerId, {
       withCredentials: true,
@@ -361,40 +366,23 @@ const Work = () => {
               <SearchIcon />
             </IconButton>
           </Box>
-          <Box display="flex" sx={{ m: 0, p: 0 }}>
-            <Box
-              display="flex"
-              backgroundColor={colors.primary[400]}
-              p={1}
-              borderRadius={1}
-              sx={{ ml: 3, width: 300 }}
-            >
-              <InputBase
-                onChange={(e) => {
-                  setExtraInfo(e.target.value);
-                }}
-                value={extraInfo}
-                sx={{ ml: 1, flex: 1 }}
-                placeholder="Extra Data"
-              />
-            </Box>
-            <Box>
-              <Button
-                sx={{
-                  backgroundColor: colors.blueAccent[700],
-                  color: colors.grey[100],
-                  fontSize: '14px',
-                  fontWeight: 'bold',
-                  padding: '10px',
-                  marginLeft: '10px'
-                }}
-                onClick={() => updateWorkerExtraInfo()}
-              >
-                Save Info
-              </Button>
-            </Box>
-          </Box>
           <Box>
+            <Button
+              sx={{
+                backgroundColor: colors.blueAccent[700],
+                color: colors.grey[100],
+                fontSize: '14px',
+                fontWeight: 'bold',
+                padding: '10px 20px',
+                marginRight: '10px'
+              }}
+              onClick={() => {
+                setExtraInfoPopup(true);
+                setExtraInfo(workerData?.extraInfo || '-');
+              }}
+            >
+              Extra Info
+            </Button>
             <Button
               sx={{
                 backgroundColor: colors.blueAccent[700],
@@ -604,6 +592,59 @@ const Work = () => {
           </div>
         }
         title={`Delete Worker`}
+      />
+      <Popup
+        open={extraInfoPopup}
+        setOpen={setExtraInfoPopup}
+        onClose={() => {
+          setExtraInfoPopup(false);
+          setExtraInfo('');
+        }}
+        content={
+          <TextareaAutosize
+            className="w-80 text-sm font-normal font-sans leading-normal p-3 rounded-xl rounded-br-none  focus:shadow-outline-purple dark:focus:shadow-outline-purple focus:shadow-lg border border-solid border-slate-300 hover:border-purple-500 dark:hover:border-purple-500 focus:border-purple-500 dark:focus:border-purple-500 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-300 focus-visible:outline-0 box-border"
+            aria-label="empty textarea"
+            placeholder="Extra Info"
+            maxRows={12}
+            minRows={5}
+            value={extraInfo}
+            onChange={(e) => {
+              setExtraInfo(e.target.value);
+            }}
+          />
+        }
+        actions={
+          <div className="flex gap-2">
+            <Button
+              sx={{
+                backgroundColor: colors.redAccent[500],
+                color: colors.grey[100],
+                fontSize: '12px',
+                fontWeight: 'bold',
+                padding: '5px 10px'
+              }}
+              onClick={() => {
+                setExtraInfoPopup(false);
+                setExtraInfo('');
+              }}
+            >
+              Cancel
+            </Button>
+            <Button
+              sx={{
+                backgroundColor: colors.blueAccent[600],
+                color: colors.grey[100],
+                fontSize: '12px',
+                fontWeight: 'bold',
+                padding: '5px 10px'
+              }}
+              onClick={handleSaveExtraInfo}
+            >
+              Save Info
+            </Button>
+          </div>
+        }
+        title={'Extra Info'}
       />
       <div ref={componentRef}>
         <AccountsPrint

@@ -297,7 +297,6 @@ const BasicPrint = ({
                     <TableBody>
                       {works &&
                         works.map((work, index) => {
-                          console.log('object', work.quantityLog.length);
                           return (
                             <TableRow key={index} sx={{ minHeight: 10 }}>
                               <TableCell

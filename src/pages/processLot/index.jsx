@@ -15,6 +15,7 @@ import API from '../../utils/axios';
 import { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import ProcessLotMainPrint from '../../components/ProcessLotMainPrint';
+import Slider from '@mui/material/Slider';
 
 const processLotInitialValues = {
   pageNumber: '',
@@ -40,6 +41,19 @@ const ProcessLot = () => {
   const [processLotPopup, setProcessLotPopup] = useState(false);
   const [showPrint, setShowPrint] = useState(null);
   const debouncedSearchText = useDebounce(searchText, 300);
+  const [pageValue, setPageValue] = React.useState([1, 40]);
+
+  const handleChange = (event, newValue, activeThumb) => {
+    if (!Array.isArray(newValue)) {
+      return;
+    }
+
+    if (activeThumb === 0) {
+      setPageValue([Math.min(newValue[0], pageValue[1] - 2), pageValue[1]]);
+    } else {
+      setPageValue([pageValue[0], Math.max(newValue[1], pageValue[0] + 2)]);
+    }
+  };
   const handleAddProcessLot = () => {
     setAddProcessLotPopup(true);
   };
@@ -58,7 +72,8 @@ const ProcessLot = () => {
       const data = await API.get('processLot/', {
         withCredentials: true,
         params: {
-          search: searchText
+          search: searchText,
+          pageValue: pageValue
         }
       });
       setProcessLot(data.data);
@@ -369,6 +384,29 @@ const ProcessLot = () => {
           <IconButton type="button">
             <SearchIcon />
           </IconButton>
+        </Box>
+        <Box sx={{ width: 200, color: 'White' }} display="flex">
+          <Slider
+            sx={{ color: 'white' }}
+            getAriaLabel={() => 'Page'}
+            value={pageValue}
+            onChange={handleChange}
+            valueLabelDisplay="auto"
+            disableSwap
+          />
+          <Button
+            sx={{
+              backgroundColor: colors.blueAccent[700],
+              color: colors.grey[100],
+              fontSize: '14px',
+              fontWeight: 'bold',
+              padding: '10px 20px',
+              marginLeft: '12px'
+            }}
+            onClick={() => fetchProcessLotData()}
+          >
+            Search
+          </Button>
         </Box>
         <Box>
           <Button

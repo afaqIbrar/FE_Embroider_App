@@ -51,7 +51,6 @@ const ProcessLotBasic = ({ processLot }) => {
       }
     }
   });
-  console.log('process', processLot);
 
   return (
     <>

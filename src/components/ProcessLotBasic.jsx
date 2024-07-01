@@ -226,10 +226,10 @@ const ProcessLotBasic = ({ processLot }) => {
                                 }}
                               >
                                 <p
-                                  className={`text-white text-[15px] font-bold flex justify-center ${
+                                  className={` text-[15px] font-bold flex justify-center ${
                                     process?.assignDate
-                                      ? 'bg-green-900'
-                                      : 'bg-red-700'
+                                      ? 'text-green-500'
+                                      : 'text-red-600'
                                   }`}
                                 >
                                   {process?.pageNumber || '-'}
@@ -246,10 +246,10 @@ const ProcessLotBasic = ({ processLot }) => {
                                 }}
                               >
                                 <p
-                                  className={`text-white text-[15px] font-bold flex justify-center  ${
+                                  className={` text-[15px] font-bold flex justify-center  ${
                                     process?.assignDate
-                                      ? 'bg-green-900'
-                                      : 'bg-red-700'
+                                      ? 'text-green-500'
+                                      : 'text-red-600'
                                   }`}
                                 >
                                   {process?.articleNumber || '-'}
@@ -266,10 +266,10 @@ const ProcessLotBasic = ({ processLot }) => {
                                 }}
                               >
                                 <p
-                                  className={`text-white text-[15px] font-bold flex justify-center ${
+                                  className={` text-[15px] font-bold flex justify-center ${
                                     process?.assignDate
-                                      ? 'bg-green-900'
-                                      : 'bg-red-700'
+                                      ? 'text-green-500'
+                                      : 'text-red-600'
                                   }`}
                                 >
                                   {process?.colour || '-'}
@@ -286,11 +286,11 @@ const ProcessLotBasic = ({ processLot }) => {
                                 }}
                               >
                                 <p
-                                  className={`text-white text-[15px] font-bold flex justify-center ${
+                                  className={` text-[15px] font-bold flex justify-center ${
                                     process?.billNumber
                                       ? process?.assignDate
-                                        ? 'bg-green-900'
-                                        : 'bg-blue-500'
+                                        ? 'text-green-500'
+                                        : 'text-newBlue'
                                       : 'text-black'
                                   }`}
                                 >
@@ -308,11 +308,11 @@ const ProcessLotBasic = ({ processLot }) => {
                                 }}
                               >
                                 <p
-                                  className={`text-white text-[15px] font-bold flex justify-center  ${
+                                  className={` text-[15px] font-bold flex justify-center  ${
                                     process.quantity
                                       ? process.assignDate
-                                        ? 'bg-green-900'
-                                        : 'bg-blue-500'
+                                        ? 'text-green-500'
+                                        : 'text-newBlue'
                                       : 'text-black'
                                   }`}
                                 >
@@ -330,11 +330,11 @@ const ProcessLotBasic = ({ processLot }) => {
                                 }}
                               >
                                 <p
-                                  className={`text-white text-[15px] font-bold flex justify-center ${
+                                  className={` text-[15px] font-bold flex justify-center ${
                                     process?.assignDate
                                       ? process?.assignDate
-                                        ? 'bg-green-900'
-                                        : 'bg-blue-500'
+                                        ? 'text-green-500'
+                                        : 'text-newBlue'
                                       : 'text-black '
                                   }`}
                                 >
@@ -353,11 +353,11 @@ const ProcessLotBasic = ({ processLot }) => {
                                 }}
                               >
                                 <p
-                                  className={`text-white text-[12px] font-bold truncate flex justify-center  ${
+                                  className={` text-[12px] font-bold truncate flex justify-center  ${
                                     process?.handWorkerId?.workerName
                                       ? process?.assignDate
-                                        ? 'bg-green-900'
-                                        : 'bg-blue-500'
+                                        ? 'text-green-500'
+                                        : 'text-newBlue'
                                       : 'text-black'
                                   }`}
                                 >
@@ -376,11 +376,11 @@ const ProcessLotBasic = ({ processLot }) => {
                                 }}
                               >
                                 <p
-                                  className={`text-white text-[12px] font-bold truncate flex justify-center  ${
+                                  className={` text-[12px] font-bold truncate flex justify-center  ${
                                     process?.dupattaWorkerId?.workerName
                                       ? process?.assignDate
-                                        ? 'bg-green-900'
-                                        : 'bg-blue-500'
+                                        ? 'text-green-500'
+                                        : 'text-newBlue'
                                       : 'text-black'
                                   }`}
                                 >
@@ -399,11 +399,11 @@ const ProcessLotBasic = ({ processLot }) => {
                                 }}
                               >
                                 <p
-                                  className={`text-white text-[12px] font-bold truncate flex justify-center ${
+                                  className={` text-[12px] font-bold truncate flex justify-center ${
                                     process?.innerWorkerId?.workerName
                                       ? process?.assignDate
-                                        ? 'bg-green-900'
-                                        : 'bg-blue-500'
+                                        ? 'text-green-500'
+                                        : 'text-newBlue'
                                       : 'text-black'
                                   }`}
                                 >

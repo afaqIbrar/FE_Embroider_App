@@ -310,16 +310,16 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[16px] font-bold flex justify-center text-white ${
+                                  className={`text-[16px] font-bold flex justify-center ${
                                     work?.processLotId?.assignDate
                                       ? work?.rate &&
                                         work?.quantityReturned ===
                                           work?.processLotId?.quantity
-                                        ? 'bg-green-900'
+                                        ? 'text-green-500'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
-                                        ? 'bg-blue-500'
-                                        : 'bg-red-700'
+                                        ? 'text-newBlue'
+                                        : 'text-red-600'
                                       : ''
                                   }`}
                                 >
@@ -349,16 +349,16 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[16px] font-bold flex justify-center text-white ${
+                                  className={`text-[16px] font-bold flex justify-center ${
                                     work?.processLotId?.articleNumber
                                       ? work?.rate &&
                                         work?.quantityReturned ===
                                           work?.processLotId?.quantity
-                                        ? 'bg-green-900'
+                                        ? 'text-green-500'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
-                                        ? 'bg-blue-500'
-                                        : 'bg-red-700'
+                                        ? 'text-newBlue'
+                                        : 'text-red-600'
                                       : ''
                                   }`}
                                 >
@@ -375,16 +375,16 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`w-16 text-[14px] font-bold flex justify-center text-white ${
+                                  className={`w-16 text-[14px] font-bold flex justify-center  ${
                                     work?.processLotId?.colour
                                       ? work?.rate &&
                                         work?.quantityReturned ===
                                           work?.processLotId?.quantity
-                                        ? 'bg-green-900'
+                                        ? 'text-green-500'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
-                                        ? 'bg-blue-500'
-                                        : 'bg-red-700'
+                                        ? 'text-newBlue'
+                                        : 'text-red-600'
                                       : ''
                                   }`}
                                 >
@@ -402,16 +402,16 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[16px] font-bold flex justify-center text-white  ${
+                                  className={`text-[16px] font-bold flex justify-center   ${
                                     work?.processLotId?.billNumber
                                       ? work?.rate &&
                                         work?.quantityReturned ===
                                           work?.processLotId?.quantity
-                                        ? 'bg-green-900'
+                                        ? 'text-green-500'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
-                                        ? 'bg-blue-500'
-                                        : 'bg-red-700'
+                                        ? 'text-newBlue'
+                                        : 'text-red-600'
                                       : ''
                                   }`}
                                 >
@@ -429,16 +429,16 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[16px] font-bold flex justify-center text-white ${
+                                  className={`text-[16px] font-bold flex justify-center  ${
                                     work?.processLotId?.quantity
                                       ? work?.rate &&
                                         work?.quantityReturned ===
                                           work?.processLotId?.quantity
-                                        ? 'bg-green-900'
+                                        ? 'text-green-500'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
-                                        ? 'bg-blue-500'
-                                        : 'bg-red-700'
+                                        ? 'text-newBlue'
+                                        : 'text-red-600'
                                       : ''
                                   }`}
                                 >
@@ -453,16 +453,16 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[14px] font-bold flex justify-center text-white ${
+                                  className={`text-[14px] font-bold flex justify-center  ${
                                     work?.quantityLog
                                       ? work?.rate &&
                                         work?.quantityReturned ===
                                           work?.processLotId?.quantity
-                                        ? 'bg-green-900'
+                                        ? 'text-green-500'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
-                                        ? 'bg-blue-500'
-                                        : 'bg-red-700'
+                                        ? 'text-newBlue'
+                                        : 'text-red-600'
                                       : 'text-black'
                                   }`}
                                 >
@@ -496,16 +496,16 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[16px] font-bold flex justify-center text-white ${
+                                  className={`text-[16px] font-bold flex justify-center  ${
                                     work?.processLotId?.quantity
                                       ? work?.rate &&
                                         work?.quantityReturned ===
                                           work?.processLotId?.quantity
-                                        ? 'bg-green-900'
+                                        ? 'text-green-500'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
-                                        ? 'bg-blue-500'
-                                        : 'bg-red-700'
+                                        ? 'text-newBlue'
+                                        : 'text-red-600'
                                       : ''
                                   }`}
                                 >
@@ -523,16 +523,16 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[16px] font-bold flex justify-center text-white ${
+                                  className={`text-[16px] font-bold flex justify-center  ${
                                     work?.rate
                                       ? work?.rate &&
                                         work?.quantityReturned ===
                                           work?.processLotId?.quantity
-                                        ? 'bg-green-900'
+                                        ? 'text-green-500'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
-                                        ? 'bg-blue-500'
-                                        : 'bg-red-700'
+                                        ? 'text-newBlue'
+                                        : 'text-red-600'
                                       : 'text-black'
                                   }`}
                                 >
@@ -549,16 +549,16 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[16px] font-bold flex justify-center text-white ${
+                                  className={`text-[16px] font-bold flex justify-center  ${
                                     work?.total
                                       ? work?.rate &&
                                         work?.quantityReturned ===
                                           work?.processLotId?.quantity
-                                        ? 'bg-green-900'
+                                        ? 'text-green-500'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
-                                        ? 'bg-blue-500'
-                                        : 'bg-red-700'
+                                        ? 'text-newBlue'
+                                        : 'text-red-600'
                                       : 'text-black'
                                   }`}
                                 >
@@ -576,16 +576,16 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[16px] font-bold flex justify-center text-white ${
+                                  className={`text-[16px] font-bold flex justify-center  ${
                                     work?.lotClearDate
                                       ? work?.rate &&
                                         work?.quantityReturned ===
                                           work?.processLotId?.quantity
-                                        ? 'bg-green-900'
+                                        ? 'text-green-500'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
-                                        ? 'bg-blue-500'
-                                        : 'bg-red-700'
+                                        ? 'text-newBlue'
+                                        : 'text-red-600'
                                       : 'text-black'
                                   }`}
                                 >
@@ -603,16 +603,16 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[14px] font-bold flex justify-center text-white ${
+                                  className={`text-[14px] font-bold flex justify-center  ${
                                     work?.paymentGiven
                                       ? work?.rate &&
                                         work?.quantityReturned ===
                                           work?.processLotId?.quantity
-                                        ? 'bg-green-900'
+                                        ? 'text-green-500'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
-                                        ? 'bg-blue-500'
-                                        : 'bg-red-700'
+                                        ? 'text-newBlue'
+                                        : 'text-red-600'
                                       : 'text-black'
                                   }`}
                                 >
@@ -639,16 +639,16 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[12px] flex justify-center text-white ${
+                                  className={`text-[12px] flex font-bold justify-center  ${
                                     work?.reference
                                       ? work?.rate &&
                                         work?.quantityReturned ===
                                           work?.processLotId?.quantity
-                                        ? 'bg-green-900'
+                                        ? 'text-green-500'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
-                                        ? 'bg-blue-500'
-                                        : 'bg-red-700'
+                                        ? 'text-newBlue'
+                                        : 'text-red-600'
                                       : 'text-black'
                                   }`}
                                 >

@@ -171,7 +171,7 @@ const ProcessLot = () => {
       width: 55,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base font-bold ${
+          className={`p-1 text-[18px] font-bold ${
             params.row.assignDate ? 'text-green-500' : 'text-red-600'
           }`}
         >
@@ -185,7 +185,7 @@ const ProcessLot = () => {
       width: 80,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base font-bold ${
+          className={`p-1 text-[18px] font-bold ${
             params.row.assignDate ? 'text-green-500' : 'text-red-600'
           }`}
         >
@@ -196,10 +196,10 @@ const ProcessLot = () => {
     {
       field: 'colour',
       headerName: 'Colour',
-      width: 100,
+      width: 140,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base font-bold ${
+          className={`p-1 text-[18px] font-bold ${
             params.row.assignDate ? 'text-green-500' : 'text-red-600'
           }`}
         >
@@ -214,7 +214,7 @@ const ProcessLot = () => {
       renderCell: (params) => (
         <p
           // className={`${params.row.billNumber ? ${params.row.assignDate ? 'bg-green-500 p-2 text-sm' : 'bg-blue-500 p-2 text-sm'} :  '' }}
-          className={`p-1 text-base font-bold ${
+          className={`p-1 text-[18px] font-bold ${
             params.row.billNumber
               ? params.row.assignDate
                 ? 'text-green-500'
@@ -232,7 +232,7 @@ const ProcessLot = () => {
       width: 60,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base font-bold ${
+          className={`p-1 text-[18px] font-bold ${
             params.row.quantity
               ? params.row.assignDate
                 ? 'text-green-500'
@@ -264,7 +264,7 @@ const ProcessLot = () => {
       },
       renderCell: (params) => (
         <p
-          className={`p-1 text-base font-bold ${
+          className={`p-1 text-[18px] font-bold ${
             params.row.assignDate
               ? params.row.assignDate
                 ? 'text-green-500'
@@ -279,10 +279,10 @@ const ProcessLot = () => {
     {
       field: 'handWorkerId',
       headerName: 'Hand Worker',
-      width: 110,
+      width: 140,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base font-bold truncate ${
+          className={`p-1 text-[18px] font-bold truncate ${
             params.row?.handWorkerId?.workerName
               ? params?.row?.assignDate
                 ? 'text-green-500'
@@ -297,10 +297,10 @@ const ProcessLot = () => {
     {
       field: 'dupattaWorkerId',
       headerName: 'Dupatta Worker',
-      width: 110,
+      width: 140,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base font-bold truncate ${
+          className={`p-1 text-[18px] font-bold truncate ${
             params.row?.dupattaWorkerId?.workerName
               ? params.row.assignDate
                 ? 'text-green-500'
@@ -315,10 +315,10 @@ const ProcessLot = () => {
     {
       field: 'innerWorkerId',
       headerName: 'Inner Worker',
-      width: 110,
+      width: 140,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base font-bold truncate ${
+          className={`p-1 text-[18px] font-bold truncate ${
             params.row?.innerWorkerId?.workerName
               ? params.row.assignDate
                 ? 'text-green-500'

@@ -16,6 +16,7 @@ import { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import ProcessLotMainPrint from '../../components/ProcessLotMainPrint';
 import Slider from '@mui/material/Slider';
+import { toaster } from '../../utils/utils';
 
 const processLotInitialValues = {
   pageNumber: '',
@@ -41,19 +42,9 @@ const ProcessLot = () => {
   const [processLotPopup, setProcessLotPopup] = useState(false);
   const [showPrint, setShowPrint] = useState(null);
   const debouncedSearchText = useDebounce(searchText, 300);
-  const [pageValue, setPageValue] = React.useState([1, 40]);
+  const [pageStartValue, setPageStartValue] = useState(1);
+  const [pageEndValue, setPageEndValue] = useState(100);
 
-  const handleChange = (event, newValue, activeThumb) => {
-    if (!Array.isArray(newValue)) {
-      return;
-    }
-
-    if (activeThumb === 0) {
-      setPageValue([Math.min(newValue[0], pageValue[1] - 2), pageValue[1]]);
-    } else {
-      setPageValue([pageValue[0], Math.max(newValue[1], pageValue[0] + 2)]);
-    }
-  };
   const handleAddProcessLot = () => {
     setAddProcessLotPopup(true);
   };
@@ -73,10 +64,14 @@ const ProcessLot = () => {
         withCredentials: true,
         params: {
           search: searchText,
-          pageValue: pageValue
+          pageStartValue: pageStartValue,
+          pageEndValue: pageEndValue
         }
       });
       setProcessLot(data.data);
+      toast.success(
+        `Process Lot Fetch between Page Number(${pageStartValue} , ${pageEndValue})Successfully!!!`
+      );
     } catch (err) {
       toast.error(err.message);
     }
@@ -385,15 +380,48 @@ const ProcessLot = () => {
             <SearchIcon />
           </IconButton>
         </Box>
-        <Box sx={{ width: 200, color: 'White' }} display="flex">
-          <Slider
+        <Box sx={{ width: 400, color: 'White' }} display="flex">
+          {/* <Slider
             sx={{ color: 'white' }}
             getAriaLabel={() => 'Page'}
             value={pageValue}
             onChange={handleChange}
             valueLabelDisplay="auto"
             disableSwap
-          />
+          /> */}
+          <Box
+            display="flex"
+            backgroundColor={colors.primary[400]}
+            p={0.2}
+            width={100}
+            borderRadius={1}
+          >
+            <InputBase
+              sx={{ ml: 1, flex: 1, width: '20px' }}
+              placeholder="Start Page"
+              onChange={(e) => {
+                setPageStartValue(e.target.value);
+              }}
+              value={pageStartValue}
+            />
+          </Box>
+          <Box
+            display="flex"
+            backgroundColor={colors.primary[400]}
+            p={0.2}
+            width={100}
+            ml={2}
+            borderRadius={1}
+          >
+            <InputBase
+              sx={{ ml: 2, flex: 1 }}
+              placeholder="End Page"
+              onChange={(e) => {
+                setPageEndValue(e.target.value);
+              }}
+              value={pageEndValue}
+            />
+          </Box>
           <Button
             sx={{
               backgroundColor: colors.blueAccent[700],

@@ -32,6 +32,7 @@ const Work = () => {
   const colors = tokens(theme.palette.mode);
   const { workerId } = useParams();
   const [works, setWorks] = useState([]);
+  const [reverseWork, setReverseWork] = useState([]);
   const [workerData, setWorkerData] = useState({});
   const [searchText, setSearchText] = useState('');
   const [extraInfo, setExtraInfo] = useState('');
@@ -337,6 +338,14 @@ const Work = () => {
       }
     });
     setWorks(data.data);
+    const copyData = [...data.data];
+    setReverseWork(
+      copyData.sort((a, b) => {
+        const dateA = new Date(a.processLotId.assignDate);
+        const dateB = new Date(b.processLotId.assignDate);
+        return dateA - dateB;
+      })
+    );
   };
 
   return (
@@ -650,7 +659,7 @@ const Work = () => {
         <AccountsPrint
           showPrint={showPrint}
           workerData={workerData}
-          works={works}
+          works={reverseWork}
           totalAmount={totalAmount}
           totalAmountGiven={totalAmountGiven}
           balance={balance}

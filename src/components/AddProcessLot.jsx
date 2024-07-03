@@ -140,6 +140,7 @@ const AddProcessLot = ({ formik, processLot, view, flag }) => {
           <DatePicker
             label="Assign Date"
             id="assignDate"
+            slotProps={{ field: { clearable: true } }}
             value={formik.values.assignDate}
             onChange={(newValue) => {
               formik.setFieldValue('assignDate', newValue);

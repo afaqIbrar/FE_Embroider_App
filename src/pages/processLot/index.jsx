@@ -34,6 +34,7 @@ const ProcessLot = () => {
   const colors = tokens(theme.palette.mode);
 
   const [processLot, setProcessLot] = useState([]);
+  const [reverseProcessLot, setReverseProcessLot] = useState([]);
   const [addProcessLotPopup, setAddProcessLotPopup] = useState(false);
   const [searchText, setSearchText] = useState('');
   const [selectedProcessLot, setSelectedProcessLot] = useState({});
@@ -69,8 +70,9 @@ const ProcessLot = () => {
         }
       });
       setProcessLot(data.data);
-      toast.success(
-        `Process Lot Fetch between Page Number(${pageStartValue} , ${pageEndValue})Successfully!!!`
+      const copyData = [...data.data];
+      setReverseProcessLot(
+        copyData.sort((a, b) => a.pageNumber - b.pageNumber)
       );
     } catch (err) {
       toast.error(err.message);
@@ -655,7 +657,10 @@ const ProcessLot = () => {
         title={`Delete Worker`}
       />
       <div ref={componentRef}>
-        <ProcessLotMainPrint processLot={processLot} showPrint={showPrint} />
+        <ProcessLotMainPrint
+          processLot={reverseProcessLot}
+          showPrint={showPrint}
+        />
       </div>
     </Box>
   );

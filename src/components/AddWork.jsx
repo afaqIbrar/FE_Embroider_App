@@ -139,6 +139,7 @@ const AddWork = ({ formik, work, view }) => {
           <DatePicker
             label="Nill Date"
             id="nillDate"
+            slotProps={{ field: { clearable: true } }}
             value={formik.values.lotClearDate}
             inputFormat="DD/MM/YYYY"
             onChange={(newValue) => {

@@ -72,7 +72,17 @@ const ProcessLot = () => {
       setProcessLot(data.data);
       const copyData = [...data.data];
       setReverseProcessLot(
-        copyData.sort((a, b) => a.pageNumber - b.pageNumber)
+        copyData.sort((a, b) => {
+          // Compare pageNumber as numbers
+          const pageNumberComparison = a.pageNumber - b.pageNumber;
+
+          // If pageNumber are the same, compare by assignDate
+          if (pageNumberComparison === 0) {
+            return new Date(a.assignDate) - new Date(b.assignDate);
+          }
+
+          return pageNumberComparison;
+        })
       );
     } catch (err) {
       toast.error(err.message);

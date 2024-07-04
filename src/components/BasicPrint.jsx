@@ -62,6 +62,12 @@ const BasicPrint = ({
     }
   }
 
+  function calculatePending(work) {
+    const quantity = Number(work?.processLotId?.quantity || 0);
+    const quantityReturned = Number(work?.quantityReturned || 0);
+    return quantity - quantityReturned;
+  }
+
   return (
     <>
       <ThemeProvider theme={localTheme}>
@@ -157,7 +163,9 @@ const BasicPrint = ({
                             minWidth: 20,
                             maxWidth: 20,
                             fontSize: '14px',
-                            fontWeight: 'bold'
+                            fontWeight: 'bold',
+                            textAlign: 'center',
+                            verticalAlign: 'middle'
                           }}
                         >
                           DATE
@@ -177,7 +185,9 @@ const BasicPrint = ({
                             minWidth: 20,
                             maxWidth: 20,
                             fontSize: '14px',
-                            fontWeight: 'bold'
+                            fontWeight: 'bold',
+                            textAlign: 'center',
+                            verticalAlign: 'middle'
                           }}
                         >
                           ART
@@ -187,7 +197,9 @@ const BasicPrint = ({
                             minWidth: 20,
                             maxWidth: 20,
                             fontSize: '14px',
-                            fontWeight: 'bold'
+                            fontWeight: 'bold',
+                            textAlign: 'center',
+                            verticalAlign: 'middle'
                           }}
                         >
                           CLR
@@ -197,7 +209,9 @@ const BasicPrint = ({
                             minWidth: 20,
                             maxWidth: 20,
                             fontSize: '14px',
-                            fontWeight: 'bold'
+                            fontWeight: 'bold',
+                            textAlign: 'center',
+                            verticalAlign: 'middle'
                           }}
                         >
                           BILL
@@ -207,7 +221,9 @@ const BasicPrint = ({
                             minWidth: 20,
                             maxWidth: 20,
                             fontSize: '14px',
-                            fontWeight: 'bold'
+                            fontWeight: 'bold',
+                            textAlign: 'center',
+                            verticalAlign: 'middle'
                           }}
                         >
                           QTY
@@ -217,7 +233,9 @@ const BasicPrint = ({
                             minWidth: 30,
                             maxWidth: 20,
                             fontSize: '14px',
-                            fontWeight: 'bold'
+                            fontWeight: 'bold',
+                            textAlign: 'center',
+                            verticalAlign: 'middle'
                           }}
                         >
                           LOG
@@ -227,17 +245,21 @@ const BasicPrint = ({
                             minWidth: 10,
                             maxWidth: 20,
                             fontSize: '14px',
-                            fontWeight: 'bold'
+                            fontWeight: 'bold',
+                            textAlign: 'center',
+                            verticalAlign: 'middle'
                           }}
                         >
-                          RET
+                          PEND
                         </TableCell>
                         <TableCell
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
                             fontSize: '14px',
-                            fontWeight: 'bold'
+                            fontWeight: 'bold',
+                            textAlign: 'center',
+                            verticalAlign: 'middle'
                           }}
                         >
                           RATE
@@ -247,7 +269,9 @@ const BasicPrint = ({
                             minWidth: 20,
                             maxWidth: 20,
                             fontSize: '14px',
-                            fontWeight: 'bold'
+                            fontWeight: 'bold',
+                            textAlign: 'center',
+                            verticalAlign: 'middle'
                           }}
                         >
                           TOTAL
@@ -257,7 +281,9 @@ const BasicPrint = ({
                             minWidth: 20,
                             maxWidth: 20,
                             fontSize: '14px',
-                            fontWeight: 'bold'
+                            fontWeight: 'bold',
+                            textAlign: 'center',
+                            verticalAlign: 'middle'
                           }}
                         >
                           DATE
@@ -267,7 +293,9 @@ const BasicPrint = ({
                             minWidth: 20,
                             maxWidth: 20,
                             fontSize: '14px',
-                            fontWeight: 'bold'
+                            fontWeight: 'bold',
+                            textAlign: 'center',
+                            verticalAlign: 'middle'
                           }}
                         >
                           PAYM
@@ -287,7 +315,9 @@ const BasicPrint = ({
                             minWidth: 20,
                             maxWidth: 20,
                             fontSize: '14px',
-                            fontWeight: 'bold'
+                            fontWeight: 'bold',
+                            textAlign: 'center',
+                            verticalAlign: 'middle'
                           }}
                         >
                           REF
@@ -509,7 +539,7 @@ const BasicPrint = ({
                                       : ''
                                   }`}
                                 >
-                                  {work?.quantityReturned || '-'}
+                                  {calculatePending(work)}
                                 </p>
                               </TableCell>
                               <TableCell

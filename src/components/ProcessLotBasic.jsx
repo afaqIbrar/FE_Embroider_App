@@ -121,7 +121,9 @@ const ProcessLotBasic = ({ processLot }) => {
                             minWidth: 20,
                             maxWidth: 20,
                             fontSize: '14px',
-                            fontWeight: 'bold'
+                            fontWeight: 'bold',
+                            textAlign: 'center',
+                            verticalAlign: 'middle'
                           }}
                         >
                           Page#
@@ -131,7 +133,9 @@ const ProcessLotBasic = ({ processLot }) => {
                             minWidth: 20,
                             maxWidth: 20,
                             fontSize: '14px',
-                            fontWeight: 'bold'
+                            fontWeight: 'bold',
+                            textAlign: 'center',
+                            verticalAlign: 'middle'
                           }}
                         >
                           Article#
@@ -141,7 +145,9 @@ const ProcessLotBasic = ({ processLot }) => {
                             minWidth: 20,
                             maxWidth: 20,
                             fontSize: '14px',
-                            fontWeight: 'bold'
+                            fontWeight: 'bold',
+                            textAlign: 'center',
+                            verticalAlign: 'middle'
                           }}
                         >
                           Colour
@@ -151,7 +157,9 @@ const ProcessLotBasic = ({ processLot }) => {
                             minWidth: 20,
                             maxWidth: 20,
                             fontSize: '14px',
-                            fontWeight: 'bold'
+                            fontWeight: 'bold',
+                            textAlign: 'center',
+                            verticalAlign: 'middle'
                           }}
                         >
                           Bill#
@@ -161,7 +169,9 @@ const ProcessLotBasic = ({ processLot }) => {
                             minWidth: 20,
                             maxWidth: 20,
                             fontSize: '14px',
-                            fontWeight: 'bold'
+                            fontWeight: 'bold',
+                            textAlign: 'center',
+                            verticalAlign: 'middle'
                           }}
                           className="truncate"
                         >
@@ -172,7 +182,9 @@ const ProcessLotBasic = ({ processLot }) => {
                             minWidth: 20,
                             maxWidth: 20,
                             fontSize: '14px',
-                            fontWeight: 'bold'
+                            fontWeight: 'bold',
+                            textAlign: 'center',
+                            verticalAlign: 'middle'
                           }}
                           className="truncate"
                         >
@@ -183,30 +195,36 @@ const ProcessLotBasic = ({ processLot }) => {
                             minWidth: 20,
                             maxWidth: 20,
                             fontSize: '14px',
-                            fontWeight: 'bold'
+                            fontWeight: 'bold',
+                            textAlign: 'center',
+                            verticalAlign: 'middle'
                           }}
                         >
-                          Hand Wrk
+                          Hand#
                         </TableCell>
                         <TableCell
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
                             fontSize: '14px',
-                            fontWeight: 'bold'
+                            fontWeight: 'bold',
+                            textAlign: 'center',
+                            verticalAlign: 'middle'
                           }}
                         >
-                          Dupt Wrk
+                          Dupt#
                         </TableCell>
                         <TableCell
                           sx={{
                             minWidth: 20,
                             maxWidth: 20,
                             fontSize: '14px',
-                            fontWeight: 'bold'
+                            fontWeight: 'bold',
+                            textAlign: 'center',
+                            verticalAlign: 'middle'
                           }}
                         >
-                          Inner Wrk
+                          Inner#
                         </TableCell>
                       </TableRow>
                     </TableHead>
@@ -220,13 +238,11 @@ const ProcessLotBasic = ({ processLot }) => {
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '10px',
-                                  paddingBottom: 0,
-                                  paddingTop: 0
+                                  fontSize: '10px'
                                 }}
                               >
                                 <p
-                                  className={` text-[15px] font-bold flex justify-center ${
+                                  className={` text-[16px] font-bold flex justify-center ${
                                     process?.assignDate
                                       ? 'text-green-500'
                                       : 'text-red-600'
@@ -246,7 +262,7 @@ const ProcessLotBasic = ({ processLot }) => {
                                 }}
                               >
                                 <p
-                                  className={` text-[15px] font-bold flex justify-center  ${
+                                  className={` text-[16px] font-bold flex justify-center  ${
                                     process?.assignDate
                                       ? 'text-green-500'
                                       : 'text-red-600'
@@ -266,7 +282,7 @@ const ProcessLotBasic = ({ processLot }) => {
                                 }}
                               >
                                 <p
-                                  className={` text-[15px] font-bold flex justify-center ${
+                                  className={` text-[16px] font-bold flex justify-center ${
                                     process?.assignDate
                                       ? 'text-green-500'
                                       : 'text-red-600'
@@ -286,7 +302,7 @@ const ProcessLotBasic = ({ processLot }) => {
                                 }}
                               >
                                 <p
-                                  className={` text-[15px] font-bold flex justify-center ${
+                                  className={` text-[16px] font-bold flex justify-center ${
                                     process?.billNumber
                                       ? process?.assignDate
                                         ? 'text-green-500'
@@ -308,7 +324,7 @@ const ProcessLotBasic = ({ processLot }) => {
                                 }}
                               >
                                 <p
-                                  className={` text-[15px] font-bold flex justify-center  ${
+                                  className={` text-[16px] font-bold flex justify-center  ${
                                     process.quantity
                                       ? process.assignDate
                                         ? 'text-green-500'
@@ -330,7 +346,7 @@ const ProcessLotBasic = ({ processLot }) => {
                                 }}
                               >
                                 <p
-                                  className={` text-[15px] font-bold flex justify-center ${
+                                  className={` text-[16px] font-bold flex justify-center ${
                                     process?.assignDate
                                       ? process?.assignDate
                                         ? 'text-green-500'

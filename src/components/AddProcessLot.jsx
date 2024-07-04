@@ -178,7 +178,7 @@ const AddProcessLot = ({ formik, processLot, view, flag }) => {
               formik.setFieldValue('handWorker', val !== null && val);
               formik.setFieldValue(
                 'handWorkerId',
-                val && val._id ? val._id : ''
+                val && val._id ? val._id : null
               );
             }}
             onKeyDown={(e) => handleKeyDown(e, 'dupattaWorker')}
@@ -199,7 +199,7 @@ const AddProcessLot = ({ formik, processLot, view, flag }) => {
               formik.setFieldValue('dupattaWorker', val !== null && val);
               formik.setFieldValue(
                 'dupattaWorkerId',
-                val && val._id ? val._id : ''
+                val && val._id ? val._id : null
               );
             }}
             onKeyDown={(e) => handleKeyDown(e, 'innerWorker')}
@@ -221,7 +221,7 @@ const AddProcessLot = ({ formik, processLot, view, flag }) => {
               formik.setFieldValue('innerWorker', val !== null && val);
               formik.setFieldValue(
                 'innerWorkerId',
-                val && val._id ? val._id : ''
+                val && val._id ? val._id : null
               );
             }}
             disabled={view}

@@ -84,7 +84,9 @@ const AddProcessLot = ({ formik, processLot, view, flag }) => {
             label="Page Number"
             value={formik.values.pageNumber}
             onChange={(e) => {
-              formik.setFieldValue('pageNumber', e.target.value);
+              // Filter out non-numeric characters
+              const inputVal = e.target.value.replace(/\D/g, ''); // \D matches any non-digit character
+              formik.setFieldValue('pageNumber', inputVal);
             }}
             disabled={view}
             onKeyDown={(e) => handleKeyDown(e, 'articleNumber')}
@@ -120,7 +122,8 @@ const AddProcessLot = ({ formik, processLot, view, flag }) => {
             label="Bill Number"
             value={formik.values.billNumber}
             onChange={(e) => {
-              formik.setFieldValue('billNumber', e.target.value);
+              const inputVal = e.target.value.replace(/\D/g, ''); // \D matches any non-digit character
+              formik.setFieldValue('billNumber', inputVal);
             }}
             disabled={view}
             onKeyDown={(e) => handleKeyDown(e, 'quantity')}
@@ -132,7 +135,8 @@ const AddProcessLot = ({ formik, processLot, view, flag }) => {
             label="Quantity"
             value={formik.values.quantity}
             onChange={(e) => {
-              formik.setFieldValue('quantity', e.target.value);
+              const inputVal = e.target.value.replace(/\D/g, ''); // \D matches any non-digit character
+              formik.setFieldValue('quantity', inputVal);
             }}
             disabled={view}
             onKeyDown={(e) => handleKeyDown(e, 'handworker')}

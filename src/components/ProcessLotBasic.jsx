@@ -93,8 +93,11 @@ const ProcessLotBasic = ({ processLot }) => {
                         alignItems: 'center'
                       }}
                     >
-                      {' '}
-                      {/* {'12-12-2012 - 12-12-2012' || '-'} */}
+                      {new Date().toLocaleDateString('en-GB', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric'
+                      })}
                     </span>
                   </div>
                 </Grid>
@@ -238,7 +241,9 @@ const ProcessLotBasic = ({ processLot }) => {
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '10px'
+                                  fontSize: '10px',
+                                  paddingTop: '7px',
+                                  paddingBottom: '7px'
                                 }}
                               >
                                 <p

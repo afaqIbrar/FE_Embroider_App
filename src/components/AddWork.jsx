@@ -20,6 +20,7 @@ const AddWork = ({ formik, work, view }) => {
         ...(work?.paymentGiven ? { paymentGiven: work.paymentGiven } : {}),
         ...(work?.paymentMode ? { paymentMode: work.paymentMode } : {}),
         ...(work?.reference ? { reference: work.reference } : {}),
+        ...(work?.claim ? { claim: work.claim } : {}),
         ...(work?.lotClearDate
           ? { lotClearDate: moment(work?.lotClearDate) }
           : null)
@@ -196,12 +197,21 @@ const AddWork = ({ formik, work, view }) => {
             disabled={view}
           /> */}
           <TextField
-            style={{ width: '100%' }}
             label="Reference"
             id="reference"
             value={formik?.values?.reference || ''}
             onChange={(e) => {
               formik.setFieldValue('reference', e.target.value);
+            }}
+            disabled={view}
+            onKeyDown={(e) => handleKeyDown(e, 'claim')}
+          />
+          <TextField
+            label="Claim"
+            id="claim"
+            value={formik?.values?.claim || ''}
+            onChange={(e) => {
+              formik.setFieldValue('claim', e.target.value);
             }}
             disabled={view}
           />

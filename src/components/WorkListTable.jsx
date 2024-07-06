@@ -205,30 +205,30 @@ const WorkListTable = ({
         </p>
       )
     },
-    {
-      field: 'quantityLog',
-      headerName: 'Wasooli',
-      width: 140,
-      renderCell: (params) => (
-        <p
-          className={`p-1 text-base font-bold  ${
-            params?.row?.processLotId?.pageNumber
-              ? params?.row?.rate &&
-                params?.row?.quantityReturned ===
-                  params?.row?.processLotId?.quantity &&
-                params?.row?.paymentGiven
-                ? 'text-green-500'
-                : params?.row?.processLotId?.quantity ===
-                  params?.row?.quantityReturned
-                ? 'text-newBlue'
-                : 'text-red-600'
-              : ''
-          }`}
-        >
-          {params?.row.quantityLog || '-'}
-        </p>
-      )
-    },
+    // {
+    //   field: 'quantityLog',
+    //   headerName: 'Wasooli',
+    //   width: 140,
+    //   renderCell: (params) => (
+    //     <p
+    //       className={`p-1 text-base font-bold  ${
+    //         params?.row?.processLotId?.pageNumber
+    //           ? params?.row?.rate &&
+    //             params?.row?.quantityReturned ===
+    //               params?.row?.processLotId?.quantity &&
+    //             params?.row?.paymentGiven
+    //             ? 'text-green-500'
+    //             : params?.row?.processLotId?.quantity ===
+    //               params?.row?.quantityReturned
+    //             ? 'text-newBlue'
+    //             : 'text-red-600'
+    //           : ''
+    //       }`}
+    //     >
+    //       {params?.row.quantityLog || '-'}
+    //     </p>
+    //   )
+    // },
     {
       field: 'quantityReturned',
       headerName: 'Pending',
@@ -344,6 +344,30 @@ const WorkListTable = ({
       }
     },
     {
+      field: 'claim',
+      headerName: 'Claim',
+      width: 100,
+      renderCell: (params) => (
+        <p
+          className={`p-1 text-base font-bold  ${
+            params?.row?.processLotId?.pageNumber
+              ? params?.row?.rate &&
+                params?.row?.quantityReturned ===
+                  params?.row?.processLotId?.quantity &&
+                params?.row?.paymentGiven
+                ? 'text-green-500'
+                : params?.row?.processLotId?.quantity ===
+                  params?.row?.quantityReturned
+                ? 'text-newBlue'
+                : 'text-red-600'
+              : ''
+          }`}
+        >
+          {params?.row?.claim || '-'}
+        </p>
+      )
+    },
+    {
       field: 'paymentGiven',
       headerName: 'Payment',
       width: 100,
@@ -367,6 +391,7 @@ const WorkListTable = ({
         </p>
       )
     },
+
     // {
     //   field: 'paymentDate',
     //   headerName: 'Payment Date',
@@ -386,30 +411,30 @@ const WorkListTable = ({
     //     }
     //   }
     // },
-    {
-      field: 'reference',
-      headerName: 'References',
-      width: 100,
-      renderCell: (params) => (
-        <p
-          className={`p-2 text-base font-bold break-words  ${
-            params?.row?.processLotId?.pageNumber
-              ? params?.row?.rate &&
-                params?.row?.quantityReturned ===
-                  params?.row?.processLotId?.quantity &&
-                params?.row?.paymentGiven
-                ? 'text-green-500'
-                : params?.row?.processLotId?.quantity ===
-                  params?.row?.quantityReturned
-                ? 'text-newBlue'
-                : 'text-red-600'
-              : ''
-          }`}
-        >
-          {params?.row?.reference || '-'}
-        </p>
-      )
-    },
+    // {
+    //   field: 'reference',
+    //   headerName: 'References',
+    //   width: 100,
+    //   renderCell: (params) => (
+    //     <p
+    //       className={`p-2 text-base font-bold break-words  ${
+    //         params?.row?.processLotId?.pageNumber
+    //           ? params?.row?.rate &&
+    //             params?.row?.quantityReturned ===
+    //               params?.row?.processLotId?.quantity &&
+    //             params?.row?.paymentGiven
+    //             ? 'text-green-500'
+    //             : params?.row?.processLotId?.quantity ===
+    //               params?.row?.quantityReturned
+    //             ? 'text-newBlue'
+    //             : 'text-red-600'
+    //           : ''
+    //       }`}
+    //     >
+    //       {params?.row?.reference || '-'}
+    //     </p>
+    //   )
+    // },
     {
       field: 'actions',
       headerName: 'Actions',

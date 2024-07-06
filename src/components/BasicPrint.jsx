@@ -228,7 +228,7 @@ const BasicPrint = ({
                         >
                           QTY
                         </TableCell>
-                        <TableCell
+                        {/* <TableCell
                           sx={{
                             minWidth: 30,
                             maxWidth: 20,
@@ -239,7 +239,7 @@ const BasicPrint = ({
                           }}
                         >
                           LOG
-                        </TableCell>
+                        </TableCell> */}
                         <TableCell
                           sx={{
                             minWidth: 10,
@@ -287,6 +287,18 @@ const BasicPrint = ({
                           }}
                         >
                           DATE
+                        </TableCell>
+                        <TableCell
+                          sx={{
+                            minWidth: 20,
+                            maxWidth: 20,
+                            fontSize: '14px',
+                            fontWeight: 'bold',
+                            textAlign: 'center',
+                            verticalAlign: 'middle'
+                          }}
+                        >
+                          CLM
                         </TableCell>
                         <TableCell
                           sx={{
@@ -475,7 +487,7 @@ const BasicPrint = ({
                                   {work?.processLotId?.quantity || '-'}
                                 </p>
                               </TableCell>
-                              <TableCell
+                              {/* <TableCell
                                 sx={{
                                   minWidth: 20,
                                   maxWidth: 20,
@@ -514,7 +526,7 @@ const BasicPrint = ({
                                       : work.quantityLog
                                     : '-'}
                                 </p>
-                              </TableCell>
+                              </TableCell> */}
                               <TableCell
                                 sx={{
                                   minWidth: 20,
@@ -620,6 +632,33 @@ const BasicPrint = ({
                                   }`}
                                 >
                                   {convertDate(work?.lotClearDate || null)}
+                                </p>
+                              </TableCell>
+                              <TableCell
+                                sx={{
+                                  minWidth: 20,
+                                  maxWidth: 20,
+                                  minHeight: 10,
+                                  fontSize: '10px',
+                                  paddingBottom: 0,
+                                  paddingTop: 0
+                                }}
+                              >
+                                <p
+                                  className={`text-[12px] font-bold flex justify-center  ${
+                                    work?.lotClearDate
+                                      ? work?.rate &&
+                                        work?.quantityReturned ===
+                                          work?.processLotId?.quantity
+                                        ? 'text-green-500'
+                                        : work?.processLotId?.quantity ===
+                                          work?.quantityReturned
+                                        ? 'text-newBlue'
+                                        : 'text-red-600'
+                                      : 'text-black'
+                                  }`}
+                                >
+                                  {work?.claim || '-'}
                                 </p>
                               </TableCell>
                               <TableCell

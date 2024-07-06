@@ -53,9 +53,10 @@ const Work = () => {
         // Convert total and paymentGiven to numbers, handling null or empty values
         const total = parseFloat(item.total) || 0;
         const paymentGiven = parseFloat(item.paymentGiven) || 0;
+        const claim = parseFloat(item?.claim) || 0;
 
         acc.totalAmount += total;
-        acc.totalAmountGiven += paymentGiven;
+        acc.totalAmountGiven += paymentGiven + claim;
 
         return acc;
       },

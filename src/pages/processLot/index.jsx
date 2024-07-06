@@ -660,6 +660,8 @@ const ProcessLot = () => {
         <ProcessLotMainPrint
           processLot={reverseProcessLot}
           showPrint={showPrint}
+          pageStartValue={pageStartValue}
+          pageEndValue={pageEndValue}
         />
       </div>
     </Box>

@@ -1,12 +1,21 @@
 import React from 'react';
 import ProcessLotBasic from './ProcessLotBasic';
 
-const ProcessLotMainPrint = ({ showPrint, processLot }) => {
+const ProcessLotMainPrint = ({
+  showPrint,
+  processLot,
+  pageStartValue,
+  pageEndValue
+}) => {
   return (
     <>
       {showPrint && (
         <>
-          <ProcessLotBasic processLot={processLot} />
+          <ProcessLotBasic
+            processLot={processLot}
+            pageStartValue={pageStartValue}
+            pageEndValue={pageEndValue}
+          />
         </>
       )}
     </>

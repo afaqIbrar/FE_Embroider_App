@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import { Box, Grid, Divider, GlobalStyles } from '@mui/material';
 
-const ProcessLotBasic = ({ processLot }) => {
+const ProcessLotBasic = ({ processLot, pageStartValue, pageEndValue }) => {
   const printStyle = {
     ['@media print']: {
       ['@page']: {
@@ -60,7 +60,7 @@ const ProcessLotBasic = ({ processLot }) => {
           <Box displayPrint="block">
             <Box style={{ marginTop: '10px' }}>
               <Grid container spacing={2} className="mb-2 text-lg">
-                <Grid item xs={6}>
+                <Grid item xs={4}>
                   <div
                     style={{
                       textAlign: 'center',
@@ -73,7 +73,7 @@ const ProcessLotBasic = ({ processLot }) => {
                     </h1>
                   </div>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={4}>
                   <div className="flex ml-5">
                     <span
                       style={{
@@ -99,6 +99,21 @@ const ProcessLotBasic = ({ processLot }) => {
                         year: 'numeric'
                       })}
                     </span>
+                  </div>
+                </Grid>
+                <Grid item xs={4}>
+                  <div
+                    style={{
+                      textAlign: 'center',
+                      justifyContent: 'center',
+                      alignItems: 'center'
+                    }}
+                  >
+                    <h4 style={{ fontSize: '30px', margin: 0 }}>
+                      {pageStartValue === pageEndValue
+                        ? pageStartValue
+                        : `${pageStartValue} - ${pageEndValue}`}
+                    </h4>
                   </div>
                 </Grid>
               </Grid>

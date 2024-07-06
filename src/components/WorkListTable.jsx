@@ -27,10 +27,11 @@ const WorkListTable = ({
         // Convert total and paymentGiven to numbers, handling null or empty values
         const total = parseFloat(item.total) || 0;
         const paymentGiven = parseFloat(item.paymentGiven) || 0;
+        const claim = parseFloat(item?.claim) || 0;
 
         // Accumulate total and paymentGiven
         acc.totalAmount += total;
-        acc.totalAmountGiven += paymentGiven;
+        acc.totalAmountGiven += paymentGiven + claim;
 
         return acc;
       },
@@ -68,7 +69,9 @@ const WorkListTable = ({
                   ? params?.row?.rate &&
                     params?.row?.quantityReturned ===
                       params?.row?.processLotId?.quantity &&
-                    params?.row?.paymentGiven
+                    Number(params?.row?.total) ===
+                      Number(params?.row?.paymentGiven) +
+                        Number(params?.row?.claim || 0)
                     ? 'text-green-500'
                     : params?.row?.processLotId?.quantity ===
                       params?.row?.quantityReturned
@@ -96,7 +99,9 @@ const WorkListTable = ({
               ? params?.row?.rate &&
                 params?.row?.quantityReturned ===
                   params?.row?.processLotId?.quantity &&
-                params?.row?.paymentGiven
+                Number(params?.row?.total) ===
+                  Number(params?.row?.paymentGiven) +
+                    Number(params?.row?.claim || 0)
                 ? 'text-green-500'
                 : params?.row?.processLotId?.quantity ===
                   params?.row?.quantityReturned
@@ -120,7 +125,9 @@ const WorkListTable = ({
               ? params?.row?.rate &&
                 params?.row?.quantityReturned ===
                   params?.row?.processLotId?.quantity &&
-                params?.row?.paymentGiven
+                Number(params?.row?.total) ===
+                  Number(params?.row?.paymentGiven) +
+                    Number(params?.row?.claim || 0)
                 ? 'text-green-500'
                 : params?.row?.processLotId?.quantity ===
                   params?.row?.quantityReturned
@@ -144,7 +151,9 @@ const WorkListTable = ({
               ? params?.row?.rate &&
                 params?.row?.quantityReturned ===
                   params?.row?.processLotId?.quantity &&
-                params?.row?.paymentGiven
+                Number(params?.row?.total) ===
+                  Number(params?.row?.paymentGiven) +
+                    Number(params?.row?.claim || 0)
                 ? 'text-green-500'
                 : params?.row?.processLotId?.quantity ===
                   params?.row?.quantityReturned
@@ -168,7 +177,9 @@ const WorkListTable = ({
               ? params?.row?.rate &&
                 params?.row?.quantityReturned ===
                   params?.row?.processLotId?.quantity &&
-                params?.row?.paymentGiven
+                Number(params?.row?.total) ===
+                  Number(params?.row?.paymentGiven) +
+                    Number(params?.row?.claim || 0)
                 ? 'text-green-500'
                 : params?.row?.processLotId?.quantity ===
                   params?.row?.quantityReturned
@@ -192,7 +203,9 @@ const WorkListTable = ({
               ? params?.row?.rate &&
                 params?.row?.quantityReturned ===
                   params?.row?.processLotId?.quantity &&
-                params?.row?.paymentGiven
+                Number(params?.row?.total) ===
+                  Number(params?.row?.paymentGiven) +
+                    Number(params?.row?.claim || 0)
                 ? 'text-green-500'
                 : params?.row?.processLotId?.quantity ===
                   params?.row?.quantityReturned
@@ -244,7 +257,9 @@ const WorkListTable = ({
                 ? params?.row?.rate &&
                   params?.row?.quantityReturned ===
                     params?.row?.processLotId?.quantity &&
-                  params?.row?.paymentGiven
+                  Number(params?.row?.total) ===
+                    Number(params?.row?.paymentGiven) +
+                      Number(params?.row?.claim || 0)
                   ? 'text-green-500'
                   : params?.row?.processLotId?.quantity ===
                     params?.row?.quantityReturned
@@ -269,7 +284,9 @@ const WorkListTable = ({
               ? params?.row?.rate &&
                 params?.row?.quantityReturned ===
                   params?.row?.processLotId?.quantity &&
-                params?.row?.paymentGiven
+                Number(params?.row?.total) ===
+                  Number(params?.row?.paymentGiven) +
+                    Number(params?.row?.claim || 0)
                 ? 'text-green-500'
                 : params?.row?.processLotId?.quantity ===
                   params?.row?.quantityReturned
@@ -293,7 +310,9 @@ const WorkListTable = ({
               ? params?.row?.rate &&
                 params?.row?.quantityReturned ===
                   params?.row?.processLotId?.quantity &&
-                params?.row?.paymentGiven
+                Number(params?.row?.total) ===
+                  Number(params?.row?.paymentGiven) +
+                    Number(params?.row?.claim || 0)
                 ? 'text-green-500'
                 : params?.row?.processLotId?.quantity ===
                   params?.row?.quantityReturned
@@ -326,7 +345,9 @@ const WorkListTable = ({
                   ? params?.row?.rate &&
                     params?.row?.quantityReturned ===
                       params?.row?.processLotId?.quantity &&
-                    params?.row?.paymentGiven
+                    Number(params?.row?.total) ===
+                      Number(params?.row?.paymentGiven) +
+                        Number(params?.row?.claim || 0)
                     ? 'text-green-500'
                     : params?.row?.processLotId?.quantity ===
                       params?.row?.quantityReturned
@@ -354,7 +375,9 @@ const WorkListTable = ({
               ? params?.row?.rate &&
                 params?.row?.quantityReturned ===
                   params?.row?.processLotId?.quantity &&
-                params?.row?.paymentGiven
+                Number(params?.row?.total) ===
+                  Number(params?.row?.paymentGiven) +
+                    Number(params?.row?.claim || 0)
                 ? 'text-green-500'
                 : params?.row?.processLotId?.quantity ===
                   params?.row?.quantityReturned
@@ -378,7 +401,9 @@ const WorkListTable = ({
               ? params?.row?.rate &&
                 params?.row?.quantityReturned ===
                   params?.row?.processLotId?.quantity &&
-                params?.row?.paymentGiven
+                Number(params?.row?.total) ===
+                  Number(params?.row?.paymentGiven) +
+                    Number(params?.row?.claim || 0)
                 ? 'text-green-500'
                 : params?.row?.processLotId?.quantity ===
                   params?.row?.quantityReturned

@@ -356,7 +356,10 @@ const BasicPrint = ({
                                     work?.processLotId?.assignDate
                                       ? work?.rate &&
                                         work?.quantityReturned ===
-                                          work?.processLotId?.quantity
+                                          work?.processLotId?.quantity &&
+                                        Number(work?.total) ===
+                                          Number(work?.paymentGiven) +
+                                            Number(work?.claim || 0)
                                         ? 'text-green-500'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
@@ -395,7 +398,10 @@ const BasicPrint = ({
                                     work?.processLotId?.articleNumber
                                       ? work?.rate &&
                                         work?.quantityReturned ===
-                                          work?.processLotId?.quantity
+                                          work?.processLotId?.quantity &&
+                                        Number(work?.total) ===
+                                          Number(work?.paymentGiven) +
+                                            Number(work?.claim || 0)
                                         ? 'text-green-500'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
@@ -421,7 +427,10 @@ const BasicPrint = ({
                                     work?.processLotId?.colour
                                       ? work?.rate &&
                                         work?.quantityReturned ===
-                                          work?.processLotId?.quantity
+                                          work?.processLotId?.quantity &&
+                                        Number(work?.total) ===
+                                          Number(work?.paymentGiven) +
+                                            Number(work?.claim || 0)
                                         ? 'text-green-500'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
@@ -448,7 +457,10 @@ const BasicPrint = ({
                                     work?.processLotId?.billNumber
                                       ? work?.rate &&
                                         work?.quantityReturned ===
-                                          work?.processLotId?.quantity
+                                          work?.processLotId?.quantity &&
+                                        Number(work?.total) ===
+                                          Number(work?.paymentGiven) +
+                                            Number(work?.claim || 0)
                                         ? 'text-green-500'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
@@ -475,7 +487,10 @@ const BasicPrint = ({
                                     work?.processLotId?.quantity
                                       ? work?.rate &&
                                         work?.quantityReturned ===
-                                          work?.processLotId?.quantity
+                                          work?.processLotId?.quantity &&
+                                        Number(work?.total) ===
+                                          Number(work?.paymentGiven) +
+                                            Number(work?.claim || 0)
                                         ? 'text-green-500'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
@@ -532,9 +547,7 @@ const BasicPrint = ({
                                   minWidth: 20,
                                   maxWidth: 20,
                                   minHeight: 10,
-                                  fontSize: '10px',
-                                  paddingBottom: 0,
-                                  paddingTop: 0
+                                  fontSize: '10px'
                                 }}
                               >
                                 <p
@@ -542,7 +555,10 @@ const BasicPrint = ({
                                     work?.processLotId?.quantity
                                       ? work?.rate &&
                                         work?.quantityReturned ===
-                                          work?.processLotId?.quantity
+                                          work?.processLotId?.quantity &&
+                                        Number(work?.total) ===
+                                          Number(work?.paymentGiven) +
+                                            Number(work?.claim || 0)
                                         ? 'text-green-500'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
@@ -569,7 +585,10 @@ const BasicPrint = ({
                                     work?.rate
                                       ? work?.rate &&
                                         work?.quantityReturned ===
-                                          work?.processLotId?.quantity
+                                          work?.processLotId?.quantity &&
+                                        Number(work?.total) ===
+                                          Number(work?.paymentGiven) +
+                                            Number(work?.claim || 0)
                                         ? 'text-green-500'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
@@ -595,7 +614,10 @@ const BasicPrint = ({
                                     work?.total
                                       ? work?.rate &&
                                         work?.quantityReturned ===
-                                          work?.processLotId?.quantity
+                                          work?.processLotId?.quantity &&
+                                        Number(work?.total) ===
+                                          Number(work?.paymentGiven) +
+                                            Number(work?.claim || 0)
                                         ? 'text-green-500'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
@@ -622,7 +644,10 @@ const BasicPrint = ({
                                     work?.lotClearDate
                                       ? work?.rate &&
                                         work?.quantityReturned ===
-                                          work?.processLotId?.quantity
+                                          work?.processLotId?.quantity &&
+                                        Number(work?.total) ===
+                                          Number(work?.paymentGiven) +
+                                            Number(work?.claim || 0)
                                         ? 'text-green-500'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
@@ -649,7 +674,10 @@ const BasicPrint = ({
                                     work?.lotClearDate
                                       ? work?.rate &&
                                         work?.quantityReturned ===
-                                          work?.processLotId?.quantity
+                                          work?.processLotId?.quantity &&
+                                        Number(work?.total) ===
+                                          Number(work?.paymentGiven) +
+                                            Number(work?.claim || 0)
                                         ? 'text-green-500'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
@@ -676,7 +704,10 @@ const BasicPrint = ({
                                     work?.paymentGiven
                                       ? work?.rate &&
                                         work?.quantityReturned ===
-                                          work?.processLotId?.quantity
+                                          work?.processLotId?.quantity &&
+                                        Number(work?.total) ===
+                                          Number(work?.paymentGiven) +
+                                            Number(work?.claim || 0)
                                         ? 'text-green-500'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned
@@ -712,7 +743,10 @@ const BasicPrint = ({
                                     work?.reference
                                       ? work?.rate &&
                                         work?.quantityReturned ===
-                                          work?.processLotId?.quantity
+                                          work?.processLotId?.quantity &&
+                                        Number(work?.total) ===
+                                          Number(work?.paymentGiven) +
+                                            Number(work?.claim || 0)
                                         ? 'text-green-500'
                                         : work?.processLotId?.quantity ===
                                           work?.quantityReturned

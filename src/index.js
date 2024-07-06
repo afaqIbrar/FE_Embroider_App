@@ -11,11 +11,11 @@ const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 
 root.render(
-  <StrictMode>
-    <LocalizationProvider dateAdapter={AdapterMoment} adapterLocale="en-gb">
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </LocalizationProvider>
-  </StrictMode>
+  // <StrictMode>
+  <LocalizationProvider dateAdapter={AdapterMoment} adapterLocale="en-gb">
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </LocalizationProvider>
+  // </StrictMode>
 );

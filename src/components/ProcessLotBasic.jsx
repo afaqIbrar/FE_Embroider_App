@@ -247,7 +247,7 @@ const ProcessLotBasic = ({ processLot }) => {
                                 }}
                               >
                                 <p
-                                  className={` text-[16px] font-bold flex justify-center ${
+                                  className={` text-[14px] font-bold flex justify-center ${
                                     process?.assignDate
                                       ? 'text-green-500'
                                       : 'text-red-600'
@@ -267,7 +267,7 @@ const ProcessLotBasic = ({ processLot }) => {
                                 }}
                               >
                                 <p
-                                  className={` text-[16px] font-bold flex justify-center  ${
+                                  className={` text-[14px] font-bold flex justify-center  ${
                                     process?.assignDate
                                       ? 'text-green-500'
                                       : 'text-red-600'
@@ -287,7 +287,7 @@ const ProcessLotBasic = ({ processLot }) => {
                                 }}
                               >
                                 <p
-                                  className={` text-[16px] font-bold flex justify-center ${
+                                  className={` text-[14px] font-bold flex justify-center ${
                                     process?.assignDate
                                       ? 'text-green-500'
                                       : 'text-red-600'
@@ -307,7 +307,7 @@ const ProcessLotBasic = ({ processLot }) => {
                                 }}
                               >
                                 <p
-                                  className={` text-[16px] font-bold flex justify-center ${
+                                  className={` text-[14px] font-bold flex justify-center ${
                                     process?.billNumber
                                       ? process?.assignDate
                                         ? 'text-green-500'
@@ -329,7 +329,7 @@ const ProcessLotBasic = ({ processLot }) => {
                                 }}
                               >
                                 <p
-                                  className={` text-[16px] font-bold flex justify-center  ${
+                                  className={` text-[14px] font-bold flex justify-center  ${
                                     process.quantity
                                       ? process.assignDate
                                         ? 'text-green-500'
@@ -351,7 +351,7 @@ const ProcessLotBasic = ({ processLot }) => {
                                 }}
                               >
                                 <p
-                                  className={` text-[16px] font-bold flex justify-center ${
+                                  className={` text-[14px] font-bold flex justify-center ${
                                     process?.assignDate
                                       ? process?.assignDate
                                         ? 'text-green-500'

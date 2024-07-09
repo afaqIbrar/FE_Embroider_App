@@ -108,10 +108,10 @@ const AddWork = ({ formik, work, view }) => {
             value={formik?.values?.quantityLog || ''}
             inputRef={qtyLog}
             onInput={(e) => {
-              const newValue = e.target.value.replace(/[^0-9,]/g, '');
+              const newValue = e.target.value.replace(/[^0-9.]/g, '');
               formik.setFieldValue('quantityLog', newValue);
               const sum = newValue
-                .split(',')
+                .split('.')
                 .filter(Boolean)
                 .map(Number)
                 .reduce((acc, curr) => acc + curr, 0);

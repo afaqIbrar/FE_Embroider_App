@@ -392,6 +392,12 @@ const Users = () => {
           columns={columns}
           density="compact"
           getRowId={(row) => row._id}
+          sx={{
+            '& .MuiDataGrid-cell:focus, & .MuiDataGrid-cell:focus-within': {
+              outline: 'rgba(255,255,255) solid 1px',
+              outlineOffset: '-1px'
+            }
+          }}
         />
       </Box>
     </Box>

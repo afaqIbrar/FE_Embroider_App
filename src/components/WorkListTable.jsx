@@ -532,6 +532,12 @@ const WorkListTable = ({
         getRowId={(row) => row._id}
         density="compact"
         getRowHeight={() => 'auto'}
+        sx={{
+          '& .MuiDataGrid-cell:focus, & .MuiDataGrid-cell:focus-within': {
+            outline: 'rgba(255,255,255) solid 1px',
+            outlineOffset: '-1px'
+          }
+        }}
       />
       {/* <TableContainer className="mt-8 rounded-t-lg border border-solid border-dark300 inventory-table h-[500px]">
         <Table stickyHeader>

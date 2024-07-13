@@ -135,8 +135,11 @@ const BasicPrint = ({
                         alignItems: 'center'
                       }}
                     >
-                      {' '}
-                      {/* {'12-12-2012 - 12-12-2012' || '-'} */}
+                      {new Date().toLocaleDateString('en-GB', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric'
+                      })}
                     </span>
                   </div>
                 </Grid>
@@ -764,12 +767,15 @@ const BasicPrint = ({
                     </TableBody>
                   </Table>
                 </TableContainer>
-                <Paper className="w-ful rounded-b-lg h-10  border flex justify-end items-center text-[16px] font-bold pr-16">
-                  <div className="mr-24">Total Amount : {totalAmount}</div>
-                  <div className="mr-24">
+                <Paper className="w-ful rounded-b-lg h-10  border flex justify-between items-center text-[16px] font-bold pr-16">
+                  <div style={{ marginLeft: '10px' }} className="pr-15">
+                    Total Amount : {totalAmount}
+                  </div>
+                  <div style={{ marginLeft: '10px' }} className="mr-15">
                     Total Amount Given : {totalAmountGiven}
                   </div>
                   <div
+                    style={{ marginRight: '10px' }}
                     className={clsx('font-bold', {
                       'text-red-500': balance > 0,
                       'text-green-500': balance < 0

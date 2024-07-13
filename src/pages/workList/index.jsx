@@ -2,7 +2,6 @@ import React from 'react';
 import { Box, useTheme } from '@mui/material';
 import { tokens } from '../../theme';
 import { InputBase, IconButton, Button } from '@mui/material';
-import Header from '../../components/Header';
 import API from '../../utils/axios';
 import { useState, useEffect, useRef } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
@@ -16,6 +15,8 @@ import { useReactToPrint } from 'react-to-print';
 import AccountsPrint from '../../components/accountsPrint';
 import WorkListTable from '../../components/WorkListTable';
 import { TextareaAutosize } from '@mui/base';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import moment from 'moment';
 
 const workInitialValues = {
   // quantityLog: '',
@@ -46,6 +47,11 @@ const Work = () => {
   const [totalAmountGiven, setTotalAmoutGiven] = useState(0);
   const [balance, setBalance] = useState(0);
   const [extraInfoPopup, setExtraInfoPopup] = useState(false);
+  const today = moment();
+  const firstDayOfYear = moment().startOf('year');
+
+  const [startDate, setStartDate] = useState(firstDayOfYear);
+  const [endDate, setEndDate] = useState(today);
 
   function calculateBalance() {
     const { totalAmount, totalAmountGiven } = works?.reduce(
@@ -335,7 +341,9 @@ const Work = () => {
     const data = await API.get('work/byId/' + workerId, {
       withCredentials: true,
       params: {
-        search: searchText
+        search: searchText,
+        startDate: startDate,
+        endDate: endDate
       }
     });
     setWorks(data.data);
@@ -375,6 +383,45 @@ const Work = () => {
             <IconButton type="button">
               <SearchIcon />
             </IconButton>
+          </Box>
+          <Box sx={{ width: 600, color: 'White' }} display="flex">
+            <Box sx={{ width: 180 }}>
+              <DatePicker
+                label="Start Date"
+                id="startDate"
+                slotProps={{ field: { clearable: true } }}
+                value={startDate}
+                size="small"
+                onChange={(newValue) => {
+                  setStartDate(newValue);
+                }}
+              />
+            </Box>
+            <Box sx={{ width: 180, marginLeft: 2 }}>
+              <DatePicker
+                label="End Date"
+                id="endDate"
+                slotProps={{ field: { clearable: true } }}
+                value={endDate}
+                onChange={(newValue) => {
+                  setEndDate(newValue);
+                }}
+                size="small"
+              />
+            </Box>
+            <Button
+              sx={{
+                backgroundColor: colors.blueAccent[700],
+                color: colors.grey[100],
+                fontSize: '14px',
+                fontWeight: 'bold',
+                padding: '10px 20px',
+                marginLeft: '12px'
+              }}
+              onClick={() => fetchWorkAgainstWorker()}
+            >
+              Search
+            </Button>
           </Box>
           <Box>
             <Button

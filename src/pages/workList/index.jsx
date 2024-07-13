@@ -473,6 +473,7 @@ const Work = () => {
         setBalance={setBalance}
         setTotalAmount={setTotalAmount}
         setTotalAmoutGiven={setTotalAmoutGiven}
+        workerData={workerData}
       />
       {/* <div>
           <TableContainer className="mt-8 rounded-t-lg border border-solid border-dark300 inventory-table h-[580px]">
@@ -556,7 +557,14 @@ const Work = () => {
           setView(false);
           setSelectedWork({});
         }}
-        content={<AddWork formik={formik} view={view} work={selectedWork} />}
+        content={
+          <AddWork
+            formik={formik}
+            view={view}
+            work={selectedWork}
+            workerData={workerData}
+          />
+        }
         actions={
           view ? (
             <div className="flex gap-2">

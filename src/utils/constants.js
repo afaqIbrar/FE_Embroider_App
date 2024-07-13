@@ -39,3 +39,9 @@ export const WORKTYPE = {
   DUPATTA_WORK: 'Dupatta Work',
   INNER_WORK: 'Inner Work'
 };
+
+export const WORKERTYPEOBJECT = {
+  HAND_WORKER: 'HAND_WORKER',
+  DUPATTA_WORKER: 'DUPATTA_WORKER',
+  INNER_WORKER: 'INNER_WORKER'
+}

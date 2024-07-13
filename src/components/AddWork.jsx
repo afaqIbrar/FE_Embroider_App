@@ -5,14 +5,15 @@ import { useRef } from 'react';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import moment from 'moment';
 
-const AddWork = ({ formik, work, view }) => {
+const AddWork = ({ formik, work, view, workerData }) => {
   const qtyLog = useRef(null);
-
   useEffect(() => {
     if (work) {
       formik.setValues({
-        ...(work?.quantityLog ? { quantityLog: work.quantityLog } : {}),
-        ...(work?.quantityReturned
+        ...(work?.quantityLog && workerData.workerType !== 'INNER_WORKER'
+          ? { quantityLog: work.quantityLog }
+          : {}),
+        ...(work?.quantityReturned && workerData.workerType !== 'INNER_WORKER'
           ? { quantityReturned: work.quantityReturned }
           : {}),
         ...(work?.rate ? { rate: work.rate } : {}),
@@ -23,7 +24,10 @@ const AddWork = ({ formik, work, view }) => {
         ...(work?.claim ? { claim: work.claim } : {}),
         ...(work?.lotClearDate
           ? { lotClearDate: moment(work?.lotClearDate) }
-          : null)
+          : null),
+        ...(work?.gazana && workerData.workerType === 'INNER_WORKER'
+          ? { gazana: work.gazana }
+          : {})
       });
     }
   }, [work]);
@@ -100,42 +104,63 @@ const AddWork = ({ formik, work, view }) => {
             disabled={true}
           />
         </div>
-        <div className="w-100 flex">
-          <TextField
-            id="quantityLog"
-            name="quantityLog"
-            label="Quantity Log"
-            value={formik?.values?.quantityLog || ''}
-            inputRef={qtyLog}
-            onInput={(e) => {
-              const newValue = e.target.value.replace(/[^0-9.]/g, '');
-              formik.setFieldValue('quantityLog', newValue);
-              const sum = newValue
-                .split('.')
-                .filter(Boolean)
-                .map(Number)
-                .reduce((acc, curr) => acc + curr, 0);
-              if (sum > work?.processLotId?.quantity) {
-                formik.setFieldError(
-                  'quantityLog',
-                  `Quantity cannot exceed ${work?.processLotId?.quantity}`
-                );
-              } else {
-                formik.setFieldError('quantityLog', undefined);
-              }
-              formik.setFieldValue('quantityReturned', sum);
-            }}
-            disabled={view}
-            onKeyDown={(e) => handleKeyDown(e, 'rate')}
-          />
-          <TextField
-            id="outlined-required"
-            label="Quantity Returned"
-            value={formik?.values?.quantityReturned || ''}
-            disabled={true}
-            type="number"
-          />
-        </div>
+        {workerData.workerType !== 'INNER_WORKER' && (
+          <div className="w-100 flex">
+            <TextField
+              id="quantityLog"
+              name="quantityLog"
+              label="Quantity Log"
+              value={formik?.values?.quantityLog || ''}
+              inputRef={qtyLog}
+              onInput={(e) => {
+                const newValue = e.target.value.replace(/[^0-9.]/g, '');
+                formik.setFieldValue('quantityLog', newValue);
+                const sum = newValue
+                  .split('.')
+                  .filter(Boolean)
+                  .map(Number)
+                  .reduce((acc, curr) => acc + curr, 0);
+                if (sum > work?.processLotId?.quantity) {
+                  formik.setFieldError(
+                    'quantityLog',
+                    `Quantity cannot exceed ${work?.processLotId?.quantity}`
+                  );
+                } else {
+                  formik.setFieldError('quantityLog', undefined);
+                }
+                formik.setFieldValue('quantityReturned', sum);
+              }}
+              disabled={view}
+              onKeyDown={(e) => handleKeyDown(e, 'rate')}
+            />
+            <TextField
+              id="outlined-required"
+              label="Quantity Returned"
+              value={formik?.values?.quantityReturned || ''}
+              disabled={true}
+              type="number"
+            />
+          </div>
+        )}
+        {workerData.workerType === 'INNER_WORKER' && (
+          <div style={{ width: '100%' }}>
+            <TextField
+              id="outlined-required"
+              sx={{
+                '&.MuiFormControl-root': {
+                  width: '96%'
+                }
+              }}
+              label="Gazana"
+              type="number"
+              value={formik?.values?.gazana || ''}
+              onChange={(e) => {
+                formik.setFieldValue('gazana', e.target.value);
+              }}
+            />
+          </div>
+        )}
+
         <div className="w-full">
           <DatePicker
             label="Nill Date"
@@ -156,10 +181,17 @@ const AddWork = ({ formik, work, view }) => {
             value={formik?.values?.rate || ''}
             onChange={(e) => {
               formik.setFieldValue('rate', e.target.value);
-              formik.setFieldValue(
-                'total',
-                e.target.value * work?.processLotId?.quantity || 0
-              );
+              if (workerData.workerType !== 'INNER_WORKER') {
+                formik.setFieldValue(
+                  'total',
+                  e.target.value * work?.processLotId?.quantity || 0
+                );
+              } else {
+                formik.setFieldValue(
+                  'total',
+                  e.target.value * formik.values.gazana || 0
+                );
+              }
             }}
             disabled={view}
             type="number"

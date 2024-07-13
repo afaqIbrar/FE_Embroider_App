@@ -424,7 +424,7 @@ const BasicPrint = ({
                               >
                                 <p
                                   className={`text-[16px] font-bold flex justify-center ${
-                                    work?.processLotId?.articleNumber
+                                    work?.processLotId?.assignDate
                                       ? work?.rate &&
                                         (workerData.workerType !==
                                         'INNER_WORKER'
@@ -463,7 +463,7 @@ const BasicPrint = ({
                               >
                                 <p
                                   className={`w-16 text-[14px] font-bold flex justify-center  ${
-                                    work?.processLotId?.colour
+                                    work?.processLotId?.assignDate
                                       ? work?.rate &&
                                         (workerData.workerType !==
                                         'INNER_WORKER'
@@ -503,7 +503,7 @@ const BasicPrint = ({
                               >
                                 <p
                                   className={`text-[16px] font-bold flex justify-center   ${
-                                    work?.processLotId?.billNumber
+                                    work?.processLotId?.assignDate
                                       ? work?.rate &&
                                         (workerData.workerType !==
                                         'INNER_WORKER'
@@ -543,7 +543,7 @@ const BasicPrint = ({
                               >
                                 <p
                                   className={`text-[16px] font-bold flex justify-center  ${
-                                    work?.processLotId?.quantity
+                                    work?.processLotId?.assignDate
                                       ? work?.rate &&
                                         (workerData.workerType !==
                                         'INNER_WORKER'
@@ -622,7 +622,7 @@ const BasicPrint = ({
                                 >
                                   <p
                                     className={`text-[16px] font-bold flex justify-center  ${
-                                      work?.processLotId?.quantity
+                                      work?.processLotId?.assignDate
                                         ? work?.rate &&
                                           (workerData.workerType !==
                                           'INNER_WORKER'

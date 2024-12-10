@@ -17,7 +17,9 @@ import API from '../../utils/axios';
 const workerInitialValues = {
   workerName: '',
   workerType: 'HAND_WORKER',
-  phoneNumber: ''
+  phoneNumber: '',
+  balance: 0,
+  initialBalanceType: 'to_receive'
 };
 
 const Workers = () => {
@@ -134,6 +136,17 @@ const Workers = () => {
       headerName: 'Worker Type',
       width: 150,
       renderCell: (params) => <p>{WORKERTYPE[params.value]}</p>
+    },
+    {
+      field: 'balance',
+      headerName: 'Worker Current Balance',
+      width: 150,
+      renderCell: (params) => {
+        const balance = params.value;
+        // Apply the Tailwind classes conditionally based on the balance value
+        const balanceClass = balance < 0 ? 'text-green-500' : 'text-red-600';
+        return <span className={`text-base	 ${balanceClass} text-sm`}>{balance}</span>;
+      }
     },
     // {
     //   field: 'phoneNumber',

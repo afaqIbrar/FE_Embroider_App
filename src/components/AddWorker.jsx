@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, TextField } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
-import { WORKER_TYPE } from '../utils/constants';
+import { WORKER_TYPE,INITIAL_BALANCE_TYPE } from '../utils/constants';
 import { useEffect } from 'react';
 
 const AddWorker = ({ formik, worker, view }) => {
@@ -10,7 +10,9 @@ const AddWorker = ({ formik, worker, view }) => {
       formik.setValues({
         workerName: worker.workerName,
         workerType: worker.workerType,
-        phoneNumber: worker.phoneNumber
+        phoneNumber: worker?.phoneNumber,
+        balance: worker?.balance,
+        initialBalanceType: worker?.initialBalanceType
       });
     }
   }, [worker]);
@@ -52,16 +54,34 @@ const AddWorker = ({ formik, worker, view }) => {
         ))}
       </TextField>
       <div>
-        {/* <TextField
+        <TextField
           id="outlined-required"
-          label="Phone Number"
-          value={formik.values.phoneNumber}
+          label="Opening Balance"
+          type='number'
+          value={formik.values.balance}
           onChange={(e) => {
-            formik.setFieldValue('phoneNumber', e.target.value);
+            const value = e.target.value;
+            // Ensure the value is a positive number or empty
+              formik.setFieldValue("balance", value);
           }}
-          disabled={view}
-        /> */}
+          disabled={worker}
+        />
       </div>
+      <TextField
+        select
+        label="Initial Balance Type"
+        value={formik.values.initialBalanceType}
+        onChange={(e) => {
+          formik.setFieldValue('initialBalanceType', e.target.value);
+        }}
+        disabled={worker}
+      >
+        {INITIAL_BALANCE_TYPE.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </TextField>
     </Box>
   );
 };

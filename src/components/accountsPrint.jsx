@@ -4,9 +4,6 @@ const AccountsPrint = ({
   showPrint,
   workerData,
   works,
-  totalAmount,
-  totalAmountGiven,
-  balance
 }) => {
   return (
     <>
@@ -15,9 +12,6 @@ const AccountsPrint = ({
           <BasicPrint
             workerData={workerData}
             works={works}
-            totalAmount={totalAmount}
-            totalAmountGiven={totalAmountGiven}
-            balance={balance}
           />
         </>
       )}

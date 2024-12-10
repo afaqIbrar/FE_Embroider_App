@@ -29,6 +29,17 @@ export const WORKER_TYPE = [
   }
 ];
 
+export const INITIAL_BALANCE_TYPE = [
+  {
+    value: 'to_receive',
+    label: 'To Receive from Worker'
+  },
+  {
+    value: 'to_pay',
+    label: 'To Pay to worker'
+  },
+];
+
 export const WORKERTYPE = {
   HAND_WORKER: 'Hand Embroider',
   DUPATTA_WORKER: 'Dupatta Worker',

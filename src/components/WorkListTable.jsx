@@ -5,49 +5,16 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { tokens } from '../theme';
-import clsx from 'clsx';
 
 const WorkListTable = ({
   works,
   handleDeleteClick,
   handleEditClick,
   handleViewClick,
-  totalAmount,
-  totalAmountGiven,
-  balance,
-  setBalance,
-  setTotalAmount,
-  setTotalAmoutGiven,
   workerData
 }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  function calculateBalance() {
-    const { totalAmount, totalAmountGiven } = works?.reduce(
-      (acc, item) => {
-        // Convert total and paymentGiven to numbers, handling null or empty values
-        const total = parseFloat(item.total) || 0;
-        const paymentGiven = parseFloat(item.paymentGiven) || 0;
-        const claim = parseFloat(item?.claim) || 0;
-
-        // Accumulate total and paymentGiven
-        acc.totalAmount += total;
-        acc.totalAmountGiven += paymentGiven + claim;
-
-        return acc;
-      },
-      { totalAmount: 0, totalAmountGiven: 0 }
-    );
-
-    // Calculate the balance
-    const balance = totalAmount - totalAmountGiven;
-    setTotalAmount(totalAmount);
-    setTotalAmoutGiven(totalAmountGiven);
-    setBalance(balance);
-  }
-  useEffect(() => {
-    calculateBalance();
-  }, [works]);
 
   const columns = [
     {
@@ -71,18 +38,14 @@ const WorkListTable = ({
                     (workerData.workerType !== 'INNER_WORKER'
                       ? params?.row?.quantityReturned ===
                           params?.row?.processLotId?.quantity &&
-                        Number(params?.row?.total) ===
-                          Number(params?.row?.paymentGiven) +
-                            Number(params?.row?.claim || 0)
-                      : Number(params?.row?.total) ===
-                        Number(params?.row?.paymentGiven) +
-                          Number(params?.row?.claim || 0))
+                        Number(params?.row?.total)
+                      : Number(params?.row?.rate))
                     ? 'text-green-500'
                     : (
                         workerData.workerType !== 'INNER_WORKER'
                           ? params?.row?.processLotId?.quantity ===
                             params?.row.quantityReturned
-                          : params?.row?.gazana && params?.row?.rate
+                          : params?.row?.gazana
                       )
                     ? 'text-newBlue'
                     : 'text-red-600'
@@ -103,29 +66,25 @@ const WorkListTable = ({
       width: 40,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base font-bold ${
-            params?.row?.processLotId?.pageNumber
-              ? params?.row?.rate &&
-                (workerData.workerType !== 'INNER_WORKER'
-                  ? params?.row?.quantityReturned ===
-                      params?.row?.processLotId?.quantity &&
-                    Number(params?.row?.total) ===
-                      Number(params?.row?.paymentGiven) +
-                        Number(params?.row?.claim || 0)
-                  : Number(params?.row?.total) ===
-                    Number(params?.row?.paymentGiven) +
-                      Number(params?.row?.claim || 0))
-                ? 'text-green-500'
-                : (
-                    workerData.workerType !== 'INNER_WORKER'
-                      ? params?.row?.processLotId?.quantity ===
-                        params?.row.quantityReturned
-                      : params?.row?.gazana && params?.row?.rate
-                  )
-                ? 'text-newBlue'
-                : 'text-red-600'
-              : ''
-          }`}
+        className={`p-1 text-base font-bold ${
+          params?.row?.processLotId?.assignDate
+            ? params?.row?.rate &&
+              (workerData.workerType !== 'INNER_WORKER'
+                ? params?.row?.quantityReturned ===
+                    params?.row?.processLotId?.quantity &&
+                  Number(params?.row?.total)
+                : Number(params?.row?.rate))
+              ? 'text-green-500'
+              : (
+                  workerData.workerType !== 'INNER_WORKER'
+                    ? params?.row?.processLotId?.quantity ===
+                      params?.row.quantityReturned
+                    : params?.row?.gazana
+                )
+              ? 'text-newBlue'
+              : 'text-red-600'
+            : ''
+        }`}
         >
           {params?.row.processLotId?.pageNumber || '-'}
         </p>
@@ -137,29 +96,25 @@ const WorkListTable = ({
       width: 50,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base font-bold ${
-            params?.row?.processLotId?.pageNumber
-              ? params?.row?.rate &&
-                (workerData.workerType !== 'INNER_WORKER'
-                  ? params?.row?.quantityReturned ===
-                      params?.row?.processLotId?.quantity &&
-                    Number(params?.row?.total) ===
-                      Number(params?.row?.paymentGiven) +
-                        Number(params?.row?.claim || 0)
-                  : Number(params?.row?.total) ===
-                    Number(params?.row?.paymentGiven) +
-                      Number(params?.row?.claim || 0))
-                ? 'text-green-500'
-                : (
-                    workerData.workerType !== 'INNER_WORKER'
-                      ? params?.row?.processLotId?.quantity ===
-                        params?.row.quantityReturned
-                      : params?.row?.gazana && params?.row?.rate
-                  )
-                ? 'text-newBlue'
-                : 'text-red-600'
-              : ''
-          }`}
+        className={`p-1 text-base font-bold ${
+          params?.row?.processLotId?.assignDate
+            ? params?.row?.rate &&
+              (workerData.workerType !== 'INNER_WORKER'
+                ? params?.row?.quantityReturned ===
+                    params?.row?.processLotId?.quantity &&
+                  Number(params?.row?.total)
+                : Number(params?.row?.rate))
+              ? 'text-green-500'
+              : (
+                  workerData.workerType !== 'INNER_WORKER'
+                    ? params?.row?.processLotId?.quantity ===
+                      params?.row.quantityReturned
+                    : params?.row?.gazana 
+                )
+              ? 'text-newBlue'
+              : 'text-red-600'
+            : ''
+        }`}
         >
           {params?.row?.processLotId?.articleNumber || '-'}
         </p>
@@ -171,29 +126,25 @@ const WorkListTable = ({
       width: 100,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base font-bold ${
-            params?.row?.processLotId?.pageNumber
-              ? params?.row?.rate &&
-                (workerData.workerType !== 'INNER_WORKER'
-                  ? params?.row?.quantityReturned ===
-                      params?.row?.processLotId?.quantity &&
-                    Number(params?.row?.total) ===
-                      Number(params?.row?.paymentGiven) +
-                        Number(params?.row?.claim || 0)
-                  : Number(params?.row?.total) ===
-                    Number(params?.row?.paymentGiven) +
-                      Number(params?.row?.claim || 0))
-                ? 'text-green-500'
-                : (
-                    workerData.workerType !== 'INNER_WORKER'
-                      ? params?.row?.processLotId?.quantity ===
-                        params?.row.quantityReturned
-                      : params?.row?.gazana && params?.row?.rate
-                  )
-                ? 'text-newBlue'
-                : 'text-red-600'
-              : ''
-          }`}
+        className={`p-1 text-base font-bold ${
+          params?.row?.processLotId?.assignDate
+            ? params?.row?.rate &&
+              (workerData.workerType !== 'INNER_WORKER'
+                ? params?.row?.quantityReturned ===
+                    params?.row?.processLotId?.quantity &&
+                  Number(params?.row?.total)
+                : Number(params?.row?.rate))
+              ? 'text-green-500'
+              : (
+                  workerData.workerType !== 'INNER_WORKER'
+                    ? params?.row?.processLotId?.quantity ===
+                      params?.row.quantityReturned
+                    : params?.row?.gazana
+                )
+              ? 'text-newBlue'
+              : 'text-red-600'
+            : ''
+        }`}
         >
           {params?.row?.processLotId?.colour || '-'}
         </p>
@@ -205,29 +156,25 @@ const WorkListTable = ({
       width: 40,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base font-bold ${
-            params?.row?.processLotId?.pageNumber
-              ? params?.row?.rate &&
-                (workerData.workerType !== 'INNER_WORKER'
-                  ? params?.row?.quantityReturned ===
-                      params?.row?.processLotId?.quantity &&
-                    Number(params?.row?.total) ===
-                      Number(params?.row?.paymentGiven) +
-                        Number(params?.row?.claim || 0)
-                  : Number(params?.row?.total) ===
-                    Number(params?.row?.paymentGiven) +
-                      Number(params?.row?.claim || 0))
-                ? 'text-green-500'
-                : (
-                    workerData.workerType !== 'INNER_WORKER'
-                      ? params?.row?.processLotId?.quantity ===
-                        params?.row.quantityReturned
-                      : params?.row?.gazana && params?.row?.rate
-                  )
-                ? 'text-newBlue'
-                : 'text-red-600'
-              : ''
-          }`}
+        className={`p-1 text-base font-bold ${
+          params?.row?.processLotId?.assignDate
+            ? params?.row?.rate &&
+              (workerData.workerType !== 'INNER_WORKER'
+                ? params?.row?.quantityReturned ===
+                    params?.row?.processLotId?.quantity &&
+                  Number(params?.row?.total)
+                : Number(params?.row?.rate))
+              ? 'text-green-500'
+              : (
+                  workerData.workerType !== 'INNER_WORKER'
+                    ? params?.row?.processLotId?.quantity ===
+                      params?.row.quantityReturned
+                    : params?.row?.gazana
+                )
+              ? 'text-newBlue'
+              : 'text-red-600'
+            : ''
+        }`}
         >
           {params?.row?.processLotId?.billNumber || '-'}
         </p>
@@ -239,58 +186,30 @@ const WorkListTable = ({
       width: 30,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base font-bold ${
-            params?.row?.processLotId?.pageNumber
-              ? params?.row?.rate &&
-                (workerData.workerType !== 'INNER_WORKER'
-                  ? params?.row?.quantityReturned ===
-                      params?.row?.processLotId?.quantity &&
-                    Number(params?.row?.total) ===
-                      Number(params?.row?.paymentGiven) +
-                        Number(params?.row?.claim || 0)
-                  : Number(params?.row?.total) ===
-                    Number(params?.row?.paymentGiven) +
-                      Number(params?.row?.claim || 0))
-                ? 'text-green-500'
-                : (
-                    workerData.workerType !== 'INNER_WORKER'
-                      ? params?.row?.processLotId?.quantity ===
-                        params?.row.quantityReturned
-                      : params?.row?.gazana && params?.row?.rate
-                  )
-                ? 'text-newBlue'
-                : 'text-red-600'
-              : ''
-          }`}
+        className={`p-1 text-base font-bold ${
+          params?.row?.processLotId?.assignDate
+            ? params?.row?.rate &&
+              (workerData.workerType !== 'INNER_WORKER'
+                ? params?.row?.quantityReturned ===
+                    params?.row?.processLotId?.quantity &&
+                  Number(params?.row?.total)
+                : Number(params?.row?.rate))
+              ? 'text-green-500'
+              : (
+                  workerData.workerType !== 'INNER_WORKER'
+                    ? params?.row?.processLotId?.quantity ===
+                      params?.row.quantityReturned
+                    : params?.row?.gazana
+                )
+              ? 'text-newBlue'
+              : 'text-red-600'
+            : ''
+        }`}
         >
           {params?.row?.processLotId?.quantity || '-'}
         </p>
       )
     },
-    // {
-    //   field: 'quantityLog',
-    //   headerName: 'Wasooli',
-    //   width: 140,
-    //   renderCell: (params) => (
-    //     <p
-    //       className={`p-1 text-base font-bold  ${
-    //         params?.row?.processLotId?.pageNumber
-    //           ? params?.row?.rate &&
-    //             params?.row?.quantityReturned ===
-    //               params?.row?.processLotId?.quantity &&
-    //             params?.row?.paymentGiven
-    //             ? 'text-green-500'
-    //             : params?.row?.processLotId?.quantity ===
-    //               params?.row?.quantityReturned
-    //             ? 'text-newBlue'
-    //             : 'text-red-600'
-    //           : ''
-    //       }`}
-    //     >
-    //       {params?.row.quantityLog || '-'}
-    //     </p>
-    //   )
-    // },
     ...(workerData?.workerType !== 'INNER_WORKER'
       ? [
           {
@@ -305,29 +224,25 @@ const WorkListTable = ({
               const result = quantity - quantityReturned;
               return (
                 <p
-                  className={`p-1 text-base font-bold ${
-                    params?.row?.processLotId?.pageNumber
-                      ? params?.row?.rate &&
-                        (workerData.workerType !== 'INNER_WORKER'
-                          ? params?.row?.quantityReturned ===
-                              params?.row?.processLotId?.quantity &&
-                            Number(params?.row?.total) ===
-                              Number(params?.row?.paymentGiven) +
-                                Number(params?.row?.claim || 0)
-                          : Number(params?.row?.total) ===
-                            Number(params?.row?.paymentGiven) +
-                              Number(params?.row?.claim || 0))
-                        ? 'text-green-500'
-                        : (
-                            workerData.workerType !== 'INNER_WORKER'
-                              ? params?.row?.processLotId?.quantity ===
-                                params?.row.quantityReturned
-                              : params?.row?.gazana && params?.row?.rate
-                          )
-                        ? 'text-newBlue'
-                        : 'text-red-600'
-                      : ''
-                  }`}
+                className={`p-1 text-base font-bold ${
+                  params?.row?.processLotId?.assignDate
+                    ? params?.row?.rate &&
+                      (workerData.workerType !== 'INNER_WORKER'
+                        ? params?.row?.quantityReturned ===
+                            params?.row?.processLotId?.quantity &&
+                          Number(params?.row?.total)
+                        : Number(params?.row?.rate))
+                      ? 'text-green-500'
+                      : (
+                          workerData.workerType !== 'INNER_WORKER'
+                            ? params?.row?.processLotId?.quantity ===
+                              params?.row.quantityReturned
+                            : params?.row?.gazana
+                        )
+                      ? 'text-newBlue'
+                      : 'text-red-600'
+                    : ''
+                }`}
                 >
                   {result || result === 0 ? result : '-'}
                 </p>
@@ -344,29 +259,25 @@ const WorkListTable = ({
             width: 70,
             renderCell: (params) => (
               <p
-                className={`p-1 text-base font-bold ${
-                  params?.row?.processLotId?.pageNumber
-                    ? params?.row?.rate &&
-                      (workerData.workerType !== 'INNER_WORKER'
-                        ? params?.row?.quantityReturned ===
-                            params?.row?.processLotId?.quantity &&
-                          Number(params?.row?.total) ===
-                            Number(params?.row?.paymentGiven) +
-                              Number(params?.row?.claim || 0)
-                        : Number(params?.row?.total) ===
-                          Number(params?.row?.paymentGiven) +
-                            Number(params?.row?.claim || 0))
-                      ? 'text-green-500'
-                      : (
-                          workerData.workerType !== 'INNER_WORKER'
-                            ? params?.row?.processLotId?.quantity ===
-                              params?.row.quantityReturned
-                            : params?.row?.gazana && params?.row?.rate
-                        )
-                      ? 'text-newBlue'
-                      : 'text-red-600'
-                    : ''
-                }`}
+              className={`p-1 text-base font-bold ${
+                params?.row?.processLotId?.assignDate
+                  ? params?.row?.rate &&
+                    (workerData.workerType !== 'INNER_WORKER'
+                      ? params?.row?.quantityReturned ===
+                          params?.row?.processLotId?.quantity &&
+                        Number(params?.row?.total)
+                      : Number(params?.row?.rate))
+                    ? 'text-green-500'
+                    : (
+                        workerData.workerType !== 'INNER_WORKER'
+                          ? params?.row?.processLotId?.quantity ===
+                            params?.row.quantityReturned
+                          : params?.row?.gazana
+                      )
+                    ? 'text-newBlue'
+                    : 'text-red-600'
+                  : ''
+              }`}
               >
                 {params?.row?.gazana || '-'}
               </p>
@@ -374,66 +285,31 @@ const WorkListTable = ({
           }
         ]
       : []),
-    // {
-    //   field: 'quantityReturned',
-    //   headerName: 'Pending',
-    //   width: 60,
-    //   renderCell: (params) => {
-    //     const quantity = Number(params?.row?.processLotId?.quantity || 0);
-    //     const quantityReturned = Number(params?.row?.quantityReturned || 0);
-    //     const result = quantity - quantityReturned;
-    //     return (
-    //       <p
-    //         className={`p-1 text-base font-bold  ${
-    //           params?.row?.processLotId?.pageNumber
-    //             ? params?.row?.rate &&
-    //               params?.row?.quantityReturned ===
-    //                 params?.row?.processLotId?.quantity &&
-    //               Number(params?.row?.total) ===
-    //                 Number(params?.row?.paymentGiven) +
-    //                   Number(params?.row?.claim || 0)
-    //               ? 'text-green-500'
-    //               : params?.row?.processLotId?.quantity ===
-    //                 params?.row?.quantityReturned
-    //               ? 'text-newBlue'
-    //               : 'text-red-600'
-    //             : ''
-    //         }`}
-    //       >
-    //         {result || result === 0 ? result : '-'}
-    //       </p>
-    //     );
-    //   }
-    // },
     {
       field: 'rate',
       headerName: 'Rate',
       width: 90,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base font-bold ${
-            params?.row?.processLotId?.pageNumber
-              ? params?.row?.rate &&
-                (workerData.workerType !== 'INNER_WORKER'
-                  ? params?.row?.quantityReturned ===
-                      params?.row?.processLotId?.quantity &&
-                    Number(params?.row?.total) ===
-                      Number(params?.row?.paymentGiven) +
-                        Number(params?.row?.claim || 0)
-                  : Number(params?.row?.total) ===
-                    Number(params?.row?.paymentGiven) +
-                      Number(params?.row?.claim || 0))
-                ? 'text-green-500'
-                : (
-                    workerData.workerType !== 'INNER_WORKER'
-                      ? params?.row?.processLotId?.quantity ===
-                        params?.row.quantityReturned
-                      : params?.row?.gazana && params?.row?.rate
-                  )
-                ? 'text-newBlue'
-                : 'text-red-600'
-              : ''
-          }`}
+        className={`p-1 text-base font-bold ${
+          params?.row?.processLotId?.assignDate
+            ? params?.row?.rate &&
+              (workerData.workerType !== 'INNER_WORKER'
+                ? params?.row?.quantityReturned ===
+                    params?.row?.processLotId?.quantity &&
+                  Number(params?.row?.total)
+                : Number(params?.row?.rate))
+              ? 'text-green-500'
+              : (
+                  workerData.workerType !== 'INNER_WORKER'
+                    ? params?.row?.processLotId?.quantity ===
+                      params?.row.quantityReturned
+                    : params?.row?.gazana
+                )
+              ? 'text-newBlue'
+              : 'text-red-600'
+            : ''
+        }`}
         >
           {params?.row.rate || '-'}
         </p>
@@ -445,29 +321,25 @@ const WorkListTable = ({
       width: 100,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base font-bold ${
-            params?.row?.processLotId?.pageNumber
-              ? params?.row?.rate &&
-                (workerData.workerType !== 'INNER_WORKER'
-                  ? params?.row?.quantityReturned ===
-                      params?.row?.processLotId?.quantity &&
-                    Number(params?.row?.total) ===
-                      Number(params?.row?.paymentGiven) +
-                        Number(params?.row?.claim || 0)
-                  : Number(params?.row?.total) ===
-                    Number(params?.row?.paymentGiven) +
-                      Number(params?.row?.claim || 0))
-                ? 'text-green-500'
-                : (
-                    workerData.workerType !== 'INNER_WORKER'
-                      ? params?.row?.processLotId?.quantity ===
-                        params?.row.quantityReturned
-                      : params?.row?.gazana && params?.row?.rate
-                  )
-                ? 'text-newBlue'
-                : 'text-red-600'
-              : ''
-          }`}
+        className={`p-1 text-base font-bold ${
+          params?.row?.processLotId?.assignDate
+            ? params?.row?.rate &&
+              (workerData.workerType !== 'INNER_WORKER'
+                ? params?.row?.quantityReturned ===
+                    params?.row?.processLotId?.quantity &&
+                  Number(params?.row?.total)
+                : Number(params?.row?.rate))
+              ? 'text-green-500'
+              : (
+                  workerData.workerType !== 'INNER_WORKER'
+                    ? params?.row?.processLotId?.quantity ===
+                      params?.row.quantityReturned
+                    : params?.row?.gazana
+                )
+              ? 'text-newBlue'
+              : 'text-red-600'
+            : ''
+        }`}
         >
           {params?.row?.total || '-'}
         </p>
@@ -488,29 +360,25 @@ const WorkListTable = ({
           });
           return (
             <p
-              className={`p-1 text-base font-bold ${
-                params?.row?.processLotId?.pageNumber
-                  ? params?.row?.rate &&
-                    (workerData.workerType !== 'INNER_WORKER'
-                      ? params?.row?.quantityReturned ===
-                          params?.row?.processLotId?.quantity &&
-                        Number(params?.row?.total) ===
-                          Number(params?.row?.paymentGiven) +
-                            Number(params?.row?.claim || 0)
-                      : Number(params?.row?.total) ===
-                        Number(params?.row?.paymentGiven) +
-                          Number(params?.row?.claim || 0))
-                    ? 'text-green-500'
-                    : (
-                        workerData.workerType !== 'INNER_WORKER'
-                          ? params?.row?.processLotId?.quantity ===
-                            params?.row.quantityReturned
-                          : params?.row?.gazana && params?.row?.rate
-                      )
-                    ? 'text-newBlue'
-                    : 'text-red-600'
-                  : ''
-              }`}
+            className={`p-1 text-base font-bold ${
+              params?.row?.processLotId?.assignDate
+                ? params?.row?.rate &&
+                  (workerData.workerType !== 'INNER_WORKER'
+                    ? params?.row?.quantityReturned ===
+                        params?.row?.processLotId?.quantity &&
+                      Number(params?.row?.total)
+                    : Number(params?.row?.rate))
+                  ? 'text-green-500'
+                  : (
+                      workerData.workerType !== 'INNER_WORKER'
+                        ? params?.row?.processLotId?.quantity ===
+                          params?.row.quantityReturned
+                        : params?.row?.gazana
+                    )
+                  ? 'text-newBlue'
+                  : 'text-red-600'
+                : ''
+            }`}
             >
               {newDate}
             </p>
@@ -521,122 +389,30 @@ const WorkListTable = ({
       }
     },
     {
-      field: 'claim',
-      headerName: 'Claim',
-      width: 100,
-      renderCell: (params) => (
-        <p
-          className={`p-1 text-base font-bold ${
-            params?.row?.processLotId?.pageNumber
-              ? params?.row?.rate &&
-                (workerData.workerType !== 'INNER_WORKER'
-                  ? params?.row?.quantityReturned ===
-                      params?.row?.processLotId?.quantity &&
-                    Number(params?.row?.total) ===
-                      Number(params?.row?.paymentGiven) +
-                        Number(params?.row?.claim || 0)
-                  : Number(params?.row?.total) ===
-                    Number(params?.row?.paymentGiven) +
-                      Number(params?.row?.claim || 0))
-                ? 'text-green-500'
-                : (
-                    workerData.workerType !== 'INNER_WORKER'
-                      ? params?.row?.processLotId?.quantity ===
-                        params?.row.quantityReturned
-                      : params?.row?.gazana && params?.row?.rate
-                  )
-                ? 'text-newBlue'
-                : 'text-red-600'
-              : ''
-          }`}
-        >
-          {params?.row?.claim || '-'}
-        </p>
-      )
-    },
-    {
-      field: 'paymentGiven',
-      headerName: 'Payment',
-      width: 100,
-      renderCell: (params) => (
-        <p
-          className={`p-1 text-base font-bold ${
-            params?.row?.processLotId?.pageNumber
-              ? params?.row?.rate &&
-                (workerData.workerType !== 'INNER_WORKER'
-                  ? params?.row?.quantityReturned ===
-                      params?.row?.processLotId?.quantity &&
-                    Number(params?.row?.total) ===
-                      Number(params?.row?.paymentGiven) +
-                        Number(params?.row?.claim || 0)
-                  : Number(params?.row?.total) ===
-                    Number(params?.row?.paymentGiven) +
-                      Number(params?.row?.claim || 0))
-                ? 'text-green-500'
-                : (
-                    workerData.workerType !== 'INNER_WORKER'
-                      ? params?.row?.processLotId?.quantity ===
-                        params?.row.quantityReturned
-                      : params?.row?.gazana && params?.row?.rate
-                  )
-                ? 'text-newBlue'
-                : 'text-red-600'
-              : ''
-          }`}
-        >
-          {params?.row?.paymentGiven || '-'}
-        </p>
-      )
-    },
-
-    // {
-    //   field: 'paymentDate',
-    //   headerName: 'Payment Date',
-    //   width: '150px',
-    //   renderCell: (params) => {
-    //     if (params?.paymentDate) {
-    //       // Check if assignDate exists in params.row
-    //       const date = params?.paymentDate;
-    //       const newDate = new Date(date).toLocaleString('en-GB', {
-    //         day: '2-digit',
-    //         month: '2-digit',
-    //         year: 'numeric'
-    //       });
-    //       return newDate;
-    //     } else {
-    //       return '-';
-    //     }
-    //   }
-    // },
-    {
       field: 'reference',
       headerName: 'References',
       width: 100,
       renderCell: (params) => (
         <p
-          className={`p-1 text-base font-bold ${
-            params?.row?.processLotId?.pageNumber
-              ? params?.row?.rate &&
-                (workerData.workerType !== 'INNER_WORKER'
-                  ? params?.row?.quantityReturned ===
-                      params?.row?.processLotId?.quantity &&
-                    Number(params?.row?.total) ===
-                      Number(params?.row?.paymentGiven) +
-                        Number(params?.row?.claim || 0)
-                  : Number(params?.row?.total) ===
-                    Number(params?.row?.paymentGiven) +
-                      Number(params?.row?.claim || 0))
-                ? 'text-green-500'
-                : (
-                    workerData.workerType !== 'INNER_WORKER'
-                      ? params?.row?.processLotId?.quantity ===
-                        params?.row.quantityReturned
-                      : params?.row?.gazana && params?.row?.rate
-                  )
-                ? 'text-newBlue'
-                : 'text-red-600'
-              : ''
-          }`}
+        className={`p-1 text-base font-bold ${
+          params?.row?.processLotId?.assignDate
+            ? params?.row?.rate &&
+              (workerData.workerType !== 'INNER_WORKER'
+                ? params?.row?.quantityReturned ===
+                    params?.row?.processLotId?.quantity &&
+                  Number(params?.row?.total)
+                : Number(params?.row?.rate))
+              ? 'text-green-500'
+              : (
+                  workerData.workerType !== 'INNER_WORKER'
+                    ? params?.row?.processLotId?.quantity ===
+                      params?.row.quantityReturned
+                    : params?.row?.gazana
+                )
+              ? 'text-newBlue'
+              : 'text-red-600'
+            : ''
+        }`}
         >
           {params?.row?.reference || '-'}
         </p>
@@ -721,79 +497,6 @@ const WorkListTable = ({
           }
         }}
       />
-      {/* <TableContainer className="mt-8 rounded-t-lg border border-solid border-dark300 inventory-table h-[500px]">
-        <Table stickyHeader>
-          <TableHead className="bg-slate-400">
-            <TableRow>
-              {columns.map((column, index) => (
-                <TableCell key={index}>{column.headerName}</TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {works &&
-              works.map((row, rowIndex) => (
-                <TableRow key={row._id}>
-                  {columns.map((column, index) =>
-                    column.field !== 'action' ? (
-                      <TableCell
-                        key={index}
-                        style={{ width: `${column.width}` }}
-                        className="border-r-[1px]"
-                      >
-                        {column.field === '_id'
-                          ? column?.renderCell(rowIndex + 1)
-                          : column?.renderCell(row) || '-'}
-                      </TableCell>
-                    ) : (
-                      <TableCell key={index} className="p-0">
-                        <Box>
-                          <IconButton
-                            aria-label="View"
-                            style={{ padding: '0px', marginRight: '10px' }}
-                            onClick={() => handleViewClick(row)}
-                          >
-                            <Visibility />
-                          </IconButton>
-                          <IconButton
-                            aria-label="View"
-                            style={{ padding: '0px', marginRight: '10px' }}
-                            onClick={() => handleDeleteClick(row)}
-                          >
-                            <DeleteIcon color="error" />
-                          </IconButton>
-                          <IconButton
-                            aria-label="Edit"
-                            style={{ padding: '0px', marginRight: '10px' }}
-                            onClick={() => handleEditClick(row)}
-                          >
-                            <Edit />
-                          </IconButton>
-                        </Box>
-                      </TableCell>
-                    )
-                  )}
-                </TableRow>
-              ))}
-          </TableBody>
-        </Table>
-      </TableContainer> */}
-      <div className="w-ful rounded-b-lg h-10  border flex justify-end items-center text-[16px] font-bold pr-16">
-        <div className="mr-24">Total Amount : {totalAmount}</div>
-        <div className="mr-24">Total Amount Given : {totalAmountGiven}</div>
-        <div
-          className={clsx('font-bold', {
-            'text-red-500': balance > 0,
-            'text-green-500': balance < 0
-          })}
-        >
-          {balance > 0 ? (
-            <p>Pending : {balance}</p>
-          ) : (
-            <p>Balance : {balance}</p>
-          )}
-        </div>
-      </div>
     </Box>
   );
 };

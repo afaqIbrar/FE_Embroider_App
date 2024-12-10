@@ -18,10 +18,7 @@ const AddWork = ({ formik, work, view, workerData }) => {
           : {}),
         ...(work?.rate ? { rate: work.rate } : {}),
         ...(work?.total ? { total: work.total } : {}),
-        ...(work?.paymentGiven ? { paymentGiven: work.paymentGiven } : {}),
-        ...(work?.paymentMode ? { paymentMode: work.paymentMode } : {}),
         ...(work?.reference ? { reference: work.reference } : {}),
-        ...(work?.claim ? { claim: work.claim } : {}),
         ...(work?.lotClearDate
           ? { lotClearDate: moment(work?.lotClearDate) }
           : null),
@@ -131,7 +128,7 @@ const AddWork = ({ formik, work, view, workerData }) => {
                 formik.setFieldValue('quantityReturned', sum);
               }}
               disabled={view}
-              onKeyDown={(e) => handleKeyDown(e, 'rate')}
+              onKeyDown={(e) => handleKeyDown(e, 'nillDate')}
             />
             <TextField
               id="outlined-required"
@@ -172,7 +169,7 @@ const AddWork = ({ formik, work, view, workerData }) => {
               formik.setFieldValue('lotClearDate', newValue);
             }}
             disabled={view}
-            onKeyDown={(e) => handleKeyDown(e, 'handworker')}
+            onKeyDown={(e) => handleKeyDown(e, 'rate')}
             size="large"
           />
           <TextField
@@ -206,29 +203,7 @@ const AddWork = ({ formik, work, view, workerData }) => {
             disabled={true}
             type="number"
           />
-          <TextField
-            id="paymentGiven"
-            label="Payment Given"
-            value={formik?.values?.paymentGiven || ''}
-            onChange={(e) => {
-              formik.setFieldValue('paymentGiven', e.target.value);
-            }}
-            disabled={view}
-            type="number"
-            onKeyDown={(e) => handleKeyDown(e, 'reference')}
-          />
-        </div>
-        <div className="w-100 flex">
-          {/* <TextField
-            id="outlined-required"
-            label="Payment Mode"
-            value={formik?.values?.paymentMode || ''}
-            onChange={(e) => {
-              formik.setFieldValue('paymentMode', e.target.value);
-            }}
-            disabled={view}
-          /> */}
-          <TextField
+           <TextField
             label="Reference"
             id="reference"
             value={formik?.values?.reference || ''}
@@ -236,19 +211,9 @@ const AddWork = ({ formik, work, view, workerData }) => {
               formik.setFieldValue('reference', e.target.value);
             }}
             disabled={view}
-            onKeyDown={(e) => handleKeyDown(e, 'claim')}
-          />
-          <TextField
-            label="Claim"
-            id="claim"
-            value={formik?.values?.claim || ''}
-            onChange={(e) => {
-              formik.setFieldValue('claim', e.target.value);
-            }}
-            disabled={view}
+            onKeyDown={(e) => handleKeyDown(e, 'quantityLog')}
           />
         </div>
-        <div className="w-100 flex"></div>
       </Box>
     </div>
   );

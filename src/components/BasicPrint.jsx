@@ -17,9 +17,6 @@ import clsx from 'clsx';
 const BasicPrint = ({
   workerData,
   works,
-  balance,
-  totalAmountGiven,
-  totalAmount
 }) => {
   const printStyle = {
     ['@media print']: {
@@ -317,40 +314,6 @@ const BasicPrint = ({
                             verticalAlign: 'middle'
                           }}
                         >
-                          CLM
-                        </TableCell>
-                        <TableCell
-                          sx={{
-                            minWidth: 20,
-                            maxWidth: 20,
-                            fontSize: '14px',
-                            fontWeight: 'bold',
-                            textAlign: 'center',
-                            verticalAlign: 'middle'
-                          }}
-                        >
-                          PAYM
-                        </TableCell>
-                        {/* <TableCell
-                          sx={{
-                            minWidth: 20,
-                            maxWidth: 20,
-                            fontSize: '12px',
-                            fontWeight: 'bold'
-                          }}
-                        >
-                          Date
-                        </TableCell> */}
-                        <TableCell
-                          sx={{
-                            minWidth: 20,
-                            maxWidth: 20,
-                            fontSize: '14px',
-                            fontWeight: 'bold',
-                            textAlign: 'center',
-                            verticalAlign: 'middle'
-                          }}
-                        >
                           REF
                         </TableCell>
                       </TableRow>
@@ -377,20 +340,15 @@ const BasicPrint = ({
                                         (workerData.workerType !==
                                         'INNER_WORKER'
                                           ? work?.quantityReturned ===
-                                              work?.processLotId?.quantity &&
-                                            Number(work?.total) ===
-                                              Number(work?.paymentGiven) +
-                                                Number(work?.claim || 0)
-                                          : Number(work?.total) ===
-                                            Number(work?.paymentGiven) +
-                                              Number(work?.claim || 0))
+                                              work?.processLotId?.quantity:
+                                          Number(work?.rate))
                                         ? 'text-green-500'
                                         : (
                                             workerData.workerType !==
                                             'INNER_WORKER'
                                               ? work?.processLotId?.quantity ===
                                                 work?.quantityReturned
-                                              : work?.gazana && work?.rate
+                                              : work?.gazana 
                                           )
                                         ? 'text-newBlue'
                                         : 'text-red-600'
@@ -429,20 +387,15 @@ const BasicPrint = ({
                                         (workerData.workerType !==
                                         'INNER_WORKER'
                                           ? work?.quantityReturned ===
-                                              work?.processLotId?.quantity &&
-                                            Number(work?.total) ===
-                                              Number(work?.paymentGiven) +
-                                                Number(work?.claim || 0)
-                                          : Number(work?.total) ===
-                                            Number(work?.paymentGiven) +
-                                              Number(work?.claim || 0))
+                                              work?.processLotId?.quantity:
+                                          Number(work?.rate))
                                         ? 'text-green-500'
                                         : (
                                             workerData.workerType !==
                                             'INNER_WORKER'
                                               ? work?.processLotId?.quantity ===
                                                 work?.quantityReturned
-                                              : work?.gazana && work?.rate
+                                              : work?.gazana
                                           )
                                         ? 'text-newBlue'
                                         : 'text-red-600'
@@ -462,26 +415,21 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`w-16 text-[14px] font-bold flex justify-center  ${
+                                  className={`text-[16px] font-bold flex justify-center ${
                                     work?.processLotId?.assignDate
                                       ? work?.rate &&
                                         (workerData.workerType !==
                                         'INNER_WORKER'
                                           ? work?.quantityReturned ===
-                                              work?.processLotId?.quantity &&
-                                            Number(work?.total) ===
-                                              Number(work?.paymentGiven) +
-                                                Number(work?.claim || 0)
-                                          : Number(work?.total) ===
-                                            Number(work?.paymentGiven) +
-                                              Number(work?.claim || 0))
+                                              work?.processLotId?.quantity:
+                                          Number(work?.rate))
                                         ? 'text-green-500'
                                         : (
                                             workerData.workerType !==
                                             'INNER_WORKER'
                                               ? work?.processLotId?.quantity ===
                                                 work?.quantityReturned
-                                              : work?.gazana && work?.rate
+                                              : work?.gazana
                                           )
                                         ? 'text-newBlue'
                                         : 'text-red-600'
@@ -502,31 +450,26 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[16px] font-bold flex justify-center   ${
-                                    work?.processLotId?.assignDate
-                                      ? work?.rate &&
-                                        (workerData.workerType !==
-                                        'INNER_WORKER'
-                                          ? work?.quantityReturned ===
-                                              work?.processLotId?.quantity &&
-                                            Number(work?.total) ===
-                                              Number(work?.paymentGiven) +
-                                                Number(work?.claim || 0)
-                                          : Number(work?.total) ===
-                                            Number(work?.paymentGiven) +
-                                              Number(work?.claim || 0))
-                                        ? 'text-green-500'
-                                        : (
-                                            workerData.workerType !==
-                                            'INNER_WORKER'
-                                              ? work?.processLotId?.quantity ===
-                                                work?.quantityReturned
-                                              : work?.gazana && work?.rate
-                                          )
-                                        ? 'text-newBlue'
-                                        : 'text-red-600'
-                                      : ''
-                                  }`}
+                                 className={`text-[16px] font-bold flex justify-center ${
+                                  work?.processLotId?.assignDate
+                                    ? work?.rate &&
+                                      (workerData.workerType !==
+                                      'INNER_WORKER'
+                                        ? work?.quantityReturned ===
+                                            work?.processLotId?.quantity:
+                                        Number(work?.rate))
+                                      ? 'text-green-500'
+                                      : (
+                                          workerData.workerType !==
+                                          'INNER_WORKER'
+                                            ? work?.processLotId?.quantity ===
+                                              work?.quantityReturned
+                                            : work?.gazana
+                                        )
+                                      ? 'text-newBlue'
+                                      : 'text-red-600'
+                                    : ''
+                                }`}
                                 >
                                   {work?.processLotId?.billNumber || '-'}
                                 </p>
@@ -542,26 +485,21 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[16px] font-bold flex justify-center  ${
+                                  className={`text-[16px] font-bold flex justify-center ${
                                     work?.processLotId?.assignDate
                                       ? work?.rate &&
                                         (workerData.workerType !==
                                         'INNER_WORKER'
                                           ? work?.quantityReturned ===
-                                              work?.processLotId?.quantity &&
-                                            Number(work?.total) ===
-                                              Number(work?.paymentGiven) +
-                                                Number(work?.claim || 0)
-                                          : Number(work?.total) ===
-                                            Number(work?.paymentGiven) +
-                                              Number(work?.claim || 0))
+                                              work?.processLotId?.quantity:
+                                          Number(work?.rate))
                                         ? 'text-green-500'
                                         : (
                                             workerData.workerType !==
                                             'INNER_WORKER'
                                               ? work?.processLotId?.quantity ===
                                                 work?.quantityReturned
-                                              : work?.gazana && work?.rate
+                                              : work?.gazana
                                           )
                                         ? 'text-newBlue'
                                         : 'text-red-600'
@@ -621,27 +559,21 @@ const BasicPrint = ({
                                   }}
                                 >
                                   <p
-                                    className={`text-[16px] font-bold flex justify-center  ${
+                                    className={`text-[16px] font-bold flex justify-center ${
                                       work?.processLotId?.assignDate
                                         ? work?.rate &&
                                           (workerData.workerType !==
                                           'INNER_WORKER'
                                             ? work?.quantityReturned ===
-                                                work?.processLotId?.quantity &&
-                                              Number(work?.total) ===
-                                                Number(work?.paymentGiven) +
-                                                  Number(work?.claim || 0)
-                                            : Number(work?.total) ===
-                                              Number(work?.paymentGiven) +
-                                                Number(work?.claim || 0))
+                                                work?.processLotId?.quantity:
+                                            Number(work?.rate))
                                           ? 'text-green-500'
                                           : (
                                               workerData.workerType !==
                                               'INNER_WORKER'
-                                                ? work?.processLotId
-                                                    ?.quantity ===
+                                                ? work?.processLotId?.quantity ===
                                                   work?.quantityReturned
-                                                : work?.gazana && work?.rate
+                                                : work?.gazana
                                             )
                                           ? 'text-newBlue'
                                           : 'text-red-600'
@@ -663,27 +595,21 @@ const BasicPrint = ({
                                   }}
                                 >
                                   <p
-                                    className={`text-[16px] font-bold flex justify-center  ${
+                                    className={`text-[16px] font-bold flex justify-center ${
                                       work?.processLotId?.assignDate
                                         ? work?.rate &&
                                           (workerData.workerType !==
                                           'INNER_WORKER'
                                             ? work?.quantityReturned ===
-                                                work?.processLotId?.quantity &&
-                                              Number(work?.total) ===
-                                                Number(work?.paymentGiven) +
-                                                  Number(work?.claim || 0)
-                                            : Number(work?.total) ===
-                                              Number(work?.paymentGiven) +
-                                                Number(work?.claim || 0))
+                                                work?.processLotId?.quantity:
+                                            Number(work?.rate))
                                           ? 'text-green-500'
                                           : (
                                               workerData.workerType !==
                                               'INNER_WORKER'
-                                                ? work?.processLotId
-                                                    ?.quantity ===
+                                                ? work?.processLotId?.quantity ===
                                                   work?.quantityReturned
-                                                : work?.gazana && work?.rate
+                                                : work?.gazana
                                             )
                                           ? 'text-newBlue'
                                           : 'text-red-600'
@@ -705,26 +631,21 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[16px] font-bold flex justify-center  ${
-                                    work?.rate
+                                  className={`text-[16px] font-bold flex justify-center ${
+                                    work?.processLotId?.assignDate
                                       ? work?.rate &&
                                         (workerData.workerType !==
                                         'INNER_WORKER'
                                           ? work?.quantityReturned ===
-                                              work?.processLotId?.quantity &&
-                                            Number(work?.total) ===
-                                              Number(work?.paymentGiven) +
-                                                Number(work?.claim || 0)
-                                          : Number(work?.total) ===
-                                            Number(work?.paymentGiven) +
-                                              Number(work?.claim || 0))
+                                              work?.processLotId?.quantity:
+                                          Number(work?.rate))
                                         ? 'text-green-500'
                                         : (
                                             workerData.workerType !==
                                             'INNER_WORKER'
                                               ? work?.processLotId?.quantity ===
                                                 work?.quantityReturned
-                                              : work?.gazana && work?.rate
+                                              : work?.gazana
                                           )
                                         ? 'text-newBlue'
                                         : 'text-red-600'
@@ -744,26 +665,21 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[16px] font-bold flex justify-center  ${
-                                    work?.total
+                                  className={`text-[16px] font-bold flex justify-center ${
+                                    work?.processLotId?.assignDate
                                       ? work?.rate &&
                                         (workerData.workerType !==
                                         'INNER_WORKER'
                                           ? work?.quantityReturned ===
-                                              work?.processLotId?.quantity &&
-                                            Number(work?.total) ===
-                                              Number(work?.paymentGiven) +
-                                                Number(work?.claim || 0)
-                                          : Number(work?.total) ===
-                                            Number(work?.paymentGiven) +
-                                              Number(work?.claim || 0))
+                                              work?.processLotId?.quantity:
+                                          Number(work?.rate))
                                         ? 'text-green-500'
                                         : (
                                             workerData.workerType !==
                                             'INNER_WORKER'
                                               ? work?.processLotId?.quantity ===
                                                 work?.quantityReturned
-                                              : work?.gazana && work?.rate
+                                              : work?.gazana
                                           )
                                         ? 'text-newBlue'
                                         : 'text-red-600'
@@ -784,113 +700,28 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[16px] font-bold flex justify-center  ${
-                                    work?.lotClearDate
-                                      ? work?.rate &&
-                                        (workerData.workerType !==
-                                        'INNER_WORKER'
-                                          ? work?.quantityReturned ===
-                                              work?.processLotId?.quantity &&
-                                            Number(work?.total) ===
-                                              Number(work?.paymentGiven) +
-                                                Number(work?.claim || 0)
-                                          : Number(work?.total) ===
-                                            Number(work?.paymentGiven) +
-                                              Number(work?.claim || 0))
-                                        ? 'text-green-500'
-                                        : (
-                                            workerData.workerType !==
-                                            'INNER_WORKER'
-                                              ? work?.processLotId?.quantity ===
-                                                work?.quantityReturned
-                                              : work?.gazana && work?.rate
-                                          )
-                                        ? 'text-newBlue'
-                                        : 'text-red-600'
-                                      : ''
-                                  }`}
+                                 className={`text-[16px] font-bold flex justify-center ${
+                                  work?.processLotId?.assignDate
+                                    ? work?.rate &&
+                                      (workerData.workerType !==
+                                      'INNER_WORKER'
+                                        ? work?.quantityReturned ===
+                                            work?.processLotId?.quantity:
+                                        Number(work?.rate))
+                                      ? 'text-green-500'
+                                      : (
+                                          workerData.workerType !==
+                                          'INNER_WORKER'
+                                            ? work?.processLotId?.quantity ===
+                                              work?.quantityReturned
+                                            : work?.gazana
+                                        )
+                                      ? 'text-newBlue'
+                                      : 'text-red-600'
+                                    : ''
+                                }`}
                                 >
                                   {convertDate(work?.lotClearDate || null)}
-                                </p>
-                              </TableCell>
-                              <TableCell
-                                sx={{
-                                  minWidth: 20,
-                                  maxWidth: 20,
-                                  minHeight: 10,
-                                  fontSize: '10px',
-                                  paddingBottom: 0,
-                                  paddingTop: 0
-                                }}
-                              >
-                                <p
-                                  className={`text-[12px] font-bold flex justify-center  ${
-                                    work?.claim
-                                      ? work?.rate &&
-                                        (workerData.workerType !==
-                                        'INNER_WORKER'
-                                          ? work?.quantityReturned ===
-                                              work?.processLotId?.quantity &&
-                                            Number(work?.total) ===
-                                              Number(work?.paymentGiven) +
-                                                Number(work?.claim || 0)
-                                          : Number(work?.total) ===
-                                            Number(work?.paymentGiven) +
-                                              Number(work?.claim || 0))
-                                        ? 'text-green-500'
-                                        : (
-                                            workerData.workerType !==
-                                            'INNER_WORKER'
-                                              ? work?.processLotId?.quantity ===
-                                                work?.quantityReturned
-                                              : work?.gazana && work?.rate
-                                          )
-                                        ? 'text-newBlue'
-                                        : 'text-red-600'
-                                      : ''
-                                  }`}
-                                >
-                                  {work?.claim || '-'}
-                                </p>
-                              </TableCell>
-                              <TableCell
-                                sx={{
-                                  minWidth: 20,
-                                  maxWidth: 20,
-                                  minHeight: 10,
-                                  paddingBottom: 0,
-                                  paddingTop: 0,
-                                  paddingLeft: 0
-                                }}
-                              >
-                                <p
-                                  className={`text-[14px] font-bold flex justify-center  ${
-                                    work?.paymentGiven
-                                      ? work?.rate &&
-                                        (workerData.workerType !==
-                                        'INNER_WORKER'
-                                          ? work?.quantityReturned ===
-                                              work?.processLotId?.quantity &&
-                                            Number(work?.total) ===
-                                              Number(work?.paymentGiven) +
-                                                Number(work?.claim || 0)
-                                          : Number(work?.total) ===
-                                            Number(work?.paymentGiven) +
-                                              Number(work?.claim || 0))
-                                        ? 'text-green-500'
-                                        : (
-                                            workerData.workerType !==
-                                            'INNER_WORKER'
-                                              ? work?.processLotId?.quantity ===
-                                                work?.quantityReturned
-                                              : work?.gazana && work?.rate
-                                          )
-                                        ? 'text-newBlue'
-                                        : 'text-red-600'
-                                      : ''
-                                  }`}
-                                >
-                                  {work?.paymentGiven || '-'}
                                 </p>
                               </TableCell>
                               {/* <TableCell
@@ -913,31 +744,26 @@ const BasicPrint = ({
                                 }}
                               >
                                 <p
-                                  className={`text-[12px] font-bold flex justify-center  ${
-                                    work?.reference
-                                      ? work?.rate &&
-                                        (workerData.workerType !==
-                                        'INNER_WORKER'
-                                          ? work?.quantityReturned ===
-                                              work?.processLotId?.quantity &&
-                                            Number(work?.total) ===
-                                              Number(work?.paymentGiven) +
-                                                Number(work?.claim || 0)
-                                          : Number(work?.total) ===
-                                            Number(work?.paymentGiven) +
-                                              Number(work?.claim || 0))
-                                        ? 'text-green-500'
-                                        : (
-                                            workerData.workerType !==
-                                            'INNER_WORKER'
-                                              ? work?.processLotId?.quantity ===
-                                                work?.quantityReturned
-                                              : work?.gazana && work?.rate
-                                          )
-                                        ? 'text-newBlue'
-                                        : 'text-red-600'
-                                      : ''
-                                  }`}
+                                className={`text-[12px] font-bold flex justify-center ${
+                                  work?.processLotId?.assignDate
+                                    ? work?.rate &&
+                                      (workerData.workerType !==
+                                      'INNER_WORKER'
+                                        ? work?.quantityReturned ===
+                                            work?.processLotId?.quantity:
+                                        Number(work?.rate))
+                                      ? 'text-green-500'
+                                      : (
+                                          workerData.workerType !==
+                                          'INNER_WORKER'
+                                            ? work?.processLotId?.quantity ===
+                                              work?.quantityReturned
+                                            : work?.gazana
+                                        )
+                                      ? 'text-newBlue'
+                                      : 'text-red-600'
+                                    : ''
+                                }`}
                                 >
                                   {work?.reference || '-'}
                                 </p>
@@ -948,7 +774,7 @@ const BasicPrint = ({
                     </TableBody>
                   </Table>
                 </TableContainer>
-                <Paper className="w-ful rounded-b-lg h-10  border flex justify-between items-center text-[16px] font-bold pr-16">
+                {/* <Paper className="w-ful rounded-b-lg h-10  border flex justify-between items-center text-[16px] font-bold pr-16">
                   <div style={{ marginLeft: '10px' }} className="pr-15">
                     Total Amount : {totalAmount}
                   </div>
@@ -968,7 +794,7 @@ const BasicPrint = ({
                       <p>Balance : {balance}</p>
                     )}
                   </div>
-                </Paper>
+                </Paper> */}
               </div>
             </Box>
           </Box>

@@ -9,6 +9,8 @@ import ProcessLot from './pages/processLot';
 import { Navigate } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import WorKList from './pages/workList';
+import Accounts from './pages/accounts';
+import AccountList from './pages/accountList'
 
 const routes = (user) => [
   {
@@ -24,6 +26,11 @@ const routes = (user) => [
         element: user ? <ProcessLot /> : <Navigate to="/login" />
       },
       { path: 'work', element: user ? <Work /> : <Navigate to="/login" /> },
+      { path: 'account', element: user ? <Accounts /> : <Navigate to="/login" /> },
+      {
+        path: 'account/:workerId',
+        element: user ? <AccountList /> : <Navigate to="/login" />
+      },
       {
         path: 'workers',
         element: user ? <Workers /> : <Navigate to="/login" />

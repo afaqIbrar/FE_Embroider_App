@@ -18,6 +18,7 @@ import Dehaze from '@mui/icons-material/Dehaze';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import SwitchRightOutlinedIcon from '@mui/icons-material/SwitchRightOutlined';
 import SwitchLeftOutlinedIcon from '@mui/icons-material/SwitchLeftOutlined';
+import { WorkRounded } from '@mui/icons-material';
 const Item = ({ title, to, icon, selected, setSelected, disabled }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -157,6 +158,13 @@ const MyProSidebar = () => {
               title="Work In Progress"
               to="/routing/work"
               icon={<AutorenewIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Worker Account"
+              to="/routing/account"
+              icon={<WorkRounded />}
               selected={selected}
               setSelected={setSelected}
             />

@@ -40,22 +40,17 @@ const Work = () => {
       headerName: 'Worker Type',
       width: 150,
       renderCell: (params) => <p>{WORKERTYPE[params.value]}</p>
-    }
-    // {
-    //   field: 'phoneNumber',
-    //   headerName: 'Phone #',
-    //   width: 150
-    // },
-    // {
-    //   field: 'createdAt',
-    //   headerName: 'Created At',
-    //   width: 150,
-    //   valueGetter: (params) => {
-    //     const createdAt = params.row.createdAt; // Get the createdAt value from the row
-    //     const localCreatedAt = new Date(createdAt).toLocaleString();
-    //     return localCreatedAt;
-    //   }
-    // }
+    },{
+      field: 'balance',
+      headerName: 'Worker Current Balance',
+      width: 150,
+      renderCell: (params) => {
+        const balance = params.value;
+        // Apply the Tailwind classes conditionally based on the balance value
+        const balanceClass = balance < 0 ? 'text-green-500' : 'text-red-600';
+        return <span className={`text-base	 ${balanceClass} text-sm`}>{balance}</span>;
+      }
+    },
   ];
   const handleRowClick = (params) => {
     window.location.href = `work/${params.row._id}`;

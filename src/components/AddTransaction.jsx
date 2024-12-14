@@ -59,9 +59,7 @@ const AddTransaction = ({formik, view}) => {
                   selectedDate.setMinutes(currentDate.getMinutes());
                   selectedDate.setSeconds(currentDate.getSeconds());
                   selectedDate.setMilliseconds(currentDate.getMilliseconds());
-            
-                  console.log('Updated Date with Time:', selectedDate);
-            
+                    
                   // Set the updated date (with time) into Formik
                   formik.setFieldValue('recordDate', selectedDate);
                 }

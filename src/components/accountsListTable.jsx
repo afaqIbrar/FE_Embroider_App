@@ -60,7 +60,7 @@ const AccountsListTable = ({
             renderCell: (params) => {
                 return (
                     <p className='p-1 text-base font-bold'>
-                        {params?.row?.workAssignmentId?.processLotId?.quantity || '-'}
+                        {params?.row?.workerAssignmentId?.processLotId?.quantity || '-'}
                     </p>
                 );
             }
@@ -72,7 +72,7 @@ const AccountsListTable = ({
             renderCell: (params) => {
                 return (
                     <p className='p-1 text-base font-bold'>
-                        {params?.row?.workAssignmentId?.processLotId?.colour || '-'}
+                        {params?.row?.workerAssignmentId?.processLotId?.colour || '-'}
                     </p>
                 );
             }
@@ -84,7 +84,7 @@ const AccountsListTable = ({
             renderCell: (params) => {
                 return (
                     <p className='p-1 text-base font-bold'>
-                        {params?.row?.workAssignmentId?.processLotId?.billNumber || '-'}
+                        {params?.row?.workerAssignmentId?.processLotId?.billNumber || '-'}
                     </p>
                 );
             }

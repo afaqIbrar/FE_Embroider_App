@@ -40,6 +40,17 @@ export const INITIAL_BALANCE_TYPE = [
   },
 ];
 
+export const TRANSACTION_TYPE = [
+  {
+    value: 'CREDIT',
+    label: 'Credit'
+  },
+  {
+    value: 'DEBIT',
+    label: 'Debit'
+  },
+];
+
 export const WORKERTYPE = {
   HAND_WORKER: 'Hand Embroider',
   DUPATTA_WORKER: 'Dupatta Worker',

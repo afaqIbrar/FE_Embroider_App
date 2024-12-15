@@ -2,6 +2,8 @@ import React, {useEffect} from 'react'
 import { Box, TextField } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import moment from 'moment';
+import {TRANSACTION_TYPE } from '../utils/constants';
+import MenuItem from '@mui/material/MenuItem';
 
 
 const AddTransaction = ({formik, view}) => {
@@ -38,6 +40,22 @@ const AddTransaction = ({formik, view}) => {
             }}
             disabled={view}
           />
+        </div>
+        <div>
+        <TextField
+        select
+        label="Transaction Type"
+        value={formik.values.paymentType}
+        onChange={(e) => {
+          formik.setFieldValue('paymentType', e.target.value);
+        }}
+      >
+        {TRANSACTION_TYPE.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </TextField>
         </div>
         <div className="w-100 flex">
           <DatePicker

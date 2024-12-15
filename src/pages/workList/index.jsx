@@ -12,7 +12,7 @@ import AddWork from '../../components/AddWork';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import { useReactToPrint } from 'react-to-print';
-import AccountsPrint from '../../components/accountsPrint';
+import WorkPrint from '../../components/accountsPrint';
 import WorkListTable from '../../components/WorkListTable';
 import { TextareaAutosize } from '@mui/base';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -100,6 +100,7 @@ const Work = () => {
       });
       toast.success('Work Updated Successfully!!!');
       fetchWorkAgainstWorker();
+      fetchWorkerData();
       setOpenWorkPopup(false);
       formik.setValues({ ...workInitialValues });
       selectedWork({});
@@ -447,7 +448,7 @@ const Work = () => {
         title={'Extra Info'}
       />
       <div ref={componentRef}>
-        <AccountsPrint
+        <WorkPrint
           showPrint={showPrint}
           workerData={workerData}
           works={reverseWork}

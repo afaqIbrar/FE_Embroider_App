@@ -149,30 +149,30 @@ const AccountsListTable = ({
                 );
             }
         },
-        {
-            field: 'actions',
-            headerName: 'Actions',
-            sortable: false,
-            width: 50,
-            renderCell: (params) => (
-              <Box>
-                <IconButton
-                  aria-label="View"
-                  style={{ padding: '0px', marginRight: '10px' }}
-                //   onClick={() => handleDeleteClick(params?.row)}
-                >
-                  <DeleteIcon color="error" />
-                </IconButton>
-                <IconButton
-                  aria-label="Edit"
-                  style={{ padding: '0px', marginRight: '10px' }}
-                //   onClick={() => handleEditClick(params?.row)}
-                >
-                  <Edit />
-                </IconButton>
-              </Box>
-            )
-          }
+        // {
+        //     field: 'actions',
+        //     headerName: 'Actions',
+        //     sortable: false,
+        //     width: 50,
+        //     renderCell: (params) => (
+        //       <Box>
+        //         <IconButton
+        //           aria-label="View"
+        //           style={{ padding: '0px', marginRight: '10px' }}
+        //         //   onClick={() => handleDeleteClick(params?.row)}
+        //         >
+        //           <DeleteIcon color="error" />
+        //         </IconButton>
+        //         <IconButton
+        //           aria-label="Edit"
+        //           style={{ padding: '0px', marginRight: '10px' }}
+        //         //   onClick={() => handleEditClick(params?.row)}
+        //         >
+        //           <Edit />
+        //         </IconButton>
+        //       </Box>
+        //     )
+        //   }
     ];
     return (
         <Box

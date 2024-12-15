@@ -12,6 +12,10 @@ import Popup from '../../components/atomComponents/Popup';
 import { useFormik } from 'formik';
 import AddTransaction from '../../components/AddTransaction';
 import { toast } from 'react-toastify';
+import moment from 'moment';
+import useDebounce from '../../utils/useDebounce';
+
+
 
 const AccountList = () => {
   const theme = useTheme();
@@ -20,11 +24,19 @@ const AccountList = () => {
   const [workerData, setWorkerData] = useState({});
   const [accounts, setAccounts] = useState([]);
   const [addTransactionPopup, setAddTransactionPopup] = useState(false);
+  const today = moment();
+  const firstDayOfYear = moment().startOf('year');
+  const [searchText, setSearchText] = useState('');
+  const debouncedSearchText = useDebounce(searchText, 300);
+  const [startDate, setStartDate] = useState(firstDayOfYear);
+  const [endDate, setEndDate] = useState(today.endOf('day'));
+
   const addAccountTransactionInitialValues = {
     workerId: workerData?._id,
     amount: '',
     description: '',
     recordDate: '',
+    paymentType : 'CREDIT'
   };
   const formik = useFormik({
     initialValues: {
@@ -45,9 +57,9 @@ const AccountList = () => {
     try {
       await API.post('account/', formik.values, { withCredentials: true });
       toast.success('Credit Transaction Added Successfully!!!');
-      fetchAcountDetailsAgainstWorker();
-      fetchWorkerData();
       setAddTransactionPopup(false);
+      await fetchAcountDetailsAgainstWorker();
+      await fetchWorkerData();
       formik.setValues({ ...addAccountTransactionInitialValues });
     } catch (e) {
       toast.error(e?.response?.data?.message);
@@ -57,9 +69,9 @@ const AccountList = () => {
   const fetchWorkerData = async () => {
     const data = await API.get('workers/byId/' + workerId, {
       withCredentials: true,
-      // params: {
-      //   search: searchText
-      // }
+      params: {
+        // search: searchText,
+      }
     });
     setWorkerData(data?.data);
   };
@@ -69,8 +81,8 @@ const AccountList = () => {
       withCredentials: true,
       params: {
         search: searchText,
-        // startDate: startDate,
-        // endDate: endDate
+        startDate: startDate,
+        endDate: moment()
       }
     });
     setAccounts(data?.data);
@@ -81,8 +93,8 @@ const AccountList = () => {
   }, []);
 
   useEffect(() => {
-    fetchAcountDetailsAgainstWorker();
-  }, []);
+    fetchAcountDetailsAgainstWorker(debouncedSearchText);
+  }, [debouncedSearchText]);
 
   return (
     <Box m={"20px"}>
@@ -109,10 +121,10 @@ const AccountList = () => {
             borderRadius={1}
           >
             <InputBase
-              // onChange={(e) => {
-              //   setSearchText(e.target.value);
-              // }}
-              // value={searchText}
+              onChange={(e) => {
+                setSearchText(e.target.value);
+              }}
+              value={searchText}
               sx={{ ml: 1, flex: 1 }}
               placeholder="Search"
             />
@@ -126,11 +138,11 @@ const AccountList = () => {
                 label="Start Date"
                 id="startDate"
                 slotProps={{ field: { clearable: true } }}
-                // value={startDate}
+                value={startDate}
                 size="small"
-              // onChange={(newValue) => {
-              //   setStartDate(newValue);
-              // }}
+              onChange={(newValue) => {
+                setStartDate(newValue);
+              }}
               />
             </Box>
             <Box sx={{ width: 180, marginLeft: 2 }}>
@@ -138,10 +150,10 @@ const AccountList = () => {
                 label="End Date"
                 id="endDate"
                 slotProps={{ field: { clearable: true } }}
-                // value={endDate}
-                // onChange={(newValue) => {
-                //   setEndDate(newValue);
-                // }}
+                value={endDate}
+                onChange={(newValue) => {
+                  setEndDate(newValue);
+                }}
                 size="small"
               />
             </Box>
@@ -154,7 +166,7 @@ const AccountList = () => {
                 padding: '10px 20px',
                 marginLeft: '12px'
               }}
-            // onClick={() => fetchWorkAgainstWorker()}
+            onClick={() => fetchAcountDetailsAgainstWorker()}
             >
               Search
             </Button>

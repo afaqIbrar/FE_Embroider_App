@@ -1,6 +1,6 @@
 import BasicPrint from './BasicPrint';
 
-const AccountsPrint = ({
+const WorkPrint = ({
   showPrint,
   workerData,
   works,
@@ -18,4 +18,4 @@ const AccountsPrint = ({
     </>
   );
 };
-export default AccountsPrint;
+export default WorkPrint;

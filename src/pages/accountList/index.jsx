@@ -14,6 +14,8 @@ import AddTransaction from '../../components/AddTransaction';
 import { toast } from 'react-toastify';
 import moment from 'moment';
 import useDebounce from '../../utils/useDebounce';
+import { useReactToPrint } from 'react-to-print';
+import AccountPrint from '../../components/accountsPrint/accountPrintMain';
 
 
 
@@ -30,13 +32,32 @@ const AccountList = () => {
   const debouncedSearchText = useDebounce(searchText, 300);
   const [startDate, setStartDate] = useState(firstDayOfYear);
   const [endDate, setEndDate] = useState(today.endOf('day'));
+  const [showPrint, setShowPrint] = useState(null);
+    const [reverseAccount, setReverseAccount] = useState([]);
+  
+
+
+  function handleClose() {
+    setShowPrint(null);
+  }
+  useEffect(() => {
+    if (showPrint) {
+      handlePrint();
+      handleClose();
+    }
+  }, [showPrint]);
+
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current
+  });
 
   const addAccountTransactionInitialValues = {
     workerId: workerData?._id,
     amount: '',
     description: '',
     recordDate: '',
-    paymentType : 'CREDIT'
+    paymentType: 'CREDIT'
   };
   const formik = useFormik({
     initialValues: {
@@ -85,6 +106,14 @@ const AccountList = () => {
         endDate: moment()
       }
     });
+    const copyData = [...data.data];
+    setReverseAccount(
+      copyData.sort((a, b) => {
+        const dateA = new Date(a.recordDate);
+        const dateB = new Date(b.recordDate);
+        return dateA - dateB;
+      })
+    );
     setAccounts(data?.data);
   };
 
@@ -140,9 +169,9 @@ const AccountList = () => {
                 slotProps={{ field: { clearable: true } }}
                 value={startDate}
                 size="small"
-              onChange={(newValue) => {
-                setStartDate(newValue);
-              }}
+                onChange={(newValue) => {
+                  setStartDate(newValue);
+                }}
               />
             </Box>
             <Box sx={{ width: 180, marginLeft: 2 }}>
@@ -166,13 +195,13 @@ const AccountList = () => {
                 padding: '10px 20px',
                 marginLeft: '12px'
               }}
-            onClick={() => fetchAcountDetailsAgainstWorker()}
+              onClick={() => fetchAcountDetailsAgainstWorker()}
             >
               Search
             </Button>
           </Box>
           <Box>
-          <Button
+            <Button
               sx={{
                 backgroundColor: colors.blueAccent[700],
                 color: colors.grey[100],
@@ -195,7 +224,7 @@ const AccountList = () => {
                 fontWeight: 'bold',
                 padding: '10px 20px'
               }}
-            // onClick={() => setShowPrint(true)}
+              onClick={() => setShowPrint(true)}
             >
               Print Details
             </Button>
@@ -203,7 +232,7 @@ const AccountList = () => {
         </Box>
       </Box>
       <AccountsListTable accounts={accounts} workerData={workerData} />
-      
+
       <Popup
         open={addTransactionPopup}
         setOpen={setAddTransactionPopup}
@@ -211,7 +240,7 @@ const AccountList = () => {
           setAddTransactionPopup(false);
           formik.setValues({ ...addAccountTransactionInitialValues });
         }}
-        content={<AddTransaction formik={formik}/>}
+        content={<AddTransaction formik={formik} />}
         actions={
           <div className="flex gap-2">
             <Button
@@ -245,6 +274,14 @@ const AccountList = () => {
         }
         title={'Add Credit Transaction'}
       />
+
+      <div ref={componentRef}>
+        <AccountPrint
+          showPrint={showPrint}
+          workerData={workerData}
+          accounts={reverseAccount}
+        />
+      </div>
     </Box>
   )
 }

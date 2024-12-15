@@ -12,7 +12,7 @@ import AddWork from '../../components/AddWork';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import { useReactToPrint } from 'react-to-print';
-import WorkPrint from '../../components/accountsPrint';
+import WorkPrint from '../../components/workPrint';
 import WorkListTable from '../../components/WorkListTable';
 import { TextareaAutosize } from '@mui/base';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';

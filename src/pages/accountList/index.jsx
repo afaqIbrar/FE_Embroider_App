@@ -134,7 +134,7 @@ const AccountList = () => {
         <Box className="text-lg mb-1">
           {`Worker Current Balance:   `}
           <span
-            className={`${workerData.balance < 0 ? 'text-green-500' : 'text-red-500'
+            className={`${workerData.balance < 0 ? 'text-customGreen' : 'text-customRed'
               }`}
           >
             {workerData.balance}

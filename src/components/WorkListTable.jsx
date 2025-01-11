@@ -32,7 +32,7 @@ const WorkListTable = ({
           });
           return (
             <p
-              className={`p-1 text-base font-bold ${
+              className={`p-1 text-[12px] font-bold ${
                 params?.row?.processLotId?.assignDate
                   ? params?.row?.rate &&
                     (workerData.workerType !== 'INNER_WORKER'
@@ -40,7 +40,7 @@ const WorkListTable = ({
                           params?.row?.processLotId?.quantity &&
                         Number(params?.row?.total)
                       : Number(params?.row?.rate))
-                    ? 'text-green-500'
+                    ? 'text-customGreen'
                     : (
                         workerData.workerType !== 'INNER_WORKER'
                           ? params?.row?.processLotId?.quantity ===
@@ -48,7 +48,7 @@ const WorkListTable = ({
                           : params?.row?.gazana
                       )
                     ? 'text-newBlue'
-                    : 'text-red-600'
+                    : 'text-customRed'
                   : ''
               }`}
             >
@@ -66,7 +66,7 @@ const WorkListTable = ({
       width: 40,
       renderCell: (params) => (
         <p
-        className={`p-1 text-base font-bold ${
+        className={`p-1 text-[12px] font-bold ${
           params?.row?.processLotId?.assignDate
             ? params?.row?.rate &&
               (workerData.workerType !== 'INNER_WORKER'
@@ -74,7 +74,7 @@ const WorkListTable = ({
                     params?.row?.processLotId?.quantity &&
                   Number(params?.row?.total)
                 : Number(params?.row?.rate))
-              ? 'text-green-500'
+              ? 'text-customGreen'
               : (
                   workerData.workerType !== 'INNER_WORKER'
                     ? params?.row?.processLotId?.quantity ===
@@ -82,7 +82,7 @@ const WorkListTable = ({
                     : params?.row?.gazana
                 )
               ? 'text-newBlue'
-              : 'text-red-600'
+              : 'text-customRed'
             : ''
         }`}
         >
@@ -96,7 +96,7 @@ const WorkListTable = ({
       width: 50,
       renderCell: (params) => (
         <p
-        className={`p-1 text-base font-bold ${
+        className={`p-1 text-[12px] font-bold ${
           params?.row?.processLotId?.assignDate
             ? params?.row?.rate &&
               (workerData.workerType !== 'INNER_WORKER'
@@ -104,7 +104,7 @@ const WorkListTable = ({
                     params?.row?.processLotId?.quantity &&
                   Number(params?.row?.total)
                 : Number(params?.row?.rate))
-              ? 'text-green-500'
+              ? 'text-customGreen'
               : (
                   workerData.workerType !== 'INNER_WORKER'
                     ? params?.row?.processLotId?.quantity ===
@@ -112,7 +112,7 @@ const WorkListTable = ({
                     : params?.row?.gazana 
                 )
               ? 'text-newBlue'
-              : 'text-red-600'
+              : 'text-customRed'
             : ''
         }`}
         >
@@ -126,7 +126,7 @@ const WorkListTable = ({
       width: 100,
       renderCell: (params) => (
         <p
-        className={`p-1 text-base font-bold ${
+        className={`p-1 text-[12px] font-bold ${
           params?.row?.processLotId?.assignDate
             ? params?.row?.rate &&
               (workerData.workerType !== 'INNER_WORKER'
@@ -134,7 +134,7 @@ const WorkListTable = ({
                     params?.row?.processLotId?.quantity &&
                   Number(params?.row?.total)
                 : Number(params?.row?.rate))
-              ? 'text-green-500'
+              ? 'text-customGreen'
               : (
                   workerData.workerType !== 'INNER_WORKER'
                     ? params?.row?.processLotId?.quantity ===
@@ -142,7 +142,7 @@ const WorkListTable = ({
                     : params?.row?.gazana
                 )
               ? 'text-newBlue'
-              : 'text-red-600'
+              : 'text-customRed'
             : ''
         }`}
         >
@@ -156,7 +156,7 @@ const WorkListTable = ({
       width: 40,
       renderCell: (params) => (
         <p
-        className={`p-1 text-base font-bold ${
+        className={`p-1 text-[12px] font-bold ${
           params?.row?.processLotId?.assignDate
             ? params?.row?.rate &&
               (workerData.workerType !== 'INNER_WORKER'
@@ -164,7 +164,7 @@ const WorkListTable = ({
                     params?.row?.processLotId?.quantity &&
                   Number(params?.row?.total)
                 : Number(params?.row?.rate))
-              ? 'text-green-500'
+              ? 'text-customGreen'
               : (
                   workerData.workerType !== 'INNER_WORKER'
                     ? params?.row?.processLotId?.quantity ===
@@ -172,7 +172,7 @@ const WorkListTable = ({
                     : params?.row?.gazana
                 )
               ? 'text-newBlue'
-              : 'text-red-600'
+              : 'text-customRed'
             : ''
         }`}
         >
@@ -186,7 +186,7 @@ const WorkListTable = ({
       width: 30,
       renderCell: (params) => (
         <p
-        className={`p-1 text-base font-bold ${
+        className={`p-1 text-[12px] font-bold ${
           params?.row?.processLotId?.assignDate
             ? params?.row?.rate &&
               (workerData.workerType !== 'INNER_WORKER'
@@ -194,7 +194,7 @@ const WorkListTable = ({
                     params?.row?.processLotId?.quantity &&
                   Number(params?.row?.total)
                 : Number(params?.row?.rate))
-              ? 'text-green-500'
+              ? 'text-customGreen'
               : (
                   workerData.workerType !== 'INNER_WORKER'
                     ? params?.row?.processLotId?.quantity ===
@@ -202,7 +202,7 @@ const WorkListTable = ({
                     : params?.row?.gazana
                 )
               ? 'text-newBlue'
-              : 'text-red-600'
+              : 'text-customRed'
             : ''
         }`}
         >
@@ -224,7 +224,7 @@ const WorkListTable = ({
               const result = quantity - quantityReturned;
               return (
                 <p
-                className={`p-1 text-base font-bold ${
+                className={`p-1 text-[12px] font-bold ${
                   params?.row?.processLotId?.assignDate
                     ? params?.row?.rate &&
                       (workerData.workerType !== 'INNER_WORKER'
@@ -232,7 +232,7 @@ const WorkListTable = ({
                             params?.row?.processLotId?.quantity &&
                           Number(params?.row?.total)
                         : Number(params?.row?.rate))
-                      ? 'text-green-500'
+                      ? 'text-customGreen'
                       : (
                           workerData.workerType !== 'INNER_WORKER'
                             ? params?.row?.processLotId?.quantity ===
@@ -240,7 +240,7 @@ const WorkListTable = ({
                             : params?.row?.gazana
                         )
                       ? 'text-newBlue'
-                      : 'text-red-600'
+                      : 'text-customRed'
                     : ''
                 }`}
                 >
@@ -259,7 +259,7 @@ const WorkListTable = ({
             width: 70,
             renderCell: (params) => (
               <p
-              className={`p-1 text-base font-bold ${
+              className={`p-1 text-[12px] font-bold ${
                 params?.row?.processLotId?.assignDate
                   ? params?.row?.rate &&
                     (workerData.workerType !== 'INNER_WORKER'
@@ -267,7 +267,7 @@ const WorkListTable = ({
                           params?.row?.processLotId?.quantity &&
                         Number(params?.row?.total)
                       : Number(params?.row?.rate))
-                    ? 'text-green-500'
+                    ? 'text-customGreen'
                     : (
                         workerData.workerType !== 'INNER_WORKER'
                           ? params?.row?.processLotId?.quantity ===
@@ -275,7 +275,7 @@ const WorkListTable = ({
                           : params?.row?.gazana
                       )
                     ? 'text-newBlue'
-                    : 'text-red-600'
+                    : 'text-customRed'
                   : ''
               }`}
               >
@@ -291,7 +291,7 @@ const WorkListTable = ({
       width: 90,
       renderCell: (params) => (
         <p
-        className={`p-1 text-base font-bold ${
+        className={`p-1 text-[12px] font-bold ${
           params?.row?.processLotId?.assignDate
             ? params?.row?.rate &&
               (workerData.workerType !== 'INNER_WORKER'
@@ -299,7 +299,7 @@ const WorkListTable = ({
                     params?.row?.processLotId?.quantity &&
                   Number(params?.row?.total)
                 : Number(params?.row?.rate))
-              ? 'text-green-500'
+              ? 'text-customGreen'
               : (
                   workerData.workerType !== 'INNER_WORKER'
                     ? params?.row?.processLotId?.quantity ===
@@ -307,7 +307,7 @@ const WorkListTable = ({
                     : params?.row?.gazana
                 )
               ? 'text-newBlue'
-              : 'text-red-600'
+              : 'text-customRed'
             : ''
         }`}
         >
@@ -321,7 +321,7 @@ const WorkListTable = ({
       width: 100,
       renderCell: (params) => (
         <p
-        className={`p-1 text-base font-bold ${
+        className={`p-1 text-[12px] font-bold ${
           params?.row?.processLotId?.assignDate
             ? params?.row?.rate &&
               (workerData.workerType !== 'INNER_WORKER'
@@ -329,7 +329,7 @@ const WorkListTable = ({
                     params?.row?.processLotId?.quantity &&
                   Number(params?.row?.total)
                 : Number(params?.row?.rate))
-              ? 'text-green-500'
+              ? 'text-customGreen'
               : (
                   workerData.workerType !== 'INNER_WORKER'
                     ? params?.row?.processLotId?.quantity ===
@@ -337,7 +337,7 @@ const WorkListTable = ({
                     : params?.row?.gazana
                 )
               ? 'text-newBlue'
-              : 'text-red-600'
+              : 'text-customRed'
             : ''
         }`}
         >
@@ -360,7 +360,7 @@ const WorkListTable = ({
           });
           return (
             <p
-            className={`p-1 text-base font-bold ${
+            className={`p-1 text-[12px] font-bold ${
               params?.row?.processLotId?.assignDate
                 ? params?.row?.rate &&
                   (workerData.workerType !== 'INNER_WORKER'
@@ -368,7 +368,7 @@ const WorkListTable = ({
                         params?.row?.processLotId?.quantity &&
                       Number(params?.row?.total)
                     : Number(params?.row?.rate))
-                  ? 'text-green-500'
+                  ? 'text-customGreen'
                   : (
                       workerData.workerType !== 'INNER_WORKER'
                         ? params?.row?.processLotId?.quantity ===
@@ -376,7 +376,7 @@ const WorkListTable = ({
                         : params?.row?.gazana
                     )
                   ? 'text-newBlue'
-                  : 'text-red-600'
+                  : 'text-customRed'
                 : ''
             }`}
             >
@@ -394,7 +394,7 @@ const WorkListTable = ({
       width: 100,
       renderCell: (params) => (
         <p
-        className={`p-1 text-base font-bold ${
+        className={`p-1 text-[12px] font-bold ${
           params?.row?.processLotId?.assignDate
             ? params?.row?.rate &&
               (workerData.workerType !== 'INNER_WORKER'
@@ -402,7 +402,7 @@ const WorkListTable = ({
                     params?.row?.processLotId?.quantity &&
                   Number(params?.row?.total)
                 : Number(params?.row?.rate))
-              ? 'text-green-500'
+              ? 'text-customGreen'
               : (
                   workerData.workerType !== 'INNER_WORKER'
                     ? params?.row?.processLotId?.quantity ===
@@ -410,7 +410,7 @@ const WorkListTable = ({
                     : params?.row?.gazana
                 )
               ? 'text-newBlue'
-              : 'text-red-600'
+              : 'text-customRed'
             : ''
         }`}
         >

@@ -32,7 +32,7 @@ const AccountsListTable = ({
                         timeZone: 'UTC' // Ensure the date is treated as UTC when formatting
                     });
                     return (
-                        <p className='p-1 text-base font-bold'>
+                        <p className='p-1 text-[12px]'>
                             {newDate}
                         </p>
                     );
@@ -47,7 +47,7 @@ const AccountsListTable = ({
             width: 120,
             renderCell: (params) => {
                 return (
-                    <p className='p-1 text-base font-bold'>
+                    <p className='p-1 text-[12px]'>
                         {params?.row?.description || '-'}
                     </p>
                 );
@@ -59,7 +59,7 @@ const AccountsListTable = ({
             width: 120,
             renderCell: (params) => {
                 return (
-                    <p className='p-1 text-base font-bold'>
+                    <p className='p-1 text-[12px]'>
                         {params?.row?.workerAssignmentId?.processLotId?.quantity || '-'}
                     </p>
                 );
@@ -71,7 +71,7 @@ const AccountsListTable = ({
             width: 120,
             renderCell: (params) => {
                 return (
-                    <p className='p-1 text-base font-bold'>
+                    <p className='p-1 text-[12px]'>
                         {params?.row?.workerAssignmentId?.processLotId?.colour || '-'}
                     </p>
                 );
@@ -83,7 +83,7 @@ const AccountsListTable = ({
             width: 120,
             renderCell: (params) => {
                 return (
-                    <p className='p-1 text-base font-bold'>
+                    <p className='p-1 text-[12px]'>
                         {params?.row?.workerAssignmentId?.processLotId?.billNumber || '-'}
                     </p>
                 );
@@ -96,12 +96,12 @@ const AccountsListTable = ({
             renderCell: (params) => {
                 if (params?.row?.paymentType === 'DEBIT') {
                     return (
-                        <p className='p-1 text-base font-bold text-red-400'>
+                        <p className='p-1 text-[12px] text-customRed'>
                             {params?.row?.amount || '-'}
                         </p>
                     );
                 } else {
-                    return <p className='p-1 text-base font-bol'>
+                    return <p className='p-1 text-[12px]'>
                         {'-'}
                     </p>
                 }
@@ -114,12 +114,12 @@ const AccountsListTable = ({
             renderCell: (params) => {
                 if (params?.row?.paymentType === 'CREDIT') {
                     return (
-                        <p className='p-1 text-base font-bold text-green-400'>
+                        <p className='p-1 text-[12px] text-customGreen'>
                             {params?.row?.amount || '-'}
                         </p>
                     );
                 } else {
-                    return <p className='p-1 text-base font-bold'>
+                    return <p className='p-1 text-[12px]'>
                         {'-'}
                     </p>
                 }
@@ -131,7 +131,7 @@ const AccountsListTable = ({
             width: 120,
             renderCell: (params) => {
                 return (
-                    <p className='p-1 text-base font-bold'>
+                    <p className='p-1 text-[12px]'>
                         {params?.row?.previousBalance}
                     </p>
                 );
@@ -143,7 +143,7 @@ const AccountsListTable = ({
             width: 120,
             renderCell: (params) => {
                 return (
-                    <p className={`p-1 text-base font-bold ${params.row.currentBalance <= 0 ? 'text-green-500' : 'text-red-600'}`}>
+                    <p className={`p-1 text-[12px] ${params.row.currentBalance <= 0 ? 'text-customGreen' : 'text-customRed'}`}>
                         {params?.row?.currentBalance }
                     </p>
                 );

@@ -144,8 +144,8 @@ const Workers = () => {
       renderCell: (params) => {
         const balance = params.value;
         // Apply the Tailwind classes conditionally based on the balance value
-        const balanceClass = balance < 0 ? 'text-green-500' : 'text-red-600';
-        return <span className={`text-base	 ${balanceClass} text-sm`}>{balance}</span>;
+        const balanceClass = balance < 0 ? 'text-customGreen' : 'text-customRed';
+        return <span className={` ${balanceClass} text-[12px]`}>{balance}</span>;
       }
     },
     // {

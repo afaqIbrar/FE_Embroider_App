@@ -168,7 +168,7 @@ const ProcessLot = () => {
       width: 55,
       renderCell: (params) => (
         <p
-          className={`p-1 text-[12px] font-bold ${params.row.assignDate ? 'text-customGreen' : 'text-customRed'
+          className={`p-1 text-[14px] font-bold ${params.row.assignDate ? 'text-customGreen' : 'text-customRed'
             }`}
         >
           {params.row.pageNumber || '-'}
@@ -181,7 +181,7 @@ const ProcessLot = () => {
       width: 80,
       renderCell: (params) => (
         <p
-          className={`p-1 text-[12px] font-bold ${params.row.assignDate ? 'text-customGreen' : 'text-customRed'
+          className={`p-1 text-[14px] font-bold ${params.row.assignDate ? 'text-customGreen' : 'text-customRed'
             }`}
         >
           {params.row.articleNumber || '-'}
@@ -194,7 +194,7 @@ const ProcessLot = () => {
       width: 140,
       renderCell: (params) => (
         <p
-          className={`p-1 text-[12px] font-bold ${params.row.assignDate ? 'text-customGreen' : 'text-customRed'
+          className={`p-1 text-[14px] font-bold ${params.row.assignDate ? 'text-customGreen' : 'text-customRed'
             }`}
         >
           {params.row.colour || '-'}
@@ -208,11 +208,11 @@ const ProcessLot = () => {
       renderCell: (params) => (
         <p
           // className={`${params.row.billNumber ? ${params.row.assignDate ? 'bg-customGreen p-2 text-sm' : 'bg-blue-500 p-2 text-sm'} :  '' }}
-          className={`p-1 text-[12px] font-bold ${params.row.billNumber
-              ? params.row.assignDate
-                ? 'text-customGreen'
-                : 'text-newBlue'
-              : ''
+          className={`p-1 text-[14px] font-bold ${params.row.billNumber
+            ? params.row.assignDate
+              ? 'text-customGreen'
+              : 'text-newBlue'
+            : ''
             }`}
         >
           {params.row.billNumber || '-'}
@@ -225,11 +225,11 @@ const ProcessLot = () => {
       width: 60,
       renderCell: (params) => (
         <p
-          className={`p-1 text-[12px] font-bold ${params.row.quantity
-              ? params.row.assignDate
-                ? 'text-customGreen'
-                : 'text-newBlue'
-              : ''
+          className={`p-1 text-[14px] font-bold ${params.row.quantity
+            ? params.row.assignDate
+              ? 'text-customGreen'
+              : 'text-newBlue'
+            : ''
             }`}
         >
           {params.row.quantity || '-'}
@@ -256,11 +256,11 @@ const ProcessLot = () => {
       },
       renderCell: (params) => (
         <p
-          className={`p-1 text-[12px] font-bold ${params.row.assignDate
-              ? params.row.assignDate
-                ? 'text-customGreen'
-                : 'text-newBlue'
-              : ''
+          className={`p-1 text-[14px] font-bold ${params.row.assignDate
+            ? params.row.assignDate
+              ? 'text-customGreen'
+              : 'text-newBlue'
+            : ''
             }`}
         >
           {params.value}
@@ -273,11 +273,11 @@ const ProcessLot = () => {
       width: 140,
       renderCell: (params) => (
         <p
-          className={`p-1 text-[12px] font-bold truncate ${params.row?.handWorkerId?.workerName
-              ? params?.row?.assignDate
-                ? 'text-customGreen'
-                : 'text-newBlue'
-              : ''
+          className={`p-1 text-[14px] font-bold truncate ${params.row?.handWorkerId?.workerName
+            ? params?.row?.assignDate
+              ? 'text-customGreen'
+              : 'text-newBlue'
+            : ''
             }`}
         >
           {params.row?.handWorkerId?.workerName || '-'}
@@ -290,11 +290,11 @@ const ProcessLot = () => {
       width: 140,
       renderCell: (params) => (
         <p
-          className={`p-1 text-[12px] font-bold truncate ${params.row?.dupattaWorkerId?.workerName
-              ? params.row.assignDate
-                ? 'text-customGreen'
-                : 'text-newBlue'
-              : ''
+          className={`p-1 text-[14px] font-bold truncate ${params.row?.dupattaWorkerId?.workerName
+            ? params.row.assignDate
+              ? 'text-customGreen'
+              : 'text-newBlue'
+            : ''
             }`}
         >
           {params.row?.dupattaWorkerId?.workerName || '-'}
@@ -307,11 +307,11 @@ const ProcessLot = () => {
       width: 140,
       renderCell: (params) => (
         <p
-          className={`p-1 text-[12px] font-bold truncate ${params.row?.innerWorkerId?.workerName
-              ? params.row.assignDate
-                ? 'text-customGreen'
-                : 'text-newBlue'
-              : ''
+          className={`p-1 text-[14px] font-bold truncate ${params.row?.innerWorkerId?.workerName
+            ? params.row.assignDate
+              ? 'text-customGreen'
+              : 'text-newBlue'
+            : ''
             }`}
         >
           {params.row?.innerWorkerId?.workerName || '-'}

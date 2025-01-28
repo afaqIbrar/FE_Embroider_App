@@ -27,14 +27,14 @@ const AccountList = () => {
   const [accounts, setAccounts] = useState([]);
   const [addTransactionPopup, setAddTransactionPopup] = useState(false);
   const today = moment();
-  const firstDayOfYear = moment().startOf('year');
+  const firstDayOfPreviousYear = moment().subtract(1, 'year').startOf('year');
   const [searchText, setSearchText] = useState('');
   const debouncedSearchText = useDebounce(searchText, 300);
-  const [startDate, setStartDate] = useState(firstDayOfYear);
+  const [startDate, setStartDate] = useState(firstDayOfPreviousYear);
   const [endDate, setEndDate] = useState(today.endOf('day'));
   const [showPrint, setShowPrint] = useState(null);
-    const [reverseAccount, setReverseAccount] = useState([]);
-  
+  const [reverseAccount, setReverseAccount] = useState([]);
+
 
 
   function handleClose() {

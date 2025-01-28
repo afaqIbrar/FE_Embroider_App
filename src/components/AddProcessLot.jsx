@@ -72,7 +72,7 @@ const AddProcessLot = ({ formik, processLot, view, flag }) => {
         m="20px"
         component="form"
         sx={{
-          '& .MuiTextField-root': { m: 1, width: '25ch' }
+          '& .MuiTextField-root': { m: 1, width: '20ch' }
         }}
         noValidate
         autoComplete="off"
@@ -157,8 +157,8 @@ const AddProcessLot = ({ formik, processLot, view, flag }) => {
                 value={
                   formik.values.assignDate
                     ? moment(formik.values.assignDate, 'YYYY-MM-DD').format(
-                        'DD/MM/YYYY'
-                      )
+                      'DD/MM/YYYY'
+                    )
                     : ''
                 }
               />

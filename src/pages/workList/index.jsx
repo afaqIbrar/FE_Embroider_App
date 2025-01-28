@@ -45,9 +45,9 @@ const Work = () => {
   const [showPrint, setShowPrint] = useState(null);
   const [extraInfoPopup, setExtraInfoPopup] = useState(false);
   const today = moment();
-  const firstDayOfYear = moment().startOf('year');
+  const firstDayOfPreviousYear = moment().subtract(1, 'year').startOf('year');
 
-  const [startDate, setStartDate] = useState(firstDayOfYear);
+  const [startDate, setStartDate] = useState(firstDayOfPreviousYear);
   const [endDate, setEndDate] = useState(today);
 
 
